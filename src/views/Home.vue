@@ -1,5 +1,5 @@
 <template>
-  <div class="fill-height home">
+  <div class="home">
     <div class="top">
       <div> menu </div>
     </div>

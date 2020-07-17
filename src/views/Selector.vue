@@ -1,5 +1,5 @@
 <template>
-  <div class="fill-height home">
+  <div>
     <Card class="speak">Speak</Card>
     <Card class="draw">Draw</Card>
     <Card class="show">Show</Card>
@@ -7,11 +7,6 @@
 </template>
 
 <style lang="scss">
-.home {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
 </style>
 
 <script>

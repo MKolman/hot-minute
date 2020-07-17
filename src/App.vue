@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <v-main>
-      <router-view/>
+      <router-view class="view" />
     </v-main>
     <v-snackbar bottom right :value="updateExists" :timeout="-1" color="primary">
       An update is available
@@ -124,8 +124,16 @@
     margin: auto;
     max-width: 600px;
     width: 100%;
-    flex:1;
-    display: flex;
+    .v-main__wrap {
+      display: flex;
+      flex:1;
+    }
+    .view {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
   }
 }
 </style>
