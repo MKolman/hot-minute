@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.d82ca763b7871ea6d87303fe8ee88fe4.js"
+  "precache-manifest.cbbf6840c202720ea4dffbafef4c1478.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "progressive-vue"});
+workbox.core.setCacheNameDetails({prefix: "hot-minute"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
