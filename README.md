@@ -1,6 +1,8 @@
-# Vue PWA template
-Vue template configured with vuetify as a PWA and a "New version available, please reload" notification.
+# Hot minute
+An action game to play with friends. The app handles activity (Speak, Draw, Show, Humming) selection, timing and score-keeping.
 
+
+# Development
 ## Project setup
 ```
 npm install
@@ -20,6 +22,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
