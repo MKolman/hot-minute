@@ -3,7 +3,7 @@
     <div class="top">
       <div> menu </div>
     </div>
-    <Card class="play" v-on:click.native="play()">PLAY</Card>
+    <Card class="play" v-on:click.native="play()">Play</Card>
     <Score id="score" />
   </div>
 </template>
@@ -18,8 +18,8 @@
     div {
       background-color: var(--color-score-change-bg);
       color: var(--color-app-bg);
-      margin-top: 1rem;
-      margin-right: 1rem;
+      margin-top: 5%;
+      margin-right: 5%;
       height: 2rem;
       width: 3rem;
       display: inline-flex;

@@ -1,67 +1,37 @@
 <template>
   <div class="outer elevation-4">
     <div class="inner">
-      <slot></slot>
     </div>
+    <slot></slot>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.outer {
-  &.play {
-    --color-card-bg: var(--color-play-btn-bg);
-    --color-card-txt: var(--color-play-btn-txt);
-  }
-  &.speak {
-    --color-card-bg: var(--color-speak-card-bg);
-    --color-card-txt: var(--color-speak-card-txt);
-    &.sat {
-      --color-card-bg: var(--color-speak-card-sat-bg);
-      --color-card-txt: var(--color-speak-card-sat-txt);
-    }
-    &.desat {
-      --color-card-bg: var(--color-speak-card-desat-bg);
-      --color-card-txt: var(--color-speak-card-desat-txt);
-    }
-  }
-  &.draw {
-    --color-card-bg: var(--color-draw-card-bg);
-    --color-card-txt: var(--color-draw-card-txt);
-    &.sat {
-      --color-card-bg: var(--color-draw-card-sat-bg);
-      --color-card-txt: var(--color-draw-card-sat-txt);
-    }
-    &.desat {
-      --color-card-bg: var(--color-draw-card-desat-bg);
-      --color-card-txt: var(--color-draw-card-desat-txt);
-    }
-  }
-  &.show {
-    --color-card-bg: var(--color-show-card-bg);
-    --color-card-txt: var(--color-show-card-txt);
-    &.sat {
-      --color-card-bg: var(--color-show-card-sat-bg);
-      --color-card-txt: var(--color-show-card-sat-txt);
-    }
-    &.desat {
-      --color-card-bg: var(--color-show-card-desat-bg);
-      --color-card-txt: var(--color-show-card-desat-txt);
-    }
-  }
-}
 div {
   flex: 1;
   display: flex;
 }
+.outer:first-child {
+  margin-top: 5%;
+}
 .outer {
   background-color: var(--color-card-bg);
-  margin: 1rem;
+  color: var(--color-card-txt);
+  max-height: 33vh;
+  margin: 5%;
+  margin-top: 0%;
+  position: relative;
+  align-items: center;
+  justify-content: center;
   .inner {
-    margin: 5%;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    left: 0.25em;
+    top: 0.25em;
+    width: calc(100% - 0.5em);
+    height: calc(100% - 0.5em);
+    box-sizing: border-box;
     border: 0.3rem var(--color-card-txt) solid;
-    color: var(--color-card-txt);
+    border-radius: 0.5rem;
   }
 }
 </style>

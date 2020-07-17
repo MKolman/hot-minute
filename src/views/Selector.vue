@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Card class="speak">Speak</Card>
-    <Card class="draw">Draw</Card>
-    <Card class="show">Show</Card>
+    <Card @click.native="goPlay('speak');" class="speak">Speak</Card>
+    <Card @click.native="goPlay('draw');" class="draw">Draw</Card>
+    <Card @click.native="goPlay('show');" class="show">Show</Card>
   </div>
 </template>
 
@@ -17,6 +17,11 @@ export default {
   name: 'Selector',
   components: {
     Card,
+  },
+  methods: {
+    goPlay(type) {
+      this.$router.replace({ name: 'Play', params: { type } });
+    },
   },
 };
 </script>

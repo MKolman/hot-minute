@@ -1,0 +1,81 @@
+
+.play {
+  --color-card-bg: var(--color-play-card-bg);
+  --color-card-txt: var(--color-play-card-txt);
+  --color-card-border: var(--color-play-card-txt);
+}
+.speak {
+  --color-card-bg: var(--color-speak-card-bg);
+  --color-card-txt: var(--color-speak-card-txt);
+  --color-card-border: var(--color-speak-card-txt);
+  &.sat {
+    --color-card-bg: var(--color-speak-card-sat-bg);
+    --color-card-txt: var(--color-speak-card-sat-txt);
+    --color-card-border: var(--color-speak-card-sat-txt);
+  }
+  &.desat {
+    --color-card-bg: var(--color-speak-card-desat-bg);
+    --color-card-txt: var(--color-speak-card-desat-txt);
+    --color-card-border: var(--color-speak-card-desat-txt);
+  }
+  &.front {
+    --color-card-bg: var(--color-speak-view-card-front-bg);
+    --color-card-txt: var(--color-speak-view-card-front-txt);
+    --color-card-border: var(--color-speak-view-card-front-txt);
+  }
+  &.back {
+    --color-card-bg: var(--color-speak-view-card-back-bg);
+    --color-card-txt: var(--color-speak-view-card-back-txt);
+    --color-card-border: var(--color-speak-view-card-back-txt);
+  }
+}
+.draw {
+  --color-card-bg: var(--color-draw-card-bg);
+  --color-card-txt: var(--color-draw-card-txt);
+  --color-card-border: var(--color-draw-card-txt);
+  &.sat {
+    --color-card-bg: var(--color-draw-card-sat-bg);
+    --color-card-txt: var(--color-draw-card-sat-txt);
+    --color-card-border: var(--color-draw-card-sat-txt);
+  }
+  &.desat {
+    --color-card-bg: var(--color-draw-card-desat-bg);
+    --color-card-txt: var(--color-draw-card-desat-txt);
+    --color-card-border: var(--color-draw-card-desat-txt);
+  }
+  &.front {
+    --color-card-bg: var(--color-draw-view-card-front-bg);
+    --color-card-txt: var(--color-draw-view-card-front-txt);
+    --color-card-border: var(--color-draw-view-card-front-txt);
+  }
+  &.back {
+    --color-card-bg: var(--color-draw-view-card-back-bg);
+    --color-card-txt: var(--color-draw-view-card-back-txt);
+    --color-card-border: var(--color-draw-view-card-back-txt);
+  }
+}
+.show {
+  --color-card-bg: var(--color-show-card-bg);
+  --color-card-txt: var(--color-show-card-txt);
+  --color-card-border: var(--color-show-card-txt);
+  &.sat {
+    --color-card-bg: var(--color-show-card-sat-bg);
+    --color-card-txt: var(--color-show-card-sat-txt);
+    --color-card-border: var(--color-show-card-sat-txt);
+  }
+  &.desat {
+    --color-card-bg: var(--color-show-card-desat-bg);
+    --color-card-txt: var(--color-show-card-desat-txt);
+    --color-card-border: var(--color-show-card-desat-txt);
+  }
+  &.front {
+    --color-card-bg: var(--color-show-view-card-front-bg);
+    --color-card-txt: var(--color-show-view-card-front-txt);
+    --color-card-border: var(--color-show-view-card-front-txt);
+  }
+  &.back {
+    --color-card-bg: var(--color-show-view-card-back-bg);
+    --color-card-txt: var(--color-show-view-card-back-txt);
+    --color-card-border: var(--color-show-view-card-back-txt);
+  }
+}

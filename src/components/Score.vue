@@ -4,10 +4,10 @@
     <input v-model="scoreValue" class="elevation-4">
     <div class="toolbox-shape">
       <div class="toolbox">
-        <v-btn class="score-button elevation-4" fab @click="scoreValue += 5;">
+        <v-btn class="score-button numeric elevation-4" fab @click="scoreValue += 5;">
           +5
         </v-btn>
-        <v-btn class="score-button elevation-4" fab @click="scoreValue += 1;">
+        <v-btn class="score-button numeric elevation-4" fab @click="scoreValue += 1;">
           +1
         </v-btn>
         <v-btn class="score-button elevation-4" fab @click="scoreValue -= 1;">
@@ -27,6 +27,7 @@
 }
 h1 {
   color: var(--color-score-bg);
+  font-family: 'Do Hyeon', sans-serif;
 }
 input {
   background-color: var(--color-score-bg);
@@ -36,6 +37,7 @@ input {
   text-align: center;
   font-weight: bold;
   padding: 0.5rem;
+  padding-top: 1.1rem;
 }
 .toolbox-shape {
   margin-left: 1rem;
@@ -68,6 +70,10 @@ input {
   max-width: 100px;
   // width: 2.5em;
   // height: 2.5em;
+  &.numeric {
+    padding-top: 0.2em;
+    padding-right: 0.2em;
+  }
   .v-icon {
     font-size: 1.2em;
   }

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
 import Selector from '../views/Selector.vue';
+import Play from '../views/Play.vue';
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes: Array<RouteConfig> = [
     path: '/selector',
     name: 'Select Activity',
     component: Selector,
+  },
+  {
+    path: '/play/:type(speak|draw|show)',
+    name: 'Play',
+    component: Play,
   },
   {
     path: '/about',
