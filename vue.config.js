@@ -31,4 +31,12 @@ module.exports = {
       msTileImage: 'img/icons/mstile-150x150.png',
     },
   },
+  chainWebpack: config => {
+    config
+    .plugin('html')
+    .tap(args => {
+      args[0].title = 'Hot Minute';
+      return args;
+    });
+  },
 };
