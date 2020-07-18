@@ -8,27 +8,7 @@
       </Card>
       <v-btn class="eye" @click="showCard = !showCard"><v-icon>mdi-eye</v-icon></v-btn>
     </div>
-    <v-btn
-      v-if="timer === null"
-      x-large class="ready"
-      @click="countdown();"
-    >
-      I'm ready!
-    </v-btn>
-    <v-btn
-      v-if="timer !== null"
-      x-large
-      class="ready"
-    >
-      {{ timerTxt }}
-    </v-btn>
-    <v-btn
-      large
-      class="done"
-      :class="{hidden: timer === null}"
-      @click="timer = null"
-      router=""
-    >done</v-btn>
+    <Timer />
   </div>
 </template>
 
@@ -76,32 +56,6 @@
     font-weight: normal;
   }
 }
-.ready, .done{
-  text-transform: none;
-  margin-left: auto;
-  margin-right: auto;
-  letter-spacing: normal;
-  border-radius: 1rem;
-}
-.ready {
-  background-color: var(--color-view-btn-bg)!important;
-  color: var(--color-view-btn-txt)!important;
-  box-shadow: -0.5rem 1rem 0 var(--color-view-btn-shadow)!important;
-  margin-bottom: 1.5rem;
-  padding-top: 0.2em!important;
-  flex: 0.2;
-  font-size: 3rem!important;
-}
-.done {
-  background-color: var(--color-view-done-bg)!important;
-  color: var(--color-view-done-txt)!important;
-  margin-bottom: 1rem;
-  font-size: 2.5rem!important;
-  padding-top: 0.2em!important;
-}
-.done.hidden {
-  visibility: hidden;
-}
 .eye {
   margin-left: auto;
   margin-right: 5%;
@@ -125,36 +79,23 @@
 <script>
 // @ is an alias to /src
 import Card from '@/components/Card.vue';
+import Timer from '@/components/Timer.vue';
 
 export default {
   name: 'Play',
   components: {
     Card,
+    Timer,
   },
   data() {
     return {
       showCard: true,
-      timer: null,
     };
   },
   computed: {
     title() {
       const result = this.$route.params.type;
       return result.charAt(0).toUpperCase() + result.slice(1);
-    },
-    timerTxt() {
-      return `${Math.floor(this.timer / 60).toString().padStart(2, '0')}:${(this.timer % 60).toString().padStart(2, '0')}`;
-    },
-  },
-  methods: {
-    countdown() {
-      if (this.timer === null) {
-        this.timer = 61;
-      }
-      if (this.timer > 0) {
-        this.timer -= 1;
-        setTimeout(this.countdown, 1000);
-      }
     },
   },
 };
