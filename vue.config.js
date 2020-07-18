@@ -4,22 +4,22 @@ module.exports = {
     'vuetify',
   ],
   pwa: {
-    name: "Hot Minute",
-    themeColor: "#feb5ca",
-    msTileColor: "#603cba",
+    name: 'Hot Minute',
+    themeColor: '#feb5ca',
+    msTileColor: '#603cba',
     manifestOptions: {
-      orientation: "portrait",
-      background_color: "#fed5dd",
+      orientation: 'portrait',
+      background_color: '#fed5dd',
       icons: [
         {
-          'src': 'img/icons/android-chrome-192x192.png',
-          'sizes': '192x192',
-          'type': 'image/png',
+          src: 'img/icons/android-chrome-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
         },
         {
-          'src': 'img/icons/android-chrome-512x512.png',
-          'sizes': '512x512',
-          'type': 'image/png',
+          src: 'img/icons/android-chrome-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
         },
       ],
     },
@@ -29,6 +29,6 @@ module.exports = {
       appleTouchIcon: 'img/icons/apple-touch-icon.png',
       maskIcon: 'img/icons/safari-pinned-tab.svg',
       msTileImage: 'img/icons/mstile-150x150.png',
-    }
-  }
+    },
+  },
 };
