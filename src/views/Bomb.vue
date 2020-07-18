@@ -102,9 +102,8 @@ export default {
     };
   },
   mounted() {
-    this.startAnimation = true;
-    // setTimeout(() => {  }, 300);
-    // setTimeout(() => { this.intro = false; }, 4000);
+    setTimeout(() => { this.startAnimation = true; }, 300);
+    setTimeout(() => { this.intro = false; }, 4000);
   },
 };
 </script>
