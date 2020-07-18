@@ -87,6 +87,7 @@ export default Vue.extend({
     start() {
       this.timer = 61;
       this.countdown();
+      this.$emit('start');
     },
     countdown() {
       if (this.timer !== null && this.timer > 0) {
