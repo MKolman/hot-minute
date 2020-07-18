@@ -23,6 +23,8 @@ div {
   position: relative;
   align-items: center;
   justify-content: center;
+  transition-duration: 0.3s;
+  transition-property: background-color, border-color, color;
   .inner {
     position: absolute;
     left: 0.25em;
