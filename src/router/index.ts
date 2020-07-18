@@ -1,9 +1,5 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Home from '../views/Home.vue';
-import Selector from '../views/Selector.vue';
-import Play from '../views/Play.vue';
-import Bomb from '../views/Bomb.vue';
 
 Vue.use(VueRouter);
 
@@ -11,30 +7,37 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: () => import('../views/Home.vue'),
   },
   {
     path: '/selector',
     name: 'Select Activity',
-    component: Selector,
+    component: () => import('../views/Selector.vue'),
   },
   {
     path: '/play/bomb',
     name: 'Bomb',
-    component: Bomb,
+    component: () => import('../views/Bomb.vue'),
   },
   {
     path: '/play/:type(speak|draw|show)',
     name: 'Play',
-    component: Play,
+    component: () => import('../views/Play.vue'),
   },
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: () => import('../views/About.vue'),
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import('../views/Settings.vue'),
+  },
+  {
+    path: '/rules',
+    name: 'Rules',
+    component: () => import('../views/Rules.vue'),
   },
 ];
 

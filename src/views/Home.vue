@@ -1,9 +1,14 @@
 <template>
   <div class="home">
     <div class="top">
-      <div> menu </div>
+      Hot Minute
+      <v-btn text to="settings">
+        <v-icon>mdi-cog</v-icon>
+      </v-btn>
     </div>
-    <Card class="play" v-on:click.native="play()">Play</Card>
+    <Card class="play" v-on:click.native="play()">
+      Pl<img class="play-img" src="@/assets/play.svg" />y
+    </Card>
     <Score id="score" />
   </div>
 </template>
@@ -14,19 +19,21 @@
     flex: 2;
   }
   .top {
-    text-align: right;
-    div {
-      background-color: var(--color-score-change-bg);
-      color: var(--color-app-bg);
-      margin-top: 5%;
-      margin-right: 5%;
-      height: 2rem;
-      width: 3rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      align-self: right;
+    padding: 0.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .v-btn {
+      padding: 0;
+      min-width: 0;
     }
+    .v-icon {
+      font-size: 2.5em;
+      color: var(--color-score-change-bg);
+    }
+  }
+  .play-img {
+    height: 0.5em;
   }
 }
 </style>
