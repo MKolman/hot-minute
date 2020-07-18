@@ -18,7 +18,7 @@
       large
       class="done"
       :class="{hidden: timer === null}"
-      router=""
+      to="/"
     >done</v-btn>
   </div>
 </template>
