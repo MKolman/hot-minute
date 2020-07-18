@@ -4,7 +4,9 @@
     <Card class="front" :class="$route.params.type">
       <slot></slot>
     </Card>
-    <v-btn class="eye" @click="flipCard()"><v-icon>mdi-eye</v-icon></v-btn>
+    <v-btn class="eye" @click="flipCard()" aria-label="Flip card">
+      <v-icon>mdi-eye</v-icon>
+    </v-btn>
   </div>
 </template>
 

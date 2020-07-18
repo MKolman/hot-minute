@@ -3,7 +3,7 @@
     <h2 v-if="intro"> Hummmmming... </h2>
     <img class="splash" :class="{big: !startAnimation}" v-if="intro" src="@/assets/bomb.svg">
     <div v-if="!intro" class="bomb-wrapper">
-      <img src="@/assets/bomb.svg">
+      <img src="@/assets/bomb.svg" alt="Bomb" />
       <div class="bomb-text">
         <span class="song-author"> Tina Turner</span>
         <span class="song-title">Simply The Best</span>

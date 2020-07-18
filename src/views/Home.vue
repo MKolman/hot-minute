@@ -2,12 +2,12 @@
   <div class="home">
     <div class="top">
       Hot Minute
-      <v-btn text to="settings">
+      <v-btn text to="settings" aria-label="Settings">
         <v-icon>mdi-cog</v-icon>
       </v-btn>
     </div>
     <Card class="play" v-on:click.native="play()">
-      Pl<img class="play-img" src="@/assets/play.svg" />y
+      Pl<img class="play-img" src="@/assets/play.svg" alt="a"/>y
     </Card>
     <Score id="score" />
   </div>
