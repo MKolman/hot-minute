@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
 import Selector from '../views/Selector.vue';
 import Play from '../views/Play.vue';
+import Bomb from '../views/Bomb.vue';
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,11 @@ const routes: Array<RouteConfig> = [
     path: '/selector',
     name: 'Select Activity',
     component: Selector,
+  },
+  {
+    path: '/play/bomb',
+    name: 'Bomb',
+    component: Bomb,
   },
   {
     path: '/play/:type(speak|draw|show)',

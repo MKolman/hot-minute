@@ -49,3 +49,14 @@
   --color-view-done-bg: var(--color-show-view-done-bg);
   --color-view-done-txt: var(--color-show-view-done-txt);
 }
+.bomb {
+  // bomb view
+  --color-view-bg: var(--color-app-bg);
+  --color-view-txt: var(--color-app-txt);
+
+  --color-view-btn-bg: var(--color-bomb-view-btn-bg);
+  --color-view-btn-txt: var(--color-bomb-view-btn-txt);
+  --color-view-btn-shadow: var(--color-bomb-view-btn-shadow);
+  --color-view-done-bg: var(--color-bomb-view-done-bg);
+  --color-view-done-txt: var(--color-bomb-view-done-txt);
+}

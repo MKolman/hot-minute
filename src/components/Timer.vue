@@ -18,7 +18,6 @@
       large
       class="done"
       :class="{hidden: timer === null}"
-      @click="timer = null"
       router=""
     >done</v-btn>
   </div>
@@ -63,6 +62,12 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'Timer',
+  props: {
+    noConfirm: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       timer: null,
@@ -72,6 +77,11 @@ export default Vue.extend({
     timerTxt() {
       return `${Math.floor(this.timer / 60).toString().padStart(2, '0')}:${(this.timer % 60).toString().padStart(2, '0')}`;
     },
+  },
+  mounted() {
+    if (this.noConfirm) {
+      this.start();
+    }
   },
   methods: {
     start() {
