@@ -4,11 +4,11 @@
     <input v-model="scoreValue" class="elevation-4">
     <div class="toolbox-shape">
       <div class="toolbox">
-        <v-btn class="score-button numeric elevation-4" fab @click="scoreValue += 5;">
-          +5
-        </v-btn>
         <v-btn class="score-button numeric elevation-4" fab @click="scoreValue += 1;">
           +1
+        </v-btn>
+        <v-btn class="score-button numeric elevation-4" fab @click="scoreValue += 5;">
+          +5
         </v-btn>
         <v-btn class="score-button elevation-4" fab @click="scoreValue -= 1;">
           <v-icon dark>mdi-undo</v-icon>
