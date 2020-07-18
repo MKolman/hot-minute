@@ -1,6 +1,9 @@
 <template>
   <div id="play" :class="$route.params.type">
-    <h1> {{ title }} </h1>
+    <div class="header">
+      <Shine />
+      <h1> {{ title }} </h1>
+    </div>
     <div class="card-wrapper" :class="{flip: showCard}">
       <Card class="back" :class="$route.params.type"></Card>
       <Card class="front" :class="$route.params.type">
@@ -12,7 +15,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .card-wrapper {
   flex:1;
   display: flex;
@@ -47,13 +50,22 @@
   // justify-content: space-around;
   background-color: var(--color-view-bg);
   color: var(--color-view-txt);
-  h1 {
+  .header {
+    // background-image: url("../assets/shine.svg");
+    // // background-size: contain;
+    // background-position: center;
     flex: 0.7;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 4rem;
-    font-weight: normal;
+    position: relative;
+    svg {
+      position: absolute;
+    }
+    h1 {
+      font-size: 4rem;
+      font-weight: normal;
+    }
   }
 }
 .eye {
@@ -80,12 +92,14 @@
 // @ is an alias to /src
 import Card from '@/components/Card.vue';
 import Timer from '@/components/Timer.vue';
+import Shine from '@/components/Shine.vue';
 
 export default {
   name: 'Play',
   components: {
     Card,
     Timer,
+    Shine,
   },
   data() {
     return {
