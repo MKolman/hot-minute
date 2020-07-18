@@ -7,6 +7,29 @@
     </ul>
 
     <v-subheader>
+      Time per round:
+      {{
+        Math.floor($store.state.timer / 60).toString().padStart(2, '0')
+      }}:{{
+        ($store.state.timer % 60).toString().padStart(2, '0')
+      }}
+    </v-subheader>
+    <v-slider
+      v-model="$store.state.timer"
+      min="0"
+      max="300"
+      thumb-label
+    >
+      <template v-slot:thumb-label="{ value }">
+      {{
+        Math.floor(value / 60).toString().padStart(2, '0')
+      }}:{{
+        (value % 60).toString().padStart(2, '0')
+      }}
+      </template>
+    </v-slider>
+
+    <v-subheader>
       Activity selection animation length: {{ $store.state.animationTimeS }}s
     </v-subheader>
     <v-slider

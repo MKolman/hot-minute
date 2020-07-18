@@ -9,6 +9,7 @@ export default new Vuex.Store({
     animationTimeS: 15.0,
     bombProbability: 0.15,
     score: 0,
+    timer: 60,
   },
   mutations: {
     updateAnimationTimeS(state, value) {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     },
     updateScore(state, value) {
       state.score = value;
+    },
+    updateTimer(state, value) {
+      state.timer = value;
     },
   },
   actions: {

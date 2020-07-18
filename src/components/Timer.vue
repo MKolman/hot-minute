@@ -85,7 +85,7 @@ export default Vue.extend({
   },
   methods: {
     start() {
-      this.timer = 61;
+      this.timer = this.$store.state.timer + 1;
       this.countdown();
       this.$emit('start');
     },
