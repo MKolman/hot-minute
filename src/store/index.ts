@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     animationTimeS: 15.0,
     bombProbability: 0.15,
+    score: 0,
   },
   mutations: {
   },
