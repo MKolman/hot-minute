@@ -6,18 +6,32 @@
       <li><router-link to="about">About</router-link></li>
     </ul>
 
-    <v-subheader class="pl-0">Activity selection animation length</v-subheader>
+    <v-subheader>
+      Activity selection animation length: {{ $store.state.animationTimeS }}s
+    </v-subheader>
     <v-slider
-      v-model="slider"
-      :thumb-size="30"
+      v-model="$store.state.animationTimeS"
       min="0"
       max="20"
       step="0.1"
+      thumb-label
     >
       <template v-slot:thumb-label="{ value }">
         {{ value + 's' }}
       </template>
     </v-slider>
+
+    <v-subheader>
+      Probability of humming bomb: {{ $store.state.bombProbability }}
+    </v-subheader>
+    <v-slider
+      v-model="$store.state.bombProbability"
+      min="0"
+      max="1"
+      step="0.01"
+      thumb-label
+    ></v-slider>
+
     <HomeFab/>
   </div>
 </template>
