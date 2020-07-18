@@ -4,7 +4,7 @@ module.exports = {
     'vuetify',
   ],
   pwa: {
-    name: "Hot minute",
+    name: "Hot Minute",
     themeColor: "#feb5ca",
     msTileColor: "#603cba",
     manifestOptions: {
