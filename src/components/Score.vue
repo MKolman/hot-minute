@@ -1,16 +1,16 @@
 <template>
   <div class="wrapper">
     <h1>MY TEAM'S SCORE</h1>
-    <input v-model="$store.state.score" class="elevation-4">
+    <input v-model="score" class="elevation-4">
     <div class="toolbox-shape">
       <div class="toolbox">
-        <v-btn class="score-button numeric elevation-4" fab @click="$store.state.score += 1;">
+        <v-btn class="score-button numeric elevation-4" fab @click="score += 1;">
           +1
         </v-btn>
-        <v-btn class="score-button numeric elevation-4" fab @click="$store.state.score += 5;">
+        <v-btn class="score-button numeric elevation-4" fab @click="score += 5;">
           +5
         </v-btn>
-        <v-btn class="score-button elevation-4" fab @click="$store.state.score -= 1;">
+        <v-btn class="score-button elevation-4" fab @click="score -= 1;">
           <v-icon dark>mdi-undo</v-icon>
         </v-btn>
       </div>
@@ -85,5 +85,15 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'Score',
+  computed: {
+    score: {
+      get() {
+        return this.$store.state.score;
+      },
+      set(value) {
+        this.$store.commit('updateScore', value);
+      },
+    },
+  },
 });
 </script>

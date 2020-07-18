@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VuexPersistence from 'vuex-persist';
 
 Vue.use(Vuex);
 
@@ -10,9 +11,19 @@ export default new Vuex.Store({
     score: 0,
   },
   mutations: {
+    updateAnimationTimeS(state, value) {
+      state.animationTimeS = value;
+    },
+    updateBombProbability(state, value) {
+      state.bombProbability = value;
+    },
+    updateScore(state, value) {
+      state.score = value;
+    },
   },
   actions: {
   },
   modules: {
   },
+  plugins: [new VuexPersistence().plugin],
 });
