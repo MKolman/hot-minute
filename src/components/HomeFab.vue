@@ -6,7 +6,7 @@
 
 <style lang="scss">
 #home {
-  position: absolute;
+  position: fixed;
   transform: translateX(-50%);
   left: 50%;
   bottom: 1rem;
