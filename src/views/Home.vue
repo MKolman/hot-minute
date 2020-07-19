@@ -24,6 +24,7 @@
     justify-content: space-between;
     align-items: center;
     color: var(--color-score-change-bg);
+    font-family: 'Epilogue', sans-serif;
 
     .v-btn {
       padding: 0;
