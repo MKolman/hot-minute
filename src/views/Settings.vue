@@ -7,7 +7,7 @@
     </ul>
 
     <v-subheader>
-      Change which datasets are used for word generation
+      Change which wordsets are used [still not working]
     </v-subheader>
     <v-treeview
       :items="wordItems"
