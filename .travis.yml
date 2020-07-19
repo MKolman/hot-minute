@@ -12,6 +12,7 @@ cache:
 
 script:
   - npm run build
+  - cp CNAME dist/
 deploy:
   provider: pages
   skip_cleanup: true
