@@ -23,15 +23,17 @@
     <p>
       When speaking you have to verbally communicate the phrase thrust upon
       you. You are not allowed to use any hand gestures (e.g. pointing, miming
-      a box) or any other props to help explain your point.
+      a box) or any other props to help explain your point. Use of any words
+      that appear in your phrase is also prohibitet, as are any words with a
+      common root (e.g. type, typography, and typewriter).
     </p>
 
     <h2>Draw</h2>
     <p>
       You are allowed a sheet of paper and one single colored pen or pencil to
       draw the object of your game. While doing so, you may not write out any
-      numbers of letters on your drawings. Speaking and gesturing is not allowed
-      during this activity.
+      numbers of letters on your drawings. Speaking, making other sounds or
+      miming is not allowed during this activity.
     </p>
 
     <h2>Show</h2>
@@ -68,7 +70,7 @@
       to guess the song correctly.
     </p>
 
-    <h2> 3 Player variant </h2>
+    <h2>3 Player variant</h2>
     <p>
       If there are only three players they each form their own team. Every
       round is performed for every player regardless of the chosen activity.
