@@ -9,6 +9,7 @@
     </v-btn>
     <v-btn
       v-if="timer !== null"
+      ref="timer"
       x-large
       class="ready"
     >
@@ -18,12 +19,24 @@
       large
       class="done"
       :class="{hidden: timer === null}"
+      @click="pause = true"
+      :to="pause?'/':null"
+    >{{ pause ? 'home' : 'stop' }}</v-btn>
+    <!-- <v-btn
+      text
+      class="back-btn"
       to="/"
-    >done</v-btn>
+    ><v-icon>mdi-arrow-left</v-icon></v-btn> -->
   </div>
 </template>
 
 <style lang="scss" scoped>
+.back-btn {
+  margin-right: auto;
+  position: absolute;
+  bottom: 1em;
+  color: var(--color-view-btn-shadow)!important;
+}
 .timer {
   display: flex;
   flex-direction: column;
@@ -52,8 +65,8 @@
   font-size: 2.5rem!important;
   padding-top: 0.2em!important;
 }
-.done.hidden {
-  visibility: hidden;
+.hidden {
+    visibility: hidden;
 }
 </style>
 
@@ -71,6 +84,7 @@ export default Vue.extend({
   data() {
     return {
       timer: null,
+      pause: false,
     };
   },
   computed: {
@@ -90,7 +104,11 @@ export default Vue.extend({
       this.$emit('start');
     },
     countdown() {
-      if (this.timer !== null && this.timer > 0) {
+      if (this.pause) {
+        this.$refs.timer.$el.classList.toggle('hidden');
+        setTimeout(this.countdown, 500);
+      } else if (this.timer !== null && this.timer > 0) {
+        if (this.$refs.timer) this.$refs.timer.$el.classList.remove('hidden');
         this.timer -= 1;
         setTimeout(this.countdown, 1000);
       }
