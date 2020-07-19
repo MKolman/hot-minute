@@ -88,7 +88,7 @@ img.splash {
 
 <script>
 // @ is an alias to /src
-import getRandomWord from '@/lib/wordlists';
+import allWords from '@/lib/wordlists';
 import Timer from '@/components/Timer.vue';
 
 export default {
@@ -107,7 +107,7 @@ export default {
   mounted() {
     setTimeout(() => { this.startAnimation = true; }, 300);
     setTimeout(() => { this.intro = false; }, 4000);
-    [this.artist, this.title] = getRandomWord('bomb').split(';');
+    [this.artist, this.title] = allWords.getRandom('bomb').split(';');
   },
 };
 </script>
