@@ -76,8 +76,14 @@
   text-align: left;
   display: block;
   font-family: 'Epilogue', sans-serif;
-  h1, h2, h3 {
-    font-family: 'Galada', cursive;
+  // h1, h2 {
+  //   text-transform: uppercase;
+  // }
+  h1 {
+    border-bottom: var(--color-app-txt) solid 0.3em;
+    vertical-align: bottom;
+    padding-bottom: 0;
+    margin-bottom: 1em;
   }
 }
 </style>
