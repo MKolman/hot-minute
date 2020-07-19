@@ -74,11 +74,12 @@
 #app .v-main .text-page {
   padding: 5%;
   text-align: left;
-  display: block;
   font-family: 'Epilogue', sans-serif;
-  // h1, h2 {
-  //   text-transform: uppercase;
-  // }
+  display: block;
+  padding-bottom: 5em;
+  h1, h2 {
+    text-transform: uppercase;
+  }
   h1 {
     border-bottom: var(--color-app-txt) solid 0.3em;
     vertical-align: bottom;

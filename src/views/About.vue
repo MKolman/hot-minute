@@ -31,6 +31,13 @@
       on github</a> under a GPLv3 license.
     </p>
 
+    <p>
+      If you find an issue with app or any of the words present you can either
+      <a href="mailto:maks@kolman.si">email us</a> with the details or <a
+      href="https://github.com/MKolman/hot-minute/issues">open an issue on
+      github</a>.
+    </p>
+
     <HomeFab />
   </div>
 </template>
