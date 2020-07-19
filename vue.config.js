@@ -38,5 +38,12 @@ module.exports = {
       args[0].title = 'Hot Minute';
       return args;
     });
+
+    config.module
+      .rule('raw')
+      .test(/\.txt$/)
+      .use('raw-loader')
+      .loader('raw-loader')
+      .end();
   },
 };

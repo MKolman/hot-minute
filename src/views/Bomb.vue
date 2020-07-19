@@ -5,8 +5,8 @@
     <div v-if="!intro" class="bomb-wrapper">
       <img src="@/assets/bomb.svg" alt="Bomb" />
       <div class="bomb-text">
-        <span class="song-author"> Tina Turner</span>
-        <span class="song-title">Simply The Best</span>
+        <span class="song-author">{{ artist }}</span>
+        <span class="song-title">{{ title }}</span>
       </div>
     </div>
     <h1 v-if="intro"> Bomb! </h1>
@@ -88,6 +88,7 @@ img.splash {
 
 <script>
 // @ is an alias to /src
+import getRandomWord from '@/lib/wordlists';
 import Timer from '@/components/Timer.vue';
 
 export default {
@@ -99,11 +100,14 @@ export default {
     return {
       intro: true,
       startAnimation: false,
+      artist: 'Tina Turner',
+      title: 'Simply The Best',
     };
   },
   mounted() {
     setTimeout(() => { this.startAnimation = true; }, 300);
     setTimeout(() => { this.intro = false; }, 4000);
+    [this.artist, this.title] = getRandomWord('bomb').split(';');
   },
 };
 </script>

@@ -7,27 +7,14 @@
     </ul>
 
     <v-subheader>
-      Time per round:
-      {{
-        Math.floor($store.state.timer / 60).toString().padStart(2, '0')
-      }}:{{
-        ($store.state.timer % 60).toString().padStart(2, '0')
-      }}
+      Change which datasets are used for word generation
     </v-subheader>
-    <v-slider
-      v-model="$store.state.timer"
-      min="0"
-      max="300"
-      thumb-label
-    >
-      <template v-slot:thumb-label="{ value }">
-      {{
-        Math.floor(value / 60).toString().padStart(2, '0')
-      }}:{{
-        (value % 60).toString().padStart(2, '0')
-      }}
-      </template>
-    </v-slider>
+    <v-treeview
+      :items="wordItems"
+      selectable
+      :open-on-click="true"
+      selected-color="primary"
+    ></v-treeview>
 
     <v-subheader>
       Activity selection animation length: {{ $store.state.animationTimeS }}s
@@ -55,6 +42,30 @@
       thumb-label
     ></v-slider>
 
+    <v-subheader>
+      Time per round:
+      {{
+        Math.floor($store.state.timer / 60).toString().padStart(2, '0')
+      }}:{{
+        ($store.state.timer % 60).toString().padStart(2, '0')
+      }}
+    </v-subheader>
+    <v-slider
+      v-model="$store.state.timer"
+      min="0"
+      max="120"
+      step="5"
+      thumb-label
+    >
+      <template v-slot:thumb-label="{ value }">
+      {{
+        Math.floor(value / 60).toString().padStart(2, '0')
+      }}:{{
+        (value % 60).toString().padStart(2, '0')
+      }}
+      </template>
+    </v-slider>
+
     <HomeFab/>
   </div>
 </template>
@@ -72,6 +83,7 @@
 </style>
 
 <script>
+import allWords from '@/lib/wordlists';
 import HomeFab from '@/components/HomeFab.vue';
 
 export default {
@@ -82,6 +94,7 @@ export default {
   data() {
     return {
       slider: 0,
+      wordItems: allWords.all('').children,
     };
   },
 };

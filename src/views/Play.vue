@@ -5,7 +5,7 @@
       <h1> {{ title }} </h1>
     </div>
     <CardFlip v-model="cardVisible">
-      Kamen spotike
+      {{ capitalize(txt) }}
     </CardFlip>
     <Timer @start="cardVisible = false;" />
   </div>
@@ -34,6 +34,7 @@
 
 <script>
 // @ is an alias to /src
+import allWords from '@/lib/wordlists';
 import Timer from '@/components/Timer.vue';
 import Shine from '@/components/Shine.vue';
 import CardFlip from '@/components/CardFlip.vue';
@@ -48,12 +49,17 @@ export default {
   data() {
     return {
       cardVisible: true,
+      txt: allWords.getRandom(this.$route.params.type),
     };
   },
   computed: {
     title() {
-      const result = this.$route.params.type;
-      return result.charAt(0).toUpperCase() + result.slice(1);
+      return this.capitalize(this.$route.params.type);
+    },
+  },
+  methods: {
+    capitalize(txt) {
+      return txt[0].toUpperCase() + txt.slice(1);
     },
   },
 };
