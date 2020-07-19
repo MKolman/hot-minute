@@ -32,7 +32,7 @@
 }
 h1 {
   color: var(--color-score-bg);
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Epilogue', sans-serif;
 }
 input {
   background-color: var(--color-score-bg);

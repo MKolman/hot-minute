@@ -75,7 +75,7 @@
   padding: 5%;
   text-align: left;
   display: block;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Epilogue', sans-serif;
   h1, h2, h3 {
     font-family: 'Galada', cursive;
   }

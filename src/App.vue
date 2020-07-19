@@ -28,7 +28,7 @@
 <style lang="scss">
 @import "./styles/_colors.scss";
 #updateSnack {
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Epilogue', sans-serif;
   .v-snack__content {
     color: var(--color-speak-view-bg)!important;
   }
