@@ -1,10 +1,18 @@
 <template>
-  <div class="card-wrapper" :class="{flip: !value}">
+  <div class="card-wrapper" :class="{hidecard: !(value || touching)}">
     <Card class="back" :class="$route.params.type"></Card>
     <Card class="front" :class="$route.params.type">
       <slot></slot>
     </Card>
-    <v-btn class="eye" @click="flipCard()" aria-label="Flip card">
+    <v-btn
+      class="eye"
+      aria-label="Show card"
+      v-touch="{
+          start: touchstart,
+          end: touchend,
+        }"
+      @click="click"
+    >
       <v-icon>mdi-eye</v-icon>
     </v-btn>
   </div>
@@ -23,10 +31,10 @@
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
-.flip > .front{
+.hidecard > .front{
   transform: rotateY(180deg);
 }
-.flip > .back {
+.hidecard > .back {
   transform: rotateY(360deg);
 }
 .front {
@@ -66,13 +74,30 @@ import Card from '@/components/Card.vue';
 
 export default Vue.extend({
   name: 'CardFlip',
-  props: ['value'],
+  props: ['value', 'sensitive'],
+  data() {
+    return {
+      onTouch: false,
+      touching: false,
+    };
+  },
   components: {
     Card,
   },
   methods: {
-    flipCard() {
-      this.$emit('input', !this.value);
+    touchstart() {
+      if (this.sensitive) {
+        this.onTouch = true;
+        this.touching = true;
+      }
+    },
+    click() {
+      if (!this.sensitive || !this.onTouch) this.$emit('input', !this.value);
+    },
+    touchend() {
+      if (this.sensitive) {
+        this.touching = false;
+      }
     },
   },
 });

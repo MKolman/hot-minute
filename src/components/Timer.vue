@@ -117,6 +117,7 @@ export default Vue.extend({
     },
     pauseTimer() {
       this.pause = true;
+      this.$emit('stop');
       this.$ga.time({
         timingCategory: 'timer',
         timingVar: 'pause',
@@ -132,6 +133,7 @@ export default Vue.extend({
     countdown() {
       if (this.timer !== null && this.timer <= 0) {
         this.pause = true;
+        this.$emit('stop');
         this.$ga.event({
           eventCategory: 'action',
           eventAction: 'timerOver',

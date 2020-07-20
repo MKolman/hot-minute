@@ -4,10 +4,10 @@
       <Shine />
       <h1> {{ title }} </h1>
     </div>
-    <CardFlip v-model="cardVisible">
+    <CardFlip v-model="cardVisible" :sensitive="timerRunning">
       {{ capitalize(txt) }}
     </CardFlip>
-    <Timer @start="cardVisible = false;" />
+    <Timer @start="cardVisible = false; timerRunning = true;" @stop="timerRunning = false;" />
   </div>
 </template>
 
@@ -50,6 +50,7 @@ export default {
     return {
       cardVisible: true,
       txt: allWords.getRandom(this.$route.params.type),
+      timerRunning: false,
     };
   },
   computed: {
