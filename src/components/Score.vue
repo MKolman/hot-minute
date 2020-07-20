@@ -4,16 +4,16 @@
     <input id="scoreInput" type="number" v-model="score" class="elevation-4">
     <div class="toolbox-shape">
       <div class="toolbox">
-        <v-btn class="score-button numeric elevation-4" fab @click="score = +score + 1;">
-          +1
+        <v-btn class="score-button numeric elevation-4" fab @click="changeScore(3);">
+          +3
         </v-btn>
-        <v-btn class="score-button numeric elevation-4" fab @click="score = +score + 5;">
+        <v-btn class="score-button numeric elevation-4" fab @click="changeScore(5);">
           +5
         </v-btn>
         <v-btn
           class="score-button elevation-4"
           fab
-          @click="score = +score + 1;"
+          @click="undoScore()"
           aria-label="Undo"
         >
           <v-icon dark>mdi-undo</v-icon>
@@ -90,6 +90,11 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'Score',
+  data() {
+    return {
+      history: [] as number[],
+    };
+  },
   computed: {
     score: {
       get() {
@@ -103,6 +108,22 @@ export default Vue.extend({
         });
         this.$store.commit('updateScore', value);
       },
+    },
+  },
+  methods: {
+    changeScore(diff: number) {
+      if (this.history.length >= 10) {
+        this.history = this.history.slice(1);
+      }
+      this.history.push(this.score);
+      this.score = +this.score + diff;
+    },
+    undoScore() {
+      if (this.history.length) {
+        this.score = this.history.pop();
+      } else if (+this.score > 0) {
+        this.score = +this.score - 1;
+      }
     },
   },
 });
