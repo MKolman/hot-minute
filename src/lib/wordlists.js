@@ -25,13 +25,11 @@ class WordTree {
   findSubtree(longKey) {
     if (longKey === '') return this;
     const key = longKey.split('/', 1)[0];
-    console.log(key, longKey, Object.keys(this.subtrees));
     if (!this.subtrees[key]) return new WordTree(key);
     return this.subtrees[key].findSubtree(longKey.slice(key.length + 1));
   }
 
   getRandom(key) {
-    console.log(key);
     const targetTree = this.findSubtree(key);
     return targetTree.get(Math.floor(Math.random() * targetTree.numWords));
   }
@@ -49,7 +47,6 @@ class WordTree {
   }
 
   log(prefix) {
-    console.log(prefix, this.key, ':', this.numWords);
     const trees = Object.values(this.subtrees);
     for (let i = 0; i < trees.length; i += 1) {
       trees[i].log(`${prefix}  `);

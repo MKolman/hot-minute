@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     play() {
-      console.log(this.$router);
       this.$router.push('selector');
     },
   },
