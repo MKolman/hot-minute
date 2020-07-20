@@ -31,7 +31,7 @@
   align-items: center;
 }
 h1 {
-  color: var(--color-score-bg);
+  color: var(--color-score-title);
   font-family: 'Epilogue', sans-serif;
 }
 input {
