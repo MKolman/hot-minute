@@ -7,7 +7,7 @@
       </v-btn>
     </div>
     <Card class="play" v-on:click.native="play()">
-      Pl<img class="play-img" src="@/assets/play.svg" alt="a"/>y
+      Play
     </Card>
     <Score id="score" />
   </div>
@@ -24,7 +24,6 @@
     justify-content: space-between;
     align-items: center;
     color: var(--color-score-change-bg);
-    font-family: 'Epilogue', sans-serif;
 
     .v-btn {
       padding: 0;
