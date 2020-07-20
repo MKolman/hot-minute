@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <h1><label for="scoreInput">MY TEAM'S SCORE</label></h1>
-    <input id="scoreInput" v-model="score" class="elevation-4">
+    <input id="scoreInput" type="number" v-model="score" class="elevation-4">
     <div class="toolbox-shape">
       <div class="toolbox">
         <v-btn class="score-button numeric elevation-4" fab @click="score += 1;">
