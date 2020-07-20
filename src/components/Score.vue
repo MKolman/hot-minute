@@ -4,16 +4,16 @@
     <input id="scoreInput" type="number" v-model="score" class="elevation-4">
     <div class="toolbox-shape">
       <div class="toolbox">
-        <v-btn class="score-button numeric elevation-4" fab @click="score += 1;">
+        <v-btn class="score-button numeric elevation-4" fab @click="score = +score + 1;">
           +1
         </v-btn>
-        <v-btn class="score-button numeric elevation-4" fab @click="score += 5;">
+        <v-btn class="score-button numeric elevation-4" fab @click="score = +score + 5;">
           +5
         </v-btn>
         <v-btn
           class="score-button elevation-4"
           fab
-          @click="score -= 1;"
+          @click="score = +score + 1;"
           aria-label="Undo"
         >
           <v-icon dark>mdi-undo</v-icon>
@@ -95,7 +95,12 @@ export default Vue.extend({
       get() {
         return this.$store.state.score;
       },
-      set(value) {
+      set(value: number) {
+        this.$ga.event({
+          eventCategory: 'score',
+          eventAction: 'change',
+          eventValue: value,
+        });
         this.$store.commit('updateScore', value);
       },
     },

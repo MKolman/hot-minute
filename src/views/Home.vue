@@ -53,6 +53,10 @@ export default {
   },
   methods: {
     play() {
+      this.$ga.event({
+        eventCategory: 'action',
+        eventAction: 'pressPlay',
+      });
       this.$router.push('selector');
     },
   },

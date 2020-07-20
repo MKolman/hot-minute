@@ -19,7 +19,7 @@
       large
       class="done"
       :class="{hidden: timer === null}"
-      @click="pause = true"
+      @click="pauseTimer()"
       :to="pause?'/':null"
     >{{ pause ? 'home' : 'stop' }}</v-btn>
     <!-- <v-btn
@@ -102,8 +102,41 @@ export default Vue.extend({
       this.timer = this.$store.state.timer + 1;
       this.countdown();
       this.$emit('start');
+
+      this.$ga.time({
+        timingCategory: 'timer',
+        timingVar: 'start',
+        timingValue: this.timer,
+        timingLabel: this.$route.params.type || 'bomb',
+      });
+      this.$ga.event({
+        eventCategory: 'action',
+        eventAction: 'timerStart',
+        eventValue: this.timer,
+      });
+    },
+    pauseTimer() {
+      this.pause = true;
+      this.$ga.time({
+        timingCategory: 'timer',
+        timingVar: 'pause',
+        timingValue: this.timer,
+        timingLabel: this.$route.params.type || 'bomb',
+      });
+      this.$ga.event({
+        eventCategory: 'action',
+        eventAction: 'timerPause',
+        eventValue: this.timer,
+      });
     },
     countdown() {
+      if (this.timer !== null && this.timer <= 0) {
+        this.pause = true;
+        this.$ga.event({
+          eventCategory: 'action',
+          eventAction: 'timerOver',
+        });
+      }
       if (this.pause) {
         this.$refs.timer.$el.classList.toggle('hidden');
         setTimeout(this.countdown, 500);
