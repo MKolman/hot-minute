@@ -9,14 +9,17 @@
     <Card class="play" v-on:click.native="play()">
       Play
     </Card>
-    <Score id="score" />
+    <v-btn v-if="!showScore" @click="showScore = true;" text>keep score</v-btn>
+    <Score v-if="showScore" id="score" />
   </div>
 </template>
 
 <style lang="scss">
 .home {
+  max-width: 100%;
   #score {
     flex: 2;
+    max-width: 100%;
   }
   .top {
     padding: 0.5rem 5%;
@@ -38,6 +41,9 @@
     height: 0.5em;
   }
 }
+// .v-btn:not(:hover):before {
+//   opacity: 0!important;
+// }
 </style>
 
 <script>
@@ -50,6 +56,11 @@ export default {
   components: {
     Card,
     Score,
+  },
+  data() {
+    return {
+      showScore: true,
+    };
   },
   methods: {
     play() {
