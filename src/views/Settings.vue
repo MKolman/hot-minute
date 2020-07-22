@@ -1,20 +1,25 @@
 <template>
   <div class="text-page">
-    <h1> Settings </h1>
-    <ul>
-      <li><router-link to="rules">Rules</router-link></li>
-      <li><router-link to="about">About</router-link></li>
-    </ul>
+    <h1>
+      Settings
+      <small>
+        <router-link to="rules">Rules</router-link>
+        <router-link to="about">About</router-link>
+      </small>
+    </h1>
 
     <v-subheader>
-      Change which wordsets are used [still not working]
+      Change which wordsets are used
     </v-subheader>
     <v-treeview
       :items="wordItems"
+      v-model="selectedWordlists"
       selectable
       :open-on-click="true"
       selected-color="primary"
     ></v-treeview>
+
+    <v-divider></v-divider>
 
     <v-subheader>
       Activity selection animation length: {{ $store.state.animationTimeS }}s
@@ -31,6 +36,8 @@
       </template>
     </v-slider>
 
+    <v-divider></v-divider>
+
     <v-subheader>
       Probability of humming bomb: {{ $store.state.bombProbability }}
     </v-subheader>
@@ -41,6 +48,8 @@
       step="0.01"
       thumb-label
     ></v-slider>
+
+    <v-divider></v-divider>
 
     <v-subheader>
       Time per round:
@@ -85,6 +94,19 @@
     vertical-align: bottom;
     padding-bottom: 0;
     margin-bottom: 1em;
+    display: flex;
+    align-items: baseline;
+    small {
+      text-transform: none;
+      font-size: small;
+      display: inline-block;
+      text-align: right;
+      width: auto;
+      flex: 1;
+      a {
+        margin-left: 1em;
+      }
+    }
   }
 }
 </style>
@@ -101,8 +123,30 @@ export default {
   data() {
     return {
       slider: 0,
-      wordItems: allWords.all('').children,
+      wordItems: [],
     };
+  },
+  created() {
+    this.wordItems = [allWords.all('')];
+    this.wordItems[0].name = 'Select categories';
+  },
+  computed: {
+    selectedWordlists: {
+      get() {
+        return this.$store.state.selectedWordlists;
+      },
+      set(value) {
+        const countActions = {};
+        for (let i = 0; i < value.length; i += 1) {
+          countActions[value[i].split('/', 3)[2]] = true;
+        }
+        if (Object.keys(countActions).length === 4) {
+          this.$store.commit('updateSelectedWordlists', value);
+        } else {
+          this.$store.commit('updateSelectedWordlists', this.$store.state.selectedWordlists);
+        }
+      },
+    },
   },
 };
 </script>

@@ -1,40 +1,50 @@
+import store from '../store';
+
 class WordTree {
-  constructor(key, wordList) {
+  key: string;
+
+  subtrees: { [key: string]: WordTree};
+
+  wordList: string[];
+
+  numWords: number;
+
+  constructor(key: string, wordList: string[]) {
     this.key = key;
     this.subtrees = {};
     this.wordList = wordList || [];
     this.numWords = this.wordList.length;
   }
 
-  addSubtree(tree) {
+  addSubtree(tree: WordTree) {
     this.subtrees[tree.key] = tree;
   }
 
-  insertNode(longKey, wordList) {
+  insertNode(longKey: string, wordList: string[]) {
     if (longKey.length === 0) {
       this.wordList = this.wordList.concat(wordList);
       this.numWords += wordList.length;
     } else {
       this.numWords += wordList.length;
       const key = longKey.split('/', 1)[0];
-      if (!this.subtrees[key]) this.subtrees[key] = new WordTree(key);
+      if (!this.subtrees[key]) this.subtrees[key] = new WordTree(key, []);
       this.subtrees[key].insertNode(longKey.slice(key.length + 1), wordList);
     }
   }
 
-  findSubtree(longKey) {
+  findSubtree(longKey: string): WordTree {
     if (longKey === '') return this;
     const key = longKey.split('/', 1)[0];
-    if (!this.subtrees[key]) return new WordTree(key);
+    if (!this.subtrees[key]) return new WordTree(key, []);
     return this.subtrees[key].findSubtree(longKey.slice(key.length + 1));
   }
 
-  getRandom(key) {
+  getRandom(key: string): string {
     const targetTree = this.findSubtree(key);
     return targetTree.get(Math.floor(Math.random() * targetTree.numWords));
   }
 
-  get(idx) {
+  get(idx: number): string {
     if (idx < this.wordList.length) return this.wordList[idx];
     let index = idx - this.wordList.length;
 
@@ -46,21 +56,22 @@ class WordTree {
     return 'Ice Ice Baby';
   }
 
-  log(prefix) {
+  log(prefix: string) {
     const trees = Object.values(this.subtrees);
     for (let i = 0; i < trees.length; i += 1) {
       trees[i].log(`${prefix}  `);
     }
   }
 
-  all(prefix) {
+  all(prefix: string): {id: string; name: string; children: any[]} {
     const longKey = `${prefix}/${this.key}`;
     let name = this.key.split('.', 1)[0].replace('_', ' ');
     name = name[0].toUpperCase() + name.slice(1);
+    if (this.wordList.length > 0) name += `(${this.wordList.length})`;
     const result = {
       id: longKey,
-      name: `${name} (${this.numWords})`,
-      children: [],
+      name,
+      children: [] as any[],
     };
     const trees = Object.values(this.subtrees);
     for (let i = 0; i < trees.length; i += 1) {
@@ -68,12 +79,27 @@ class WordTree {
     }
     return result;
   }
+
+  filter(selectedNodes: string[], prefix: string) {
+    const key = `${prefix}/${this.key}`;
+    this.numWords = 0;
+    if (selectedNodes.indexOf(key) !== -1) this.numWords += this.wordList.length;
+
+    this.numWords += Object.values(this.subtrees).reduce((sum: number, tree: WordTree) => {
+      tree.filter(selectedNodes, key);
+      return sum + tree.numWords;
+    }, 0);
+  }
+
+  loadSettings() {
+    this.filter(store.state.selectedWordlists, '');
+  }
 }
 
-const wordTree = new WordTree('root');
+const wordTree = new WordTree('root', []);
 
-function importAll(r) {
-  r.keys().forEach((key) => { wordTree.insertNode(key.slice(2), r(key).default.split('\n')); });
+function importAll(r: any) {
+  r.keys().forEach((key: string) => { wordTree.insertNode(key.slice(2), r(key).default.split('\n')); });
 }
 importAll(require.context('../assets/wordlists/', true, /\.txt$/));
 

@@ -107,6 +107,7 @@ export default {
   mounted() {
     setTimeout(() => { this.startAnimation = true; }, 300);
     setTimeout(() => { this.intro = false; }, 4000);
+    allWords.loadSettings();
     [this.artist, this.title] = allWords.getRandom('bomb').split(';');
   },
 };

@@ -49,9 +49,13 @@ export default {
   data() {
     return {
       cardVisible: true,
-      txt: allWords.getRandom(this.$route.params.type),
+      txt: '',
       timerRunning: false,
     };
+  },
+  mounted() {
+    allWords.loadSettings();
+    this.txt = allWords.getRandom(this.$route.params.type);
   },
   computed: {
     title() {

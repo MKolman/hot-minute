@@ -1,6 +1,12 @@
 <template>
   <div class="text-page">
-    <h1> RULES OF HOT MINUTE </h1>
+    <h1>
+      Rules
+      <small>
+        <router-link to="settings">Settings</router-link>
+        <router-link to="about">About</router-link>
+      </small>
+    </h1>
     <p>
       Hot Minute requires players to be split into teams of at least two
       players each. If you have a hard time deciding you can use an app like

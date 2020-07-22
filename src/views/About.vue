@@ -1,6 +1,12 @@
 <template>
   <div class="text-page">
-    <h1>About Hot Minute</h1>
+    <h1>
+      About
+      <small>
+        <router-link to="settings">Settings</router-link>
+        <router-link to="rules">Rules</router-link>
+      </small>
+    </h1>
 
     <p>
 
