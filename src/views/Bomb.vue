@@ -10,7 +10,8 @@
       </div>
     </div>
     <h1 v-if="intro"> Bomb! </h1>
-    <Timer v-if="!intro" :noConfirm="true" />
+    <a v-if="paused" :href="searchUrl"> Listen on YouTube </a>
+    <Timer v-if="!intro" @stop="paused = true;" :noConfirm="true" />
   </div>
 </template>
 
@@ -102,7 +103,14 @@ export default {
       startAnimation: false,
       artist: 'Tina Turner',
       title: 'Simply The Best',
+      paused: false,
     };
+  },
+  computed: {
+    searchUrl() {
+      const query = `${this.artist} ${this.title}`;
+      return `https://www.youtube.com/results?search_query=${encodeURI(query)}`;
+    },
   },
   mounted() {
     setTimeout(() => { this.startAnimation = true; }, 300);
