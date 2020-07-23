@@ -85,6 +85,7 @@ export default Vue.extend({
     return {
       timer: null,
       pause: false,
+      timoutId: 0,
     };
   },
   computed: {
@@ -96,6 +97,9 @@ export default Vue.extend({
     if (this.noConfirm) {
       this.start();
     }
+  },
+  destroyed() {
+    clearTimeout(this.timoutId);
   },
   methods: {
     start() {
@@ -140,12 +144,12 @@ export default Vue.extend({
         });
       }
       if (this.pause) {
-        this.$refs.timer.$el.classList.toggle('hidden');
-        setTimeout(this.countdown, 500);
+        if (this.$refs.timer) this.$refs.timer.$el.classList.toggle('hidden');
+        this.timeoutId = setTimeout(this.countdown, 500);
       } else if (this.timer !== null && this.timer > 0) {
         if (this.$refs.timer) this.$refs.timer.$el.classList.remove('hidden');
         this.timer -= 1;
-        setTimeout(this.countdown, 1000);
+        this.timeoutId = setTimeout(this.countdown, 1000);
       }
     },
   },
