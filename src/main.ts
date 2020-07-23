@@ -10,7 +10,7 @@ import store from './store';
 Vue.use(VueAnalytics, {
   id: 'UA-42885055-6',
   autoTracking: {
-    exception: true,
+    exception: process.env.NODE_ENV === 'production',
   },
   router,
 });
