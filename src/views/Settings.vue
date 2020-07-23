@@ -143,7 +143,7 @@ export default {
         if (Object.keys(countActions).length === 4) {
           this.$store.commit('updateSelectedWordlists', value);
         } else {
-          this.$store.commit('updateSelectedWordlists', this.$store.state.selectedWordlists);
+          this.$store.commit('updateSelectedWordlists', this.$store.state.selectedWordlists.splice(0));
         }
       },
     },
