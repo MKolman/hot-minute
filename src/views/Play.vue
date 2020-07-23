@@ -64,6 +64,7 @@ export default {
   },
   methods: {
     capitalize(txt) {
+      if (!txt || !txt.length) return txt;
       return txt[0].toUpperCase() + txt.slice(1);
     },
   },
