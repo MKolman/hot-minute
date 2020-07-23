@@ -17,6 +17,7 @@
 <script>
 // @ is an alias to /src
 import Card from '@/components/Card.vue';
+import Sounds from '@/lib/audio';
 
 export default {
   name: 'Selector',
@@ -54,6 +55,7 @@ export default {
     roll() {
       this.highlight = (this.highlight + 1) % 3;
       this.delay = Math.max(this.delay * 0.9, 100);
+      Sounds.select.play();
       this.timeoutIds[0] = setTimeout(this.roll, this.delay);
     },
     resolve() {
@@ -65,6 +67,7 @@ export default {
         this.highlight = selectedActivity;
         for (let delay = 200; delay < 1300; delay += 200) {
           this.timeoutIds.push(setTimeout(() => {
+            if (this.highlight === -1) Sounds.selected.play();
             this.highlight = this.highlight === -1 ? selectedActivity : -1;
           }, delay));
         }

@@ -1,5 +1,5 @@
 <template>
-  <div class="card-wrapper" :class="{hidecard: !(value || touching)}">
+  <div class="card-wrapper" :class="{hidecard: hideCard}">
     <Card class="back" :class="$route.params.type"></Card>
     <Card class="front" :class="$route.params.type">
       <slot></slot>
@@ -71,6 +71,7 @@
 <script>
 import Vue from 'vue';
 import Card from '@/components/Card.vue';
+import Sounds from '@/lib/audio';
 
 export default Vue.extend({
   name: 'CardFlip',
@@ -83,6 +84,18 @@ export default Vue.extend({
   },
   components: {
     Card,
+  },
+  watch: {
+    hideCard(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        Sounds.flip.play();
+      }
+    },
+  },
+  computed: {
+    hideCard() {
+      return !(this.value || this.touching);
+    },
   },
   methods: {
     touchstart() {

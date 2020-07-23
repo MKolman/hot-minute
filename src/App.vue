@@ -60,7 +60,7 @@
 </style>
 
 <script>
-import update from './mixins/update';
+import update from '@/mixins/update';
 
 export default {
   name: 'App',

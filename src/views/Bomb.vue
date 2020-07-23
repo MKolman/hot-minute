@@ -100,6 +100,7 @@ img.splash {
 <script>
 // @ is an alias to /src
 import allWords from '@/lib/wordlists';
+import Sounds from '@/lib/audio';
 import Timer from '@/components/Timer.vue';
 
 export default {
@@ -123,6 +124,7 @@ export default {
     },
   },
   mounted() {
+    Sounds.bomb.play();
     setTimeout(() => { this.startAnimation = true; }, 300);
     setTimeout(() => { this.intro = false; }, 4000);
     allWords.loadSettings();

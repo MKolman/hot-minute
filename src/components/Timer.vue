@@ -72,6 +72,7 @@
 
 <script>
 import Vue from 'vue';
+import Sounds from '@/lib/audio';
 
 export default Vue.extend({
   name: 'Timer',
@@ -85,7 +86,7 @@ export default Vue.extend({
     return {
       timer: null,
       pause: false,
-      timoutId: 0,
+      timeoutId: 0,
     };
   },
   computed: {
@@ -99,7 +100,7 @@ export default Vue.extend({
     }
   },
   destroyed() {
-    clearTimeout(this.timoutId);
+    clearTimeout(this.timeoutId);
   },
   methods: {
     start() {
@@ -149,6 +150,8 @@ export default Vue.extend({
       } else if (this.timer !== null && this.timer > 0) {
         if (this.$refs.timer) this.$refs.timer.$el.classList.remove('hidden');
         this.timer -= 1;
+        if (this.timer === 0) Sounds.timesup.play();
+        else if (this.timer <= 5) Sounds.countdown.play();
         this.timeoutId = setTimeout(this.countdown, 1000);
       }
     },
