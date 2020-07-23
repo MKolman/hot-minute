@@ -21,3 +21,6 @@ pnpm-debug.log*
 *.sln
 *.sw?
 *.sublime-*
+
+# Mock images for the app ui folder
+mock_images
