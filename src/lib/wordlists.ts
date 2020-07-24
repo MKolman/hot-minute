@@ -65,7 +65,7 @@ class WordTree {
 
   all(prefix: string): {id: string; name: string; children: any[]} {
     const longKey = `${prefix}/${this.key}`;
-    let name = this.key.split('.', 1)[0].replace('_', ' ');
+    let name = this.key.split('.', 1)[0].replace(/_/g, ' ');
     name = name[0].toUpperCase() + name.slice(1);
     if (this.wordList.length > 0) name += `(${this.wordList.length})`;
     const result = {
