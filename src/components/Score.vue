@@ -2,7 +2,14 @@
   <div class="wrapper" :class="{ disableTransitions: disableTransitions }">
     <h1 :class="{left: transitionScoreTitleLeft}">
       <transition name="title">
-          <span v-if="scores.length && activeScore" :key="activeScore.id">
+          <span
+            v-if="scores.length && activeScore"
+            :key="activeScore.id"
+            v-touch="{
+              right: () => { if (activeScoreIndex > 0) activeScoreIndex -= 1; },
+              left: () => { if (activeScoreIndex + 1 < scores.length) activeScoreIndex += 1; },
+            }"
+          >
             {{ activeScore.name }}
             <v-btn
               color="primary"
