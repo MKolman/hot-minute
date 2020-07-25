@@ -10,7 +10,7 @@
       </div>
     </div>
     <h1 v-if="intro"> Bomb! </h1>
-    <a v-if="paused" :href="searchUrl"> Listen on YouTube </a>
+    <a v-if="paused" :href="searchUrl" style="z-index: 1;" target="_blank"> Listen on YouTube </a>
     <Timer v-if="!intro" @stop="paused = true;" :noConfirm="true" />
   </div>
 </template>
@@ -57,7 +57,7 @@ img.splash {
   img {
     max-height: 100%;
   }
-  .bomb-text{
+  .bomb-text {
     color: var(--color-bomb-view-bg);
     position: absolute;
     top: 28%;
@@ -82,6 +82,16 @@ img.splash {
     }
     .song-title {
       font-size: 4em;
+    }
+  }
+}
+@media screen and (max-width: 400px), screen and (max-height: 600px) {
+  .bomb-wrapper .bomb-text {
+    .song-author {
+      font-size: 2em;
+    }
+    .song-title {
+      font-size: 3em;
     }
   }
 }
