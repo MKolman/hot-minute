@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import VuexPersistence from 'vuex-persist';
+import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
 const defaultValues = {
@@ -67,5 +67,5 @@ export default new Vuex.Store({
   },
   modules: {
   },
-  plugins: [new VuexPersistence().plugin],
+  plugins: [createPersistedState()],
 });
