@@ -9,6 +9,19 @@
     </h1>
 
     <v-subheader>
+      Disable or enable sound effects
+    </v-subheader>
+    <v-treeview
+      :items="soundItems"
+      v-model="enabledSounds"
+      selectable
+      :open-on-click="true"
+      selected-color="primary"
+    ></v-treeview>
+
+    <v-divider></v-divider>
+
+    <v-subheader>
       Change which wordsets are used
     </v-subheader>
     <v-treeview
@@ -124,6 +137,48 @@ export default {
     return {
       slider: 0,
       wordItems: [],
+      soundItems: [
+        {
+          name: 'All sound',
+          id: 'all',
+          children: [
+            {
+              name: 'Timer',
+              id: 'timer',
+              children: [
+                {
+                  name: 'Last 5s',
+                  id: 'countdown',
+                }, {
+                  name: 'Time\'s up',
+                  id: 'timesup',
+                },
+              ],
+            }, {
+              name: 'Selection',
+              id: 'selection',
+              children: [
+                {
+                  name: 'Sound while rolling selection',
+                  id: 'select',
+                }, {
+                  name: 'Three tones when selected',
+                  id: 'selected',
+                }, {
+                  name: 'Bomb explosion',
+                  id: 'bomb',
+                },
+              ],
+            }, {
+              name: 'Card flip sound',
+              id: 'flip',
+            }, {
+              name: 'Winning sound effect',
+              id: 'winner',
+            },
+          ],
+        },
+      ],
     };
   },
   created() {
@@ -145,6 +200,14 @@ export default {
         } else {
           this.$store.commit('updateSelectedWordlists', this.$store.state.selectedWordlists.splice(0));
         }
+      },
+    },
+    enabledSounds: {
+      get() {
+        return this.$store.state.enabledSounds;
+      },
+      set(value) {
+        this.$store.commit('updateEnabledSounds', value);
       },
     },
   },
