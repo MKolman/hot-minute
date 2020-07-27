@@ -40,14 +40,24 @@
         <div class="empty-pad" key="-1">
           <v-btn @click="prependScore()" fab large class="elevation-4">+</v-btn>
         </div>
-        <input
+        <div
+          class="score-input elevation-4"
           v-for="score in scores"
           :key="score.id"
-          v-model="score.value"
           :class="{big: score.id === activeScore.id}"
-          class="elevation-4"
-          type="number"
-        />
+        >
+          <v-progress-circular
+            class="score-progress"
+            :value="score.value*2"
+            :width="2"
+            v-if="score.id === activeScore.id"
+          ></v-progress-circular>
+          <input
+            style="z-index: 4;"
+            v-model="score.value"
+            type="number"
+          />
+        </div>
         <div class="empty-pad" key="-2">
           <v-btn @click="appendScore()" fab large class="elevation-4">+</v-btn>
         </div>
@@ -163,14 +173,11 @@
       color: var(--color-score-txt)!important;
     }
   }
-  input {
+  .score-input {
+    display: inline-block;
+    position: relative;
     background-color: var(--color-score-bg);
-    color: var(--color-score-txt);
-    width: 3em;
-    text-align: center;
-    font-weight: bold;
     padding: 0rem;
-    padding-top: 0.6rem;
     margin: 1rem 0.25em;
     opacity: 0.5;
     transition-duration: 0.5s;
@@ -178,12 +185,27 @@
     &.big {
       opacity: 1;
       padding: 0.5rem;
-      padding-top: 1.1rem;
       margin: 0.5rem 0.25em;
     }
-    .list-item {
-      display: inline-block;
-      margin-right: 10px;
+    input {
+      display: inline;
+      color: var(--color-score-txt);
+      width: 3em;
+      text-align: center;
+      font-weight: bold;
+      padding-top: 0.6rem;
+      &:focus, &:active {
+        outline: none;
+      }
+    }
+    .score-progress {
+      pointer-events: none;
+      position: absolute;
+      height: 100%!important;
+      width: 100%!important;
+      top: 0;
+      left: 0;
+      text-align: center;
     }
   }
   .disableTransitions *{
