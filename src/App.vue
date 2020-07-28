@@ -22,6 +22,7 @@
       </v-btn>
       </template>
     </v-snackbar>
+    <Tutorial />
   </v-app>
 </template>
 
@@ -61,9 +62,11 @@
 
 <script>
 import update from '@/mixins/update';
+import Tutorial from '@/components/Tutorial.vue';
 
 export default {
   name: 'App',
+  components: { Tutorial },
   mixins: [update],
 };
 </script>

@@ -16,6 +16,7 @@
 
 <script>
 // @ is an alias to /src
+import { mapState } from 'vuex';
 import Card from '@/components/Card.vue';
 import Sounds from '@/lib/audio';
 
@@ -32,6 +33,7 @@ export default {
       activities: ['speak', 'draw', 'show'],
     };
   },
+  computed: mapState(['tutorialStep']),
   mounted() {
     const initialDelay = this.$store.state.animationTimeS * 66;
     this.timeoutIds.push(setTimeout(this.roll, initialDelay));
@@ -59,11 +61,12 @@ export default {
       this.timeoutIds[0] = setTimeout(this.roll, this.delay);
     },
     resolve() {
-      if (Math.random() < this.$store.state.bombProbability) {
+      if (this.tutorialStep < 0 && Math.random() < this.$store.state.bombProbability) {
         this.timeoutIds.push(setTimeout(() => this.goPlay('bomb'), 2000));
       } else {
         this.clearTimeouts();
-        const selectedActivity = Math.floor(Math.random() * 3);
+        const selectedActivity = this.tutorialStep < 0 ? Math.floor(Math.random() * 3) : 0;
+        if (this.tutorialStep > 0) this.$store.commit('tutorialNext');
         this.highlight = selectedActivity;
         for (let delay = 200; delay < 1300; delay += 200) {
           this.timeoutIds.push(setTimeout(() => {
@@ -71,9 +74,11 @@ export default {
             this.highlight = this.highlight === -1 ? selectedActivity : -1;
           }, delay));
         }
-        this.timeoutIds.push(
-          setTimeout(() => this.goPlay(this.activities[selectedActivity]), 3000),
-        );
+        if (this.tutorialStep < 0) {
+          this.timeoutIds.push(
+            setTimeout(() => this.goPlay(this.activities[selectedActivity]), 3000),
+          );
+        }
       }
     },
     clearTimeouts() {

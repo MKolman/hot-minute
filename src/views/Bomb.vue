@@ -126,7 +126,12 @@ export default {
   mounted() {
     Sounds.bomb.play();
     setTimeout(() => { this.startAnimation = true; }, 300);
-    setTimeout(() => { this.intro = false; }, 4000);
+    setTimeout(() => {
+      this.intro = false;
+      if (this.$store.state.tutorialStep === 9) {
+        this.$store.commit('tutorialNext');
+      }
+    }, 4000);
     allWords.loadSettings();
     [this.artist, this.title] = allWords.getRandom('bomb').split(';');
   },
