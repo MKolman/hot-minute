@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tutorial">
     <!-- INTRO -->
     <v-overlay :value="true" v-if="tutorialStep === 0">
       <p>
@@ -284,7 +284,7 @@
   </div>
 </template>
 <style lang="scss">
-  .v-overlay {
+  .tutorial .v-overlay {
     font-family: 'Epilogue', sans-serif;
     &.bottom {
       align-items: flex-end;
