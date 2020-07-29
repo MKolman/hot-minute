@@ -1,3 +1,5 @@
+const routes = require('./src/router/routes');
+
 module.exports = {
   publicPath: '/',
   transpileDependencies: [
@@ -47,4 +49,10 @@ module.exports = {
       .loader('raw-loader')
       .end();
   },
+  pluginOptions: {
+    sitemap: {
+      baseURL: 'https://hotminute.kolman.si',
+      routes,
+    }
+  }
 };
