@@ -323,7 +323,7 @@ class Score {
   changeScore(diff: number) {
     this.history.push(this.value);
     if (this.history.length > 100) this.history.splice(0, 1);
-    this.value += diff;
+    this.value = +this.value + diff;
     if (this.value >= 50 && this.value - diff < 50) {
       Sounds.winner.play();
     }
