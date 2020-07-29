@@ -41,7 +41,7 @@ module.exports = {
 
     config.module
       .rule('raw')
-      .test(/\.txt$/)
+      .test(/(\.txt|arrow.svg)$/)
       .use('raw-loader')
       .loader('raw-loader')
       .end();

@@ -24,6 +24,7 @@ const defaultValues = {
   enabledSounds: [
     'bomb', 'selected', 'select', 'countdown', 'timesup', 'winner', 'flip',
   ],
+  tutorialStep: 0,
 };
 export default new Vuex.Store({
   state: {
@@ -33,8 +34,20 @@ export default new Vuex.Store({
     timer: defaultValues.timer,
     selectedWordlists: defaultValues.selectedWordlists.slice(),
     enabledSounds: defaultValues.enabledSounds.slice(),
+    tutorialStep: defaultValues.tutorialStep,
   },
   mutations: {
+    tutorialStop(state) {
+      state.tutorialStep = -1;
+    },
+    tutorialStart(state) {
+      state.tutorialStep = 0;
+    },
+    tutorialNext(state) {
+      if (state.tutorialStep < 0) return;
+      state.tutorialStep += 1;
+      if (state.tutorialStep > 12) state.tutorialStep = -1;
+    },
     setDefault(state, name: string) {
       (state as any)[name] = (defaultValues as any)[name];
     },

@@ -88,6 +88,20 @@
       </template>
     </v-slider>
 
+    <v-divider></v-divider>
+
+    <v-subheader>
+      Restart the tutorial
+      <v-btn
+        text
+        style="text-decoration: none;"
+        @click="$store.commit('tutorialStart');"
+        color="primary"
+      >
+        Start
+      </v-btn>
+    </v-subheader>
+
     <HomeFab/>
   </div>
 </template>

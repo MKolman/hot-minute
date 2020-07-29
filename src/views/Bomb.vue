@@ -112,8 +112,8 @@ export default {
     return {
       intro: true,
       startAnimation: false,
-      artist: 'Tina Turner',
-      title: 'Simply The Best',
+      artist: 'Queen',
+      title: 'We will rock you',
       paused: false,
     };
   },
@@ -126,9 +126,16 @@ export default {
   mounted() {
     Sounds.bomb.play();
     setTimeout(() => { this.startAnimation = true; }, 300);
-    setTimeout(() => { this.intro = false; }, 4000);
+    setTimeout(() => {
+      this.intro = false;
+      if (this.$store.state.tutorialStep === 9) {
+        this.$store.commit('tutorialNext');
+      }
+    }, 4000);
     allWords.loadSettings();
-    [this.artist, this.title] = allWords.getRandom('bomb').split(';');
+    if (this.$store.state.tutorialStep < 0) {
+      [this.artist, this.title] = allWords.getRandom('bomb').split(';');
+    }
   },
 };
 </script>

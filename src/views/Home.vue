@@ -68,6 +68,7 @@ export default {
         eventCategory: 'action',
         eventAction: 'pressPlay',
       });
+      if (this.$store.state.tutorialStep === 1) this.$store.commit('tutorialNext');
       this.$router.push('selector');
     },
   },
