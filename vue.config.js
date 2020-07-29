@@ -31,15 +31,16 @@ module.exports = {
       msTileImage: 'img/icons/mstile-150x150.png',
     },
   },
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config
-    .plugin('html')
-    .tap(args => {
-      args[0].title = 'Hot Minute';
-      return args;
-    });
+      .plugin('html')
+      .tap((args) => {
+        args[0].title = 'Hot Minute';
+        return args;
+      });
 
-    config.module
+    config
+      .module
       .rule('raw')
       .test(/(\.txt|arrow.svg)$/)
       .use('raw-loader')
