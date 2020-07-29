@@ -107,35 +107,7 @@
 </template>
 
 <style lang="scss">
-#app .v-main .text-page {
-  padding: 5%;
-  text-align: left;
-  font-family: 'Epilogue', sans-serif;
-  display: block;
-  padding-bottom: 5em;
-  h1, h2 {
-    text-transform: uppercase;
-  }
-  h1 {
-    border-bottom: var(--color-app-txt) solid 0.3em;
-    vertical-align: bottom;
-    padding-bottom: 0;
-    margin-bottom: 1em;
-    display: flex;
-    align-items: baseline;
-    small {
-      text-transform: none;
-      font-size: small;
-      display: inline-block;
-      text-align: right;
-      width: auto;
-      flex: 1;
-      a {
-        margin-left: 1em;
-      }
-    }
-  }
-}
+@import "@/styles/_settings.scss";
 </style>
 
 <script>

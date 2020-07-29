@@ -48,6 +48,10 @@
   </div>
 </template>
 
+<style lang="scss">
+@import "@/styles/_settings.scss";
+</style>
+
 <script>
 import HomeFab from '@/components/HomeFab.vue';
 
