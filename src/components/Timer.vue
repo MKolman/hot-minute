@@ -150,8 +150,10 @@ export default Vue.extend({
       } else if (this.timer !== null && this.timer > 0) {
         if (this.$refs.timer) this.$refs.timer.$el.classList.remove('hidden');
         this.timer -= 1;
-        if (this.timer === 0) Sounds.timesup.play();
-        else if (this.timer <= 5) Sounds.countdown.play();
+        if (this.$store.state.tutorialStep < 0) {
+          if (this.timer === 0) Sounds.timesup.play();
+          else if (this.timer <= 5) Sounds.countdown.play();
+        }
         this.timeoutId = setTimeout(this.countdown, 1000);
       }
     },

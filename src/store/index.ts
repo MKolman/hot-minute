@@ -46,7 +46,7 @@ export default new Vuex.Store({
     tutorialNext(state) {
       if (state.tutorialStep < 0) return;
       state.tutorialStep += 1;
-      if (state.tutorialStep > 10) state.tutorialStep = -1;
+      if (state.tutorialStep > 12) state.tutorialStep = -1;
     },
     setDefault(state, name: string) {
       (state as any)[name] = (defaultValues as any)[name];

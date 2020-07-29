@@ -119,7 +119,7 @@
     </v-overlay>
 
     <!-- Speak -->
-    <v-overlay :value="true" v-if="tutorialStep === 6">
+    <v-overlay class="bottom" :value="true" v-if="tutorialStep === 6">
       <p>
         The activity is indicated at the top of the screen. Here it says speak,
         which means that you have to communicate with your team verbally.
@@ -147,7 +147,7 @@
     </v-overlay>
 
     <!-- Draw -->
-    <v-overlay :value="true" v-if="tutorialStep === 7">
+    <v-overlay class="bottom" :value="true" v-if="tutorialStep === 7">
       <p>
         The second possible activity is "Draw" When drawing you must use a pen
         or pencil to draw a picture as your team tries to guess the original
@@ -176,7 +176,7 @@
     </v-overlay>
 
     <!-- Show -->
-    <v-overlay :value="true" v-if="tutorialStep === 8">
+    <v-overlay class="bottom" :value="true" v-if="tutorialStep === 8">
       <p>
         The third available activity is "Show". It will test you ability in
         charades. You will have to mime to the best of your abilities to get
@@ -207,13 +207,10 @@
     <!-- Bomb -->
     <v-overlay class="bottom" :value="true" v-if="tutorialStep === 10">
       <p>
-        The fourth and final activity is Humming. You are given a song that
-        you have to hum - sing with your mouth closed.
-      </p>
-      <p>
-        No time to think! The timer starts as soon as you see the card.
-        Also uniquely for this activity you are not only performing for your
-        team, but for all teams.
+        No time to think! The timer starts as soon as you see the song.
+        You have to humm the given song - with your mouth closed.
+        Uniquely for this activity you are not only performing for your
+        team, but for everyone.
       </p>
       <div class="tutorial-navigation">
         <v-btn
@@ -225,9 +222,62 @@
         </v-btn>
         <v-btn
           color="primary"
+          @click="$store.commit('tutorialNext');"
+        >
+          Scoring
+        </v-btn>
+      </div>
+    </v-overlay>
+
+    <!-- Scoring -->
+    <v-overlay class="top" :value="true" v-if="tutorialStep === 11">
+      <p>
+        Get 50 points to win. A team gets 5 points for correctly
+        guessing Speak, Draw, or Show clues. Humming
+        bomb awards both guesser and performer with 3 points.
+      </p>
+      <p>
+        Keep track of scores on the home screen, below. Use one
+        device for all teams or let each team keep their own score.
+      </p>
+      <div class="tutorial-navigation">
+        <v-btn
+          class="skip-tutorial"
+          text
           @click="stopTutorial();"
         >
-          Home
+          Skip tutorial
+        </v-btn>
+        <v-btn
+          color="primary"
+          @click="$store.commit('tutorialNext');"
+        >
+          Next
+        </v-btn>
+      </div>
+    </v-overlay>
+
+    <!-- Settings -->
+    <v-overlay :value="true" v-if="tutorialStep === 12">
+      <p>
+        You can got to settings to:
+        <ul>
+          <li>change the humming bomb frequency,</li>
+          <li>mute sounds,</li>
+          <li>restart the tutorial,</li>
+          <li>review the rules,</li>
+          <li>change animation length,</li>
+          <li>send feedback about the app,</li>
+          <li>...</li>
+        </ul>
+      </p>
+      <div class="tutorial-navigation">
+        <span></span>
+        <v-btn
+          color="primary"
+          @click="stopTutorial();"
+        >
+          Done
         </v-btn>
       </div>
     </v-overlay>
@@ -239,6 +289,10 @@
     &.bottom {
       align-items: flex-end;
       padding-bottom: 5%;
+    }
+    &.top {
+      align-items: flex-start;
+      padding-top: 5%;
     }
     &.play-margin {
       .v-overlay__content {
@@ -304,6 +358,16 @@
       z-index: 6;
     }
   }
+  .tutorial-11 {
+    #score h1, #score .input-shape {
+      z-index: 6;
+    }
+  }
+  .tutorial-12 {
+    .top a {
+      z-index: 6;
+    }
+  }
 </style>
 <script>
 import Vue from 'vue';
@@ -331,6 +395,8 @@ export default Vue.extend({
   },
   mounted() {
     this.updateRoute();
+    const newClass = this.getTutorialBodyClass(this.tutorialStep);
+    if (newClass.length) document.body.classList.add(newClass);
   },
   methods: {
     getTutorialBodyClass(tutorialStep) {
@@ -354,6 +420,8 @@ export default Vue.extend({
         8: '/play/show',
         9: '/play/bomb',
         10: '/play/bomb',
+        11: '/',
+        12: '/',
       };
       if (this.tutorialStep >= 0 && routes[this.tutorialStep] !== this.$route.path) {
         console.log('Redirecting to', routes[this.tutorialStep], 'from', this.$route.path);
