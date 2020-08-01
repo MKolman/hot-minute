@@ -65,6 +65,12 @@ bathroom
 scale
 peach
 newspaper
+spring
+stone
+rubber duck
+gel
+leg warmers
+paint brush
 watering
 can
 hook
@@ -98,3 +104,54 @@ ring
 video
 camera
 snowflake
+stockings
+cookie jar
+sailboat
+tooth pick
+puddle
+toe ring
+lamp shade
+sketch pad
+tissue box
+scotch tape
+chandelier
+deodorant
+candy wrapper
+tooth paste
+sharpie
+shawl
+eye liner
+twister
+bookmark
+pool stick
+quilt
+seat belt
+mouse pad
+tire swing
+tampon
+cork
+stop sign
+rubber band
+key chain
+earser
+bottle cap
+face wash
+lace
+lip gloss
+buckel
+shovel
+slipper
+glow stick
+cable
+ice cube
+credit card
+nail clippers
+thong
+sun glasses
+twezzers
+hair tie
+charger
+blouse
+ink
+instrument
+mammoth
