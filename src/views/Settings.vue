@@ -26,7 +26,7 @@
     </v-subheader>
     <v-treeview
       :items="wordItems"
-      v-model="selectedWordlists"
+      v-model="selectedWordlists2"
       selectable
       :open-on-click="true"
       selected-color="primary"
@@ -172,9 +172,9 @@ export default {
     this.wordItems[0].name = 'Select categories';
   },
   computed: {
-    selectedWordlists: {
+    selectedWordlists2: {
       get() {
-        return this.$store.state.selectedWordlists;
+        return this.$store.state.selectedWordlists2;
       },
       set(value) {
         const countActions = {};
@@ -182,9 +182,9 @@ export default {
           countActions[value[i].split('/', 3)[2]] = true;
         }
         if (Object.keys(countActions).length === 4) {
-          this.$store.commit('updateSelectedWordlists', value);
+          this.$store.commit('updateSelectedWordlists2', value);
         } else {
-          this.$store.commit('updateSelectedWordlists', this.$store.state.selectedWordlists.splice(0));
+          this.$store.commit('updateSelectedWordlists2', this.$store.state.selectedWordlists2.splice(0));
         }
       },
     },

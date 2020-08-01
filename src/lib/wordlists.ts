@@ -92,7 +92,7 @@ class WordTree {
   }
 
   loadSettings() {
-    this.filter(store.state.selectedWordlists, '');
+    this.filter(store.state.selectedWordlists2, '');
   }
 }
 

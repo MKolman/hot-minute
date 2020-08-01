@@ -4,7 +4,7 @@ import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
 const defaultValues = {
-  selectedWordlists: [
+  selectedWordlists2: [
     '/root/bomb/rock.txt',
     '/root/bomb/2000s.txt',
     '/root/bomb/2010s.txt',
@@ -30,7 +30,7 @@ export default new Vuex.Store({
     bombProbability: defaultValues.bombProbability,
     scores: defaultValues.scores,
     timer: defaultValues.timer,
-    selectedWordlists: defaultValues.selectedWordlists.slice(),
+    selectedWordlists2: defaultValues.selectedWordlists2.slice(),
     enabledSounds: defaultValues.enabledSounds.slice(),
     tutorialStep: defaultValues.tutorialStep,
   },
@@ -58,8 +58,8 @@ export default new Vuex.Store({
     updateEnabledSounds(state, value) {
       state.enabledSounds = value;
     },
-    updateSelectedWordlists(state, value) {
-      state.selectedWordlists = value;
+    updateSelectedWordlists2(state, value) {
+      state.selectedWordlists2 = value;
     },
     updateAnimationTimeS(state, value) {
       state.animationTimeS = value;
