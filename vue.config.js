@@ -32,6 +32,31 @@ module.exports = {
       maskIcon: 'img/icons/safari-pinned-tab.svg',
       msTileImage: 'img/icons/mstile-150x150.png',
     },
+    workboxOptions: {
+      runtimeCaching: [
+        {
+          urlPattern: /^https:\/\/fonts\.googleapis\.com/,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'google-fonts-webfonts'
+          }
+        },
+        {
+          urlPattern: /^https:\/\/fonts\.gstatic\.com/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'google-fonts-webfonts'
+          }
+        },
+        {
+          urlPattern: /^https:\/\/cdn\.jsdelivr\.net/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'material-icons'
+          }
+        }
+      ]
+    }
   },
   chainWebpack: (config) => {
     config
