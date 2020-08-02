@@ -8,15 +8,6 @@ cache:
 script:
   - npm run build
   - cp CNAME dist/
-  - mkdir -p dist/play
-  - cp dist/index.html dist/selector.html
-  - cp dist/index.html dist/play/bomb.html
-  - cp dist/index.html dist/play/speak.html
-  - cp dist/index.html dist/play/draw.html
-  - cp dist/index.html dist/play/show.html
-  - cp dist/index.html dist/about.html
-  - cp dist/index.html dist/settings.html
-  - cp dist/index.html dist/rules.html
 deploy:
   provider: pages
   skip_cleanup: true
