@@ -19,8 +19,9 @@ const defaultValues = {
   bombProbability: 0.15,
   scores: [] as any[],
   timer: 60,
-  enabledSounds: [
+  enabledSounds2: [
     'bomb', 'selected', 'select', 'countdown', 'timesup', 'winner', 'flip',
+    'speak', 'show', 'draw',
   ],
   tutorialStep: 0,
 };
@@ -31,7 +32,7 @@ export default new Vuex.Store({
     scores: defaultValues.scores,
     timer: defaultValues.timer,
     selectedWordlists2: defaultValues.selectedWordlists2.slice(),
-    enabledSounds: defaultValues.enabledSounds.slice(),
+    enabledSounds2: defaultValues.enabledSounds2.slice(),
     tutorialStep: defaultValues.tutorialStep,
   },
   mutations: {
@@ -56,7 +57,7 @@ export default new Vuex.Store({
       }
     },
     updateEnabledSounds(state, value) {
-      state.enabledSounds = value;
+      state.enabledSounds2 = value;
     },
     updateSelectedWordlists2(state, value) {
       state.selectedWordlists2 = value;

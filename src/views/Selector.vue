@@ -47,6 +47,7 @@ export default {
       if (type === 'bomb') {
         this.$router.replace('/play/bomb');
       } else {
+        Sounds[type].play();
         this.$router.replace({ name: 'Play', params: { type } });
       }
     },

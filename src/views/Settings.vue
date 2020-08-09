@@ -153,6 +153,9 @@ export default {
                 }, {
                   name: 'Bomb explosion',
                   id: 'bomb',
+                }, {
+                  name: 'Activity type indicator',
+                  id: 'activity_type',
                 },
               ],
             }, {
@@ -190,7 +193,7 @@ export default {
     },
     enabledSounds: {
       get() {
-        return this.$store.state.enabledSounds;
+        return this.$store.state.enabledSounds2;
       },
       set(value) {
         this.$store.commit('updateEnabledSounds', value);

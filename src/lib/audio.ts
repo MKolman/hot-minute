@@ -18,7 +18,7 @@ class Player {
   }
 
   play(): HTMLAudioElement {
-    if (store.state.enabledSounds.indexOf(this.name) === -1) {
+    if (store.state.enabledSounds2.indexOf(this.name) === -1) {
       console.log(this.name, 'sound is disabled and was not played');
       return this.allSounds[0];
     }
@@ -44,4 +44,7 @@ export default {
   timesup: new Player('timesup', require('@/assets/sound/timesup.mp3')),
   winner: new Player('winner', require('@/assets/sound/winner.mp3')),
   flip: new Player('flip', require('@/assets/sound/flip.mp3')),
+  speak: new Player('activity_type', require('@/assets/sound/speak.mp3')),
+  draw: new Player('activity_type', require('@/assets/sound/draw.mp3')),
+  show: new Player('activity_type', require('@/assets/sound/show.mp3')),
 };
