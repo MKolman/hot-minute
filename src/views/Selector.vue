@@ -19,6 +19,7 @@
 import { mapState } from 'vuex';
 import Card from '@/components/Card.vue';
 import Sounds from '@/lib/audio';
+import activityPicker from '@/lib/activity_picker';
 
 export default {
   name: 'Selector',
@@ -31,10 +32,12 @@ export default {
       delay: this.$store.state.animationTimeS * 33,
       timeoutIds: [null],
       activities: ['speak', 'draw', 'show'],
+      activityPicker,
     };
   },
   computed: mapState(['tutorialStep']),
   mounted() {
+    // Setup animation
     const initialDelay = this.$store.state.animationTimeS * 66;
     this.timeoutIds.push(setTimeout(this.roll, initialDelay));
     this.timeoutIds.push(setTimeout(this.resolve, initialDelay + this.delay * 10));
@@ -62,11 +65,11 @@ export default {
       this.timeoutIds[0] = setTimeout(this.roll, this.delay);
     },
     resolve() {
-      if (this.tutorialStep < 0 && Math.random() < this.$store.state.bombProbability) {
+      const selectedActivity = this.tutorialStep < 0 ? this.activityPicker() : 0;
+      if (selectedActivity === 3) {
         this.timeoutIds.push(setTimeout(() => this.goPlay('bomb'), 2000));
       } else {
         this.clearTimeouts();
-        const selectedActivity = this.tutorialStep < 0 ? Math.floor(Math.random() * 3) : 0;
         if (this.tutorialStep > 0) this.$store.commit('tutorialNext');
         this.highlight = selectedActivity;
         for (let delay = 200; delay < 1300; delay += 200) {

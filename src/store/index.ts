@@ -24,6 +24,7 @@ const defaultValues = {
     'speak', 'show', 'draw',
   ],
   tutorialStep: 0,
+  activityHistory: [0, 0, 0, 0],
 };
 export default new Vuex.Store({
   state: {
@@ -34,6 +35,7 @@ export default new Vuex.Store({
     selectedWordlists2: defaultValues.selectedWordlists2.slice(),
     enabledSounds2: defaultValues.enabledSounds2.slice(),
     tutorialStep: defaultValues.tutorialStep,
+    activityHistory: defaultValues.activityHistory.slice(),
   },
   mutations: {
     tutorialStop(state) {
@@ -67,12 +69,19 @@ export default new Vuex.Store({
     },
     updateBombProbability(state, value) {
       state.bombProbability = value;
+      state.activityHistory = defaultValues.activityHistory.slice();
     },
     updateScores(state, value) {
       state.scores = value;
     },
     updateTimer(state, value) {
       state.timer = value;
+    },
+    updateActivityHistory(state, pickedActivity) {
+      state.activityHistory[pickedActivity] += 1;
+      for (let i = 0; i < state.activityHistory.length; i += 1) {
+        state.activityHistory[i] /= 2;
+      }
     },
   },
   actions: {
