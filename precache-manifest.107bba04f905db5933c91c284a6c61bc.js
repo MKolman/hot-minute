@@ -4,8 +4,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/404.html"
   },
   {
-    "revision": "fbac93aedbaaad31429d",
-    "url": "/css/app.81d63007.css"
+    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "url": "/about.html"
+  },
+  {
+    "revision": "413a6d91d82589b272ab",
+    "url": "/css/app.1a1b1e4e.css"
   },
   {
     "revision": "78ff25c30e6a0a36bf78",
@@ -48,12 +52,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/bomb.53d23667.svg"
   },
   {
-    "revision": "93a044c6075c82b3615ade2fb6b48007",
+    "revision": "917188f3f7a42520fb1fe93f298f64e6",
     "url": "/index.html"
   },
   {
-    "revision": "fbac93aedbaaad31429d",
-    "url": "/js/app.93e44706.js"
+    "revision": "413a6d91d82589b272ab",
+    "url": "/js/app.d5b44446.js"
   },
   {
     "revision": "78ff25c30e6a0a36bf78",
@@ -136,7 +140,31 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/media/winner.acaa6ee8.mp3"
   },
   {
+    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "url": "/play/bomb.html"
+  },
+  {
+    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "url": "/play/draw.html"
+  },
+  {
+    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "url": "/play/show.html"
+  },
+  {
+    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "url": "/play/speak.html"
+  },
+  {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
     "url": "/robots.txt"
+  },
+  {
+    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "url": "/rules.html"
+  },
+  {
+    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "url": "/settings.html"
   }
 ]);
