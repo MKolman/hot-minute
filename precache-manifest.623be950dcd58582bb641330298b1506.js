@@ -8,40 +8,40 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/about.html"
   },
   {
-    "revision": "413a6d91d82589b272ab",
+    "revision": "2fe31de813d91df35a23",
     "url": "/css/app.1a1b1e4e.css"
+  },
+  {
+    "revision": "1b0c157276ffe6838fb9",
+    "url": "/css/chunk-015fe4f8.88652846.css"
   },
   {
     "revision": "78ff25c30e6a0a36bf78",
     "url": "/css/chunk-0c982525.43c337d4.css"
   },
   {
-    "revision": "c1b78760838c507b2925",
-    "url": "/css/chunk-1c8b30aa.88652846.css"
+    "revision": "1ef407b3f971388deb1f",
+    "url": "/css/chunk-0d8b2049.1f224d39.css"
   },
   {
-    "revision": "767d917b35ba9494c1e4",
-    "url": "/css/chunk-46bad243.2f671e63.css"
+    "revision": "8663756799737011adf3",
+    "url": "/css/chunk-20edef28.2f671e63.css"
   },
   {
-    "revision": "e3d29410c3d497ed5e6b",
-    "url": "/css/chunk-488a34c8.1f224d39.css"
-  },
-  {
-    "revision": "a9af22cd1edfb8cf0764",
+    "revision": "50f81553434872db7a6e",
     "url": "/css/chunk-4bf4a54a.95646953.css"
+  },
+  {
+    "revision": "09136c4d286d891c3aaa",
+    "url": "/css/chunk-5314d48a.cfb45306.css"
   },
   {
     "revision": "4bd945b58cc761052ed7",
     "url": "/css/chunk-5b8f0834.43c337d4.css"
   },
   {
-    "revision": "1d1be5ad2c77b06630a3",
-    "url": "/css/chunk-ae687ec6.cfb45306.css"
-  },
-  {
-    "revision": "daa6da804f49887f69ac",
-    "url": "/css/chunk-da459738.85ceb742.css"
+    "revision": "0d8f910d7cb485850596",
+    "url": "/css/chunk-7b74028c.561c39c5.css"
   },
   {
     "revision": "6f168a73f80ca05787b8",
@@ -52,44 +52,44 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/bomb.53d23667.svg"
   },
   {
-    "revision": "917188f3f7a42520fb1fe93f298f64e6",
+    "revision": "9a41c2b6c5f7aa7a6fb14d741582be27",
     "url": "/index.html"
   },
   {
-    "revision": "413a6d91d82589b272ab",
-    "url": "/js/app.d5b44446.js"
+    "revision": "2fe31de813d91df35a23",
+    "url": "/js/app.bcc372fd.js"
+  },
+  {
+    "revision": "1b0c157276ffe6838fb9",
+    "url": "/js/chunk-015fe4f8.48f2ef03.js"
   },
   {
     "revision": "78ff25c30e6a0a36bf78",
     "url": "/js/chunk-0c982525.5f9f34a5.js"
   },
   {
-    "revision": "c1b78760838c507b2925",
-    "url": "/js/chunk-1c8b30aa.bd24b611.js"
+    "revision": "1ef407b3f971388deb1f",
+    "url": "/js/chunk-0d8b2049.9c3064e4.js"
   },
   {
-    "revision": "767d917b35ba9494c1e4",
-    "url": "/js/chunk-46bad243.d0dc2655.js"
+    "revision": "8663756799737011adf3",
+    "url": "/js/chunk-20edef28.551c8390.js"
   },
   {
-    "revision": "e3d29410c3d497ed5e6b",
-    "url": "/js/chunk-488a34c8.21384e47.js"
+    "revision": "50f81553434872db7a6e",
+    "url": "/js/chunk-4bf4a54a.04f36311.js"
   },
   {
-    "revision": "a9af22cd1edfb8cf0764",
-    "url": "/js/chunk-4bf4a54a.1adff244.js"
+    "revision": "09136c4d286d891c3aaa",
+    "url": "/js/chunk-5314d48a.f45f2be5.js"
   },
   {
     "revision": "4bd945b58cc761052ed7",
     "url": "/js/chunk-5b8f0834.f705fb62.js"
   },
   {
-    "revision": "1d1be5ad2c77b06630a3",
-    "url": "/js/chunk-ae687ec6.8e1f3e9e.js"
-  },
-  {
-    "revision": "daa6da804f49887f69ac",
-    "url": "/js/chunk-da459738.97b8a371.js"
+    "revision": "0d8f910d7cb485850596",
+    "url": "/js/chunk-7b74028c.baa7202f.js"
   },
   {
     "revision": "f9bbd7fe7c27736cf54a",
@@ -106,6 +106,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "984d89ec66e6a1cd04db9690286e9d58",
     "url": "/media/alarm.984d89ec.mp3"
+  },
+  {
+    "revision": "ab41d09ef7124e30c0952668ba8131eb",
+    "url": "/media/draw.ab41d09e.mp3"
   },
   {
     "revision": "c016446a737516ecdd84210c44a142c6",
@@ -130,6 +134,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "f6ab28b74e2424c99e0841dada9eba09",
     "url": "/media/selected.f6ab28b7.mp3"
+  },
+  {
+    "revision": "776e44591448a34e0954b098982f48e0",
+    "url": "/media/show.776e4459.mp3"
+  },
+  {
+    "revision": "ece9fdbb7a49356c77f14e2854edaffe",
+    "url": "/media/speak.ece9fdbb.mp3"
   },
   {
     "revision": "cd734fd1c57a76d0df9280a057231c60",
