@@ -305,6 +305,7 @@
       text-align: left;
       margin-left: 5%;
       margin-right: 5%;
+      font-size: clamp(10px, 2.5vh, 25px);
       .tutorial-navigation {
         display: flex;
         justify-content: space-between;
