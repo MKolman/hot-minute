@@ -21,7 +21,7 @@ const defaultValues = {
   timer: 60,
   enabledSounds2: [
     'bomb', 'selected', 'select', 'countdown', 'timesup', 'winner', 'flip',
-    'speak', 'show', 'draw',
+    'activity_type',
   ],
   tutorialStep: 0,
   activityHistory: [0, 0, 0, 0],
