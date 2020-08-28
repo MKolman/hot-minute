@@ -15,7 +15,7 @@ const defaultValues = {
     '/root/show/hard.txt',
     '/root/show/medium.txt',
   ],
-  animationTimeS: 15.0,
+  animationTimeS: 10.0,
   bombProbability: 0.15,
   scores: [] as any[],
   timer: 60,

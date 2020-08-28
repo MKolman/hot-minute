@@ -60,7 +60,7 @@ export default {
     },
     roll() {
       this.highlight = (this.highlight + 1) % 3;
-      this.delay = Math.max(this.delay * 0.9, 100);
+      this.delay = Math.max(this.delay * 0.92, 100);
       Sounds.select.play();
       this.timeoutIds[0] = setTimeout(this.roll, this.delay);
     },
