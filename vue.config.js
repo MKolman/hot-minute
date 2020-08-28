@@ -7,11 +7,11 @@ module.exports = {
   ],
   pwa: {
     name: 'Hot Minute',
-    themeColor: '#feb5ca',
-    msTileColor: '#603cba',
+    themeColor: '#e39d23',
+    msTileColor: '#e39d23',
     manifestOptions: {
       orientation: 'portrait',
-      background_color: '#fed5dd',
+      background_color: '#efefef',
       icons: [
         {
           src: 'img/icons/android-chrome-192x192.png',

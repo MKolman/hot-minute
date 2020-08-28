@@ -10,7 +10,12 @@
       </div>
     </div>
     <h1 v-if="intro"> Bomb! </h1>
-    <a v-if="paused" :href="searchUrl" style="z-index: 1;" target="_blank"> Listen on YouTube </a>
+    <a
+      v-if="paused"
+      :href="searchUrl"
+      style="z-index: 1; color: var(--color-bomb-view-done-bg);"
+      target="_blank"
+    > Listen on YouTube </a>
     <Timer v-if="!intro" @stop="paused = true;" :noConfirm="true" />
   </div>
 </template>
@@ -58,7 +63,7 @@ img.splash {
     max-height: 100%;
   }
   .bomb-text {
-    color: var(--color-bomb-view-bg);
+    color: var(--color-bomb-view-txt);
     position: absolute;
     top: 28%;
     left: 8%;

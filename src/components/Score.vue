@@ -135,7 +135,7 @@
   }
   .v-card {
     background-color: var(--color-app-bg);
-    color: var(--color-app-txt);
+    color: var(--color-score-title);
   }
 
   h1 {
@@ -206,6 +206,8 @@
       top: 0;
       left: 0;
       text-align: center;
+      color: var(--color-score-progress) !important;
+      caret-color: var(--color-score-progress) !important;
     }
   }
   .disableTransitions *{
