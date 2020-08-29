@@ -9,45 +9,15 @@
     </h1>
 
     <v-subheader>
-      Disable or enable sound effects
-    </v-subheader>
-    <v-treeview
-      :items="soundItems"
-      v-model="enabledSounds"
-      selectable
-      :open-on-click="true"
-      selected-color="primary"
-    ></v-treeview>
-
-    <v-divider></v-divider>
-
-    <v-subheader>
-      Change which wordsets are used
+      Select difficulty and songs
     </v-subheader>
     <v-treeview
       :items="wordItems"
       v-model="selectedWordlists2"
       selectable
-      :open-on-click="true"
       selected-color="primary"
+      @update:open="setTreeviewClickListeners"
     ></v-treeview>
-
-    <v-divider></v-divider>
-
-    <v-subheader>
-      Activity selection animation length: {{ $store.state.animationTimeS }}s
-    </v-subheader>
-    <v-slider
-      v-model="$store.state.animationTimeS"
-      min="0"
-      max="20"
-      step="0.1"
-      thumb-label
-    >
-      <template v-slot:thumb-label="{ value }">
-        {{ value + 's' }}
-      </template>
-    </v-slider>
 
     <v-divider></v-divider>
 
@@ -61,6 +31,19 @@
       step="0.01"
       thumb-label
     ></v-slider>
+
+    <v-divider></v-divider>
+
+    <v-subheader>
+      Disable or enable sound effects
+    </v-subheader>
+    <v-treeview
+      :items="soundItems"
+      v-model="enabledSounds"
+      selectable
+      selected-color="primary"
+      @update:open="setTreeviewClickListeners"
+    ></v-treeview>
 
     <v-divider></v-divider>
 
@@ -91,6 +74,23 @@
     <v-divider></v-divider>
 
     <v-subheader>
+      Activity selection animation length: {{ $store.state.animationTimeS }}s
+    </v-subheader>
+    <v-slider
+      v-model="$store.state.animationTimeS"
+      min="0"
+      max="20"
+      step="0.1"
+      thumb-label
+    >
+      <template v-slot:thumb-label="{ value }">
+        {{ value + 's' }}
+      </template>
+    </v-slider>
+
+    <v-divider></v-divider>
+
+    <v-subheader>
       Restart the tutorial
       <v-btn
         text
@@ -101,6 +101,24 @@
         Start
       </v-btn>
     </v-subheader>
+
+    <v-snackbar
+      v-model="deleteWordsSnackbar"
+      :timeout="2000"
+    >
+      Can't deselect all options
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          dark
+          text
+          v-bind="attrs"
+          @click="deleteWordsSnackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
 
     <HomeFab/>
   </div>
@@ -121,6 +139,7 @@ export default {
   },
   data() {
     return {
+      deleteWordsSnackbar: false,
       slider: 0,
       wordItems: [],
       soundItems: [
@@ -171,8 +190,64 @@ export default {
     };
   },
   created() {
-    this.wordItems = [allWords.all('')];
-    this.wordItems[0].name = 'Select categories';
+    const wordGraph = allWords.all('');
+    const transposed = { easy: [], medium: [], hard: [] };
+    for (let i = 0; i < wordGraph.children.length; i += 1) {
+      for (let j = 0; j < wordGraph.children[i].children.length; j += 1) {
+        const name = wordGraph.children[i].children[j].name.toLowerCase();
+        if (transposed[name] !== undefined) {
+          transposed[name].push({
+            name: wordGraph.children[i].name,
+            id: wordGraph.children[i].children[j].id,
+          });
+        }
+      }
+    }
+
+    this.wordItems = [
+      {
+        name: 'Easy',
+        id: 'easy',
+        children: transposed.easy,
+      },
+      {
+        name: 'Medium',
+        id: 'medium',
+        children: transposed.medium,
+      },
+      {
+        name: 'Hard',
+        id: 'hard',
+        children: transposed.hard,
+      },
+      allWords.findSubtree('bomb').all('/root'),
+    ];
+    this.wordItems[3].name = 'Songs';
+  },
+  mounted() {
+    this.setTreeviewClickListeners();
+  },
+  methods: {
+    setTreeviewClickListeners() {
+      setTimeout(() => {
+        const treeviewLabels = document.getElementsByClassName('v-treeview-node__content');
+        for (let i = 0; i < treeviewLabels.length; i += 1) {
+          treeviewLabels[i].onclick = this.toggleTreeview;
+        }
+      }, 100);
+    },
+    toggleTreeview(clickEvent) {
+      for (let i = 0; i < clickEvent.path.length; i += 1) {
+        if (clickEvent.path[i].classList.contains('v-treeview-node__content')) {
+          if (clickEvent.path[i].innerText === 'Songs') {
+            clickEvent.path[i].previousSibling.previousSibling.click();
+          } else {
+            clickEvent.path[i].previousSibling.click();
+          }
+          break;
+        }
+      }
+    },
   },
   computed: {
     selectedWordlists2: {
@@ -188,6 +263,7 @@ export default {
           this.$store.commit('updateSelectedWordlists2', value);
         } else {
           this.$store.commit('updateSelectedWordlists2', this.$store.state.selectedWordlists2.splice(0));
+          this.deleteWordsSnackbar = true;
         }
       },
     },
