@@ -58,6 +58,9 @@
         <li><a href="https://www.billboard.com/">
           Billboard lists of most popular songs
         </a></li>
+        <li><a href="http://www.discjockey.org/reunion-dj/">
+          Lists of top 100 reunion songs per decade
+        </a></li>
       </ul>
     </p>
 
