@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/404.html"
   },
   {
-    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "revision": "b4fe4cbc25e40d87e8f2ae141118ee80",
     "url": "/about.html"
   },
   {
@@ -152,19 +152,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/media/winner.acaa6ee8.mp3"
   },
   {
-    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "revision": "b4fe4cbc25e40d87e8f2ae141118ee80",
     "url": "/play/bomb.html"
   },
   {
-    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "revision": "b4fe4cbc25e40d87e8f2ae141118ee80",
     "url": "/play/draw.html"
   },
   {
-    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "revision": "b4fe4cbc25e40d87e8f2ae141118ee80",
     "url": "/play/show.html"
   },
   {
-    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "revision": "b4fe4cbc25e40d87e8f2ae141118ee80",
     "url": "/play/speak.html"
   },
   {
@@ -172,11 +172,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/robots.txt"
   },
   {
-    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "revision": "b4fe4cbc25e40d87e8f2ae141118ee80",
     "url": "/rules.html"
   },
   {
-    "revision": "558871d9b147bcc68a6434da4160e2fb",
+    "revision": "b4fe4cbc25e40d87e8f2ae141118ee80",
     "url": "/settings.html"
   }
 ]);
