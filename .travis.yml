@@ -7,7 +7,7 @@ cache:
 
 script:
   - npm run build
-  - cp CNAME dist/
+  - cp CNAME dist/ && bash copy_links.sh public dist
 deploy:
   provider: pages
   skip_cleanup: true
