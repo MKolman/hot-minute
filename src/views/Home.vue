@@ -41,9 +41,6 @@
     height: 0.5em;
   }
 }
-// .v-btn:not(:hover):before {
-//   opacity: 0!important;
-// }
 </style>
 
 <script>

@@ -209,13 +209,11 @@ export default {
         name: 'Easy',
         id: 'easy',
         children: transposed.easy,
-      },
-      {
+      }, {
         name: 'Medium',
         id: 'medium',
         children: transposed.medium,
-      },
-      {
+      }, {
         name: 'Hard',
         id: 'hard',
         children: transposed.hard,
