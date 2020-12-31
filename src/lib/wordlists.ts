@@ -9,27 +9,31 @@ class WordTree {
 
   numWords: number;
 
+  name: string;
+
   constructor(key: string, wordList: string[]) {
     this.key = key;
     this.subtrees = {};
     this.wordList = wordList || [];
     this.numWords = this.wordList.length;
+    const name = this.key.split('.', 1)[0].replace(/_/g, ' ');
+    this.name = name[0].toUpperCase() + name.slice(1);
   }
 
   addSubtree(tree: WordTree) {
     this.subtrees[tree.key] = tree;
   }
 
-  insertNode(longKey: string, wordList: string[]) {
+  insertNode(longKey: string, wordList: string[]): WordTree {
     if (longKey.length === 0) {
       this.wordList = this.wordList.concat(wordList);
       this.numWords += wordList.length;
-    } else {
-      this.numWords += wordList.length;
-      const key = longKey.split('/', 1)[0];
-      if (!this.subtrees[key]) this.subtrees[key] = new WordTree(key, []);
-      this.subtrees[key].insertNode(longKey.slice(key.length + 1), wordList);
+      return this;
     }
+    this.numWords += wordList.length;
+    const key = longKey.split('/', 1)[0];
+    if (!this.subtrees[key]) this.subtrees[key] = new WordTree(key, []);
+    return this.subtrees[key].insertNode(longKey.slice(key.length + 1), wordList);
   }
 
   findSubtree(longKey: string): WordTree {
@@ -63,14 +67,12 @@ class WordTree {
     }
   }
 
-  all(prefix: string): {id: string; name: string; children: any[]} {
+  all(prefix: string): {id: string; name: string; children: object[]} {
     const longKey = `${prefix}/${this.key}`;
-    let name = this.key.split('.', 1)[0].replace(/_/g, ' ');
-    name = name[0].toUpperCase() + name.slice(1);
     const result = {
       id: longKey,
-      name,
-      children: [] as any[],
+      name: this.name,
+      children: [] as object[],
     };
     const trees = Object.values(this.subtrees);
     for (let i = 0; i < trees.length; i += 1) {
@@ -98,7 +100,10 @@ class WordTree {
 const wordTree = new WordTree('root', []);
 
 function importAll(r: any) {
-  r.keys().forEach((key: string) => { wordTree.insertNode(key.slice(2), r(key).default.split('\n')); });
+  console.log(r);
+  r.keys().forEach((key: string) => {
+    wordTree.insertNode(key.slice(2), r(key).default.split('\n'));
+  });
 }
 importAll(require.context('../assets/wordlists/', true, /\.txt$/));
 
