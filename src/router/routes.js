@@ -52,4 +52,9 @@ module.exports = [
     name: 'Rules',
     component: () => import('../views/Rules.vue'),
   },
+  {
+    path: '/import',
+    name: 'Import',
+    component: () => import('../views/Import.vue'),
+  },
 ];
