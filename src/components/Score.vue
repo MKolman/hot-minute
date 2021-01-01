@@ -362,13 +362,12 @@ export default Vue.extend({
   },
   computed: {
     activeScoreIndex: {
-      get() {
-        const th = this as any;
+      get(): number {
         return Math.min(
           Math.floor(
-            (th.scoreScroll || 0) * th.scores.length,
+            (this.scoreScroll || 0) * this.scores.length,
           ),
-          th.scores.length - 1,
+          this.scores.length - 1,
         );
       },
       set(scoreIndex: number) {
@@ -377,9 +376,8 @@ export default Vue.extend({
         el.scrollLeft = scrollPercentage * (el.scrollWidth - el.offsetWidth);
       },
     },
-    activeScore() {
-      const th = this as any;
-      return th.scores.length ? th.scores[th.activeScoreIndex] : {};
+    activeScore(): Score | {} {
+      return this.scores.length ? this.scores[this.activeScoreIndex] : {};
     },
   },
   mounted() {
