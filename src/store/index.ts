@@ -61,6 +61,9 @@ export default new Vuex.Store({
     updateSelectedWordlists2(state, value) {
       state.selectedWordlists2 = value;
     },
+    insertSelectedWordlists(state, value) {
+      state.selectedWordlists2.push(value);
+    },
     updateAnimationTimeS(state, value) {
       state.animationTimeS = value;
     },

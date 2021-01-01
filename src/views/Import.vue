@@ -6,7 +6,7 @@
     <v-text-field
       label="YouTube Playlist"
       v-model="playlistLinkOrId"
-      placeholder="https://music.youtube.com/playlist?list=RDCLAK5uy_kmPuJ7R7b9mIaF6otQaKbtFl2x94n9FDw"
+      placeholder="Paste here"
       hint="Paste your YouTube or YouTube Music playlist link or id here."
     ></v-text-field>
     <v-btn
@@ -289,6 +289,7 @@ export default {
       }
       this.$store.commit('insertCustomWordlist', result);
       allWords.insertNode(result.key, result.items).name = result.name;
+      this.$store.commit('insertSelectedWordlists', `/root/${result.key}`);
       this.$router.push({ name: 'Settings' });
     },
     loadPlaylist() {
