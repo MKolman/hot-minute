@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
+
 const defaultValues = {
   selectedWordlists2: [
     '/root/bomb/rock.txt',
@@ -17,7 +18,7 @@ const defaultValues = {
   ],
   animationTimeS: 10.0,
   bombProbability: 0.15,
-  scores: [] as any[],
+  scores: [] as { id: number; value: number; history: number[]; name: string }[],
   timer: 60,
   enabledSounds2: [
     'bomb', 'selected', 'select', 'countdown', 'timesup', 'winner', 'flip',
@@ -25,6 +26,7 @@ const defaultValues = {
   ],
   tutorialStep: 0,
   activityHistory: [0, 0, 0, 0],
+  customWords: {} as {[key: string]: {key: string; name: string; items: string[]}},
 };
 export default new Vuex.Store({
   state: {
@@ -36,6 +38,7 @@ export default new Vuex.Store({
     enabledSounds2: defaultValues.enabledSounds2.slice(),
     tutorialStep: defaultValues.tutorialStep,
     activityHistory: defaultValues.activityHistory.slice(),
+    customWords: { ...defaultValues.customWords },
   },
   mutations: {
     tutorialStop(state) {
@@ -51,12 +54,6 @@ export default new Vuex.Store({
     },
     setDefault(state, name: string) {
       (state as any)[name] = (defaultValues as any)[name];
-    },
-    setDefaultAll(state) {
-      const keys = Object.keys(defaultValues);
-      for (let i = 0; i < keys.length; i += 1) {
-        (state as any)[keys[i]] = (defaultValues as any)[keys[i]];
-      }
     },
     updateEnabledSounds(state, value) {
       state.enabledSounds2 = value;
@@ -83,8 +80,14 @@ export default new Vuex.Store({
         state.activityHistory[i] /= 2;
       }
     },
+    insertCustomWordlist(state, wordlist) {
+      state.customWords[wordlist.key] = wordlist;
+    },
   },
   actions: {
+    setDefaultAll(context) {
+      Object.keys(defaultValues).forEach((key) => context.commit('setDefault', key));
+    },
   },
   modules: {
   },
