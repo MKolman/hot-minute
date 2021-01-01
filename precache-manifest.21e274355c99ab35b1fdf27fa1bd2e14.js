@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/404.html"
   },
   {
-    "revision": "6b369fbe92f5a10bf4e21b25688b4072",
+    "revision": "22217473c1e0c8118a7bd0c4bbe4655e",
     "url": "/about.html"
   },
   {
@@ -44,12 +44,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/css/chunk-5d118897.95646953.css"
   },
   {
-    "revision": "1ffb5aeacaeb2697f212",
-    "url": "/css/chunk-bbf80f30.609fbb2a.css"
+    "revision": "f32c3a0b040582a2fc75",
+    "url": "/css/chunk-common.63805cc8.css"
   },
   {
-    "revision": "cd34e0fe721b33bff97f",
-    "url": "/css/chunk-common.63805cc8.css"
+    "revision": "ff8a41bda4f2278d80e0",
+    "url": "/css/chunk-ffcc8d76.a5250013.css"
   },
   {
     "revision": "5f6c5ade93155eb6fd11",
@@ -60,20 +60,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/bomb.53d23667.svg"
   },
   {
-    "revision": "7e6159bd2f23ebd4afce1f99b61cc8ab",
+    "revision": "937e4cab7cc16d2928799666756ea07b",
     "url": "/import.html"
   },
   {
-    "revision": "a2ed69e03dea8821212f270ab7503528",
+    "revision": "39f8257cefb1025710323667542e96ec",
     "url": "/index.html"
   },
   {
-    "revision": "fe99fc179ace2d4d9f5d",
-    "url": "/js/about.c2b4d570.js"
+    "revision": "b5766282d0e30858262c",
+    "url": "/js/about.a3d9b961.js"
   },
   {
-    "revision": "c477ca25745c9f21ee0d",
-    "url": "/js/bomb.85487a9d.js"
+    "revision": "3b926f171fe9549abfdc",
+    "url": "/js/bomb.5f15d862.js"
   },
   {
     "revision": "17da49c4704c5b3ffe9c",
@@ -120,44 +120,44 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/js/chunk-6337fcfc.90794efc.js"
   },
   {
-    "revision": "1ffb5aeacaeb2697f212",
-    "url": "/js/chunk-bbf80f30.319365bd.js"
+    "revision": "f32c3a0b040582a2fc75",
+    "url": "/js/chunk-common.7136d67e.js"
   },
   {
-    "revision": "cd34e0fe721b33bff97f",
-    "url": "/js/chunk-common.44fe83fb.js"
+    "revision": "ff8a41bda4f2278d80e0",
+    "url": "/js/chunk-ffcc8d76.d8949dcc.js"
   },
   {
     "revision": "5f6c5ade93155eb6fd11",
     "url": "/js/chunk-vendors.33004386.js"
   },
   {
-    "revision": "4ffa61489dabbc54b1bc",
-    "url": "/js/draw.ead1ee12.js"
+    "revision": "acc8c7f489e88f7cbfa3",
+    "url": "/js/draw.3199eb8b.js"
   },
   {
-    "revision": "e44b653d9adaf86552e1",
-    "url": "/js/import.d86227f0.js"
+    "revision": "aed0e961cb890ef3ae1f",
+    "url": "/js/import.db13a9bf.js"
   },
   {
-    "revision": "2cb0b67890b30fd2531a",
-    "url": "/js/index.ba75b3b6.js"
+    "revision": "0a37a7207690a23e200e",
+    "url": "/js/index.329d6c1c.js"
   },
   {
-    "revision": "07c8f92abc3a3b12ff43",
-    "url": "/js/rules.e1558e26.js"
+    "revision": "eae85ab1283889e89cf2",
+    "url": "/js/rules.30889b1d.js"
   },
   {
-    "revision": "cb0a989403d839b95901",
-    "url": "/js/settings.af157413.js"
+    "revision": "4a84bbc681f8747388a4",
+    "url": "/js/settings.4b998c19.js"
   },
   {
-    "revision": "a6255402fad13e49a342",
-    "url": "/js/show.b4bb1c7a.js"
+    "revision": "85ea8f8cab38781494b2",
+    "url": "/js/show.0b2863a1.js"
   },
   {
-    "revision": "164625b4b3d7100d3966",
-    "url": "/js/speak.5b5439ad.js"
+    "revision": "a6abd862ec9371dd4096",
+    "url": "/js/speak.056bf344.js"
   },
   {
     "revision": "7d0c48e17cf3ced4682ae6841c28557e",
@@ -212,19 +212,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/media/winner.acaa6ee8.mp3"
   },
   {
-    "revision": "27d678416b7c0c34310a499b926fb7e3",
+    "revision": "bfe8c9dd7f112e19423aecd5ce54ca20",
     "url": "/play/bomb.html"
   },
   {
-    "revision": "7b9440fde12929f5cca76283e8b659b7",
+    "revision": "5d200388353b8d930cb7034e6751b77c",
     "url": "/play/draw.html"
   },
   {
-    "revision": "78eee94ddb1d2c32d9097168d0e1d507",
+    "revision": "e10b8af3bde2662bdd636b9cba0709f8",
     "url": "/play/show.html"
   },
   {
-    "revision": "0a68ad9a89ca855de0d7ce5060651c76",
+    "revision": "5e1e8eac7debc7f2ad50b9eef3ea9b90",
     "url": "/play/speak.html"
   },
   {
@@ -232,11 +232,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/robots.txt"
   },
   {
-    "revision": "9904b1905ded0d6be853430bb202cbea",
+    "revision": "d7376775154e1a3ceb7320433c166f32",
     "url": "/rules.html"
   },
   {
-    "revision": "48d1cbe33f9939acc74c6b8d697b89cd",
+    "revision": "c1499709de42e2798107e3c8deaa5871",
     "url": "/settings.html"
   }
 ]);
