@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.d1d01a63e0b324e46889eee45dc8d0a2.js"
+  "/precache-manifest.3ee4c81c2b6495943496864893c11840.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "hot-minute"});
