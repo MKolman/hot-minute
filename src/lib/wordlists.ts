@@ -95,16 +95,25 @@ class WordTree {
   loadSettings() {
     this.filter(store.state.selectedWordlists2, '');
   }
+
+  reload() {
+    this.subtrees = {};
+    this.wordList = [];
+    this.numWords = 0;
+    const r = require.context('../assets/wordlists/', true, /\.txt$/);
+    r.keys().forEach((key: string) => {
+      this.insertNode(key.slice(2), r(key).default.split('\n'));
+    });
+    // Include custom playlists that users imported
+    Object.values(store.state.customWords).forEach(
+      (playlist: {key: string; name: string; items: string[]}) => {
+        this.insertNode(playlist.key, playlist.items).name = playlist.name;
+      },
+    );
+  }
 }
 
 const wordTree = new WordTree('root', []);
-
-function importAll(r: any) {
-  console.log(r);
-  r.keys().forEach((key: string) => {
-    wordTree.insertNode(key.slice(2), r(key).default.split('\n'));
-  });
-}
-importAll(require.context('../assets/wordlists/', true, /\.txt$/));
+wordTree.reload();
 
 export default wordTree;
