@@ -18,7 +18,13 @@
       selected-color="primary"
       @update:open="setTreeviewClickListeners"
     ></v-treeview>
-
+    <v-btn to="/import" color="primary" outlined block>
+      <!-- <v-icon color="secondary">mdi-plus</v-icon> -->
+      <v-icon>mdi-playlist-music</v-icon>
+      <v-spacer></v-spacer>
+      Add playlist
+      <v-spacer></v-spacer>
+    </v-btn>
     <v-divider></v-divider>
 
     <v-subheader>
@@ -153,6 +159,7 @@ export default {
   },
   data() {
     return {
+      allWords,
       deleteWordsSnackbar: false,
       slider: 0,
       wordItems: [],
