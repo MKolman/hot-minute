@@ -21,6 +21,10 @@ jobs:
             node_modules
           key: node_modules
 
+      - name: Share secret 🔐
+        run: |
+          echo VUE_APP_GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }} >> .env
+
       - name: Build 🔧
         run: |
           npm install
