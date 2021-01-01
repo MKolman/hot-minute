@@ -124,8 +124,10 @@ export default {
   },
   computed: {
     searchUrl() {
-      const query = `${this.artist} ${this.title}`;
-      return `https://www.youtube.com/results?search_query=${encodeURI(query)}`;
+      const search = new URLSearchParams({
+        search_query: `${this.artist} ${this.title}`;
+      });
+      return `https://www.youtube.com/results?${search}`;
     },
   },
   mounted() {
