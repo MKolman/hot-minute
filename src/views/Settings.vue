@@ -92,6 +92,7 @@
 
     <v-subheader>
       Restart the tutorial
+      <v-spacer></v-spacer>
       <v-btn
         text
         style="text-decoration: none;"
@@ -99,6 +100,19 @@
         color="primary"
       >
         Start
+      </v-btn>
+    </v-subheader>
+
+    <v-subheader>
+      Reset all settings
+      <v-spacer></v-spacer>
+      <v-btn
+        text
+        style="text-decoration: none;"
+        @click="$store.dispatch('setDefaultAll'); allWords.reload();"
+        color="primary"
+      >
+        Reset
       </v-btn>
     </v-subheader>
 
