@@ -124,9 +124,8 @@ export default {
   },
   computed: {
     searchUrl() {
-      const search = new URLSearchParams({
-        search_query: `${this.artist} ${this.title}`;
-      });
+      const search = new URLSearchParams();
+      search.append('search_query', `${this.artist} ${this.title}`);
       return `https://www.youtube.com/results?${search}`;
     },
   },
