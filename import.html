@@ -1,1 +1,27 @@
-index.html
+<!DOCTYPE html><html lang=en style="font-size: 16px;"><head><script>// Single Page Apps for GitHub Pages
+      // https://github.com/rafrex/spa-github-pages
+      // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+      // ----------------------------------------------------------------------
+      // This script checks to see if a redirect is present in the query string
+      // and converts it back into the correct url and adds it to the
+      // browser's history using window.history.replaceState(...),
+      // which won't cause the browser to attempt to load the new url.
+      // When the single page app is loaded further down in this file,
+      // the correct url will be waiting in the browser's history for
+      // the single page app to route accordingly.
+      (function(l) {
+        if (l.search) {
+          var q = {};
+          l.search.slice(1).split('&').forEach(function(v) {
+            var a = v.split('=');
+            q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+          });
+          if (q.p !== undefined) {
+            window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + (q.p || '') +
+              (q.q ? ('?' + q.q) : '') +
+              l.hash
+            );
+          }
+        }
+      }(window.location))</script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><!--[if IE]><link rel="icon" href="/favicon.ico"><![endif]--><title>hot-minute</title><link href="https://fonts.googleapis.com/css2?family=Epilogue&family=Galada&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css><link href=/css/chunk-0c982525.43c337d4.css rel=prefetch><link href=/css/chunk-0d8b2049.1f224d39.css rel=prefetch><link href=/css/chunk-14198590.25a314e2.css rel=prefetch><link href=/css/chunk-3b611d92.9a36f542.css rel=prefetch><link href=/css/chunk-484ae284.6f536b61.css rel=prefetch><link href=/css/chunk-5314d48a.cfb45306.css rel=prefetch><link href=/css/chunk-58411442.51dd29a0.css rel=prefetch><link href=/css/chunk-5b8f0834.43c337d4.css rel=prefetch><link href=/css/chunk-5d118897.95646953.css rel=prefetch><link href=/css/chunk-bbf80f30.609fbb2a.css rel=prefetch><link href=/js/chunk-0c982525.afcbd5a8.js rel=prefetch><link href=/js/chunk-0d8b2049.94f886e0.js rel=prefetch><link href=/js/chunk-14198590.26caac8a.js rel=prefetch><link href=/js/chunk-3b611d92.e664d70d.js rel=prefetch><link href=/js/chunk-3bb86046.8e63fc73.js rel=prefetch><link href=/js/chunk-484ae284.7287382a.js rel=prefetch><link href=/js/chunk-5314d48a.fee4fe4b.js rel=prefetch><link href=/js/chunk-58411442.59e371fc.js rel=prefetch><link href=/js/chunk-5b8f0834.542528c2.js rel=prefetch><link href=/js/chunk-5d118897.96d649e1.js rel=prefetch><link href=/js/chunk-6337fcfc.90794efc.js rel=prefetch><link href=/js/chunk-bbf80f30.319365bd.js rel=prefetch><link href=/css/chunk-common.63805cc8.css rel=preload as=style><link href=/css/chunk-vendors.7e7e1f9c.css rel=preload as=style><link href=/js/chunk-common.3bf650c4.js rel=preload as=script><link href=/js/chunk-vendors.33004386.js rel=preload as=script><link href=/js/import.43363abc.js rel=preload as=script><link href=/css/chunk-vendors.7e7e1f9c.css rel=stylesheet><link href=/css/chunk-common.63805cc8.css rel=stylesheet><link rel=icon type=image/png sizes=32x32 href=/img/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/img/icons/favicon-16x16.png><link rel=manifest href=/manifest.json><meta name=theme-color content=#e39d23><meta name=apple-mobile-web-app-capable content=no><meta name=apple-mobile-web-app-status-bar-style content=default><meta name=apple-mobile-web-app-title content="Hot Minute"><link rel=apple-touch-icon href=/img/icons/apple-touch-icon.png><link rel=mask-icon href=/img/icons/safari-pinned-tab.svg color=#e39d23><meta name=msapplication-TileImage content=/img/icons/mstile-150x150.png><meta name=msapplication-TileColor content=#e39d23></head><body><noscript><strong>We're sorry but hot-minute doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=/js/chunk-vendors.33004386.js></script><script src=/js/chunk-common.3bf650c4.js></script><script src=/js/import.43363abc.js></script></body></html>
