@@ -148,11 +148,14 @@
 @import "@/styles/_settings.scss";
 </style>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import allWords from '@/lib/wordlists';
 import HomeFab from '@/components/HomeFab.vue';
 
-export default {
+type TreeType = { name: string; id: string; children: TreeType[] };
+
+export default Vue.extend({
   name: 'Settings',
   components: {
     HomeFab,
@@ -162,7 +165,7 @@ export default {
       allWords,
       deleteWordsSnackbar: false,
       slider: 0,
-      wordItems: [],
+      wordItems: [] as TreeType[],
       soundItems: [
         {
           name: 'All sound',
@@ -211,15 +214,16 @@ export default {
     };
   },
   created() {
-    const wordGraph = allWords.all('');
-    const transposed = { easy: [], medium: [], hard: [] };
+    const wordGraph: TreeType = allWords.all('');
+    const transposed = { easy: [], medium: [], hard: [] } as { [k: string]: TreeType[] };
     for (let i = 0; i < wordGraph.children.length; i += 1) {
       for (let j = 0; j < wordGraph.children[i].children.length; j += 1) {
         const name = wordGraph.children[i].children[j].name.toLowerCase();
-        if (transposed[name] !== undefined) {
+        if (name in transposed) {
           transposed[name].push({
             name: wordGraph.children[i].name,
             id: wordGraph.children[i].children[j].id,
+            children: [],
           });
         }
       }
@@ -249,19 +253,23 @@ export default {
   methods: {
     setTreeviewClickListeners() {
       setTimeout(() => {
-        const treeviewLabels = document.getElementsByClassName('v-treeview-node__content');
+        const treeviewLabels = document.getElementsByClassName('v-treeview-node__content') as HTMLCollectionOf<HTMLElement>;
         for (let i = 0; i < treeviewLabels.length; i += 1) {
           treeviewLabels[i].onclick = this.toggleTreeview;
         }
       }, 100);
     },
-    toggleTreeview(clickEvent) {
-      for (let i = 0; i < clickEvent.path.length; i += 1) {
-        if (clickEvent.path[i].classList.contains('v-treeview-node__content')) {
-          if (clickEvent.path[i].innerText === 'Songs') {
-            clickEvent.path[i].previousSibling.previousSibling.click();
-          } else {
-            clickEvent.path[i].previousSibling.click();
+    toggleTreeview(clickEvent: UIEvent) {
+      // Makes sure that the treeview opens and closes when you click on the label
+      const path = clickEvent.composedPath() as HTMLElement[];
+      for (let i = 0; i < path.length; i += 1) {
+        if (path[i].classList.contains('v-treeview-node__content')) {
+          let toClick: Element | null = path[i].previousElementSibling;
+          if (path[i].innerText === 'Songs') {
+            toClick = toClick && toClick.previousElementSibling;
+          }
+          if (toClick instanceof HTMLElement) {
+            toClick.click();
           }
           break;
         }
@@ -270,21 +278,21 @@ export default {
   },
   computed: {
     selectedWordlists2: {
-      get() {
+      get(): string[] {
         return this.$store.state.selectedWordlists2;
       },
-      set(value) {
-        const getActivity = (val) => val.split('/', 3)[2];
-        const countLists = {};
+      set(value: string[]) {
+        const getActivity = (val: string) => val.split('/', 3)[2];
+        const countLists = {} as { [activity: string]: true };
         value.forEach((val) => {
           countLists[getActivity(val)] = true;
         });
-        const fallbackLists = {};
-        this.$store.state.selectedWordlists2.forEach((val) => {
+        const fallbackLists = {} as { [activity: string]: string };
+        this.$store.state.selectedWordlists2.forEach((val: string) => {
           fallbackLists[getActivity(val)] = val;
         });
         Object.keys(fallbackLists).forEach((activity) => {
-          if (!countLists[activity]) {
+          if (!(activity in countLists)) {
             value.push(fallbackLists[activity]);
             this.deleteWordsSnackbar = true;
           }
@@ -293,13 +301,13 @@ export default {
       },
     },
     enabledSounds: {
-      get() {
+      get(): string[] {
         return this.$store.state.enabledSounds2;
       },
-      set(value) {
+      set(value: string[]) {
         this.$store.commit('updateEnabledSounds', value);
       },
     },
   },
-};
+});
 </script>

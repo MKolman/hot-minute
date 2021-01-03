@@ -1,5 +1,7 @@
 import store from '../store';
 
+type TreeType = { name: string; id: string; children: TreeType[] };
+
 class WordTree {
   key: string;
 
@@ -67,12 +69,12 @@ class WordTree {
     }
   }
 
-  all(prefix: string): {id: string; name: string; children: object[]} {
+  all(prefix: string): TreeType {
     const longKey = `${prefix}/${this.key}`;
     const result = {
       id: longKey,
       name: this.name,
-      children: [] as object[],
+      children: [] as TreeType[],
     };
     const trees = Object.values(this.subtrees);
     for (let i = 0; i < trees.length; i += 1) {
