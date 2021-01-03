@@ -274,16 +274,22 @@ export default {
         return this.$store.state.selectedWordlists2;
       },
       set(value) {
-        const countActions = {};
-        for (let i = 0; i < value.length; i += 1) {
-          countActions[value[i].split('/', 3)[2]] = true;
-        }
-        if (Object.keys(countActions).length === 4) {
-          this.$store.commit('updateSelectedWordlists2', value);
-        } else {
-          this.$store.commit('updateSelectedWordlists2', this.$store.state.selectedWordlists2.splice(0));
-          this.deleteWordsSnackbar = true;
-        }
+        const getActivity = (val) => val.split('/', 3)[2];
+        const countLists = {};
+        value.forEach((val) => {
+          countLists[getActivity(val)] = true;
+        });
+        const fallbackLists = {};
+        this.$store.state.selectedWordlists2.forEach((val) => {
+          fallbackLists[getActivity(val)] = val;
+        });
+        Object.keys(fallbackLists).forEach((activity) => {
+          if (!countLists[activity]) {
+            value.push(fallbackLists[activity]);
+            this.deleteWordsSnackbar = true;
+          }
+        });
+        this.$store.commit('updateSelectedWordlists2', value);
       },
     },
     enabledSounds: {
