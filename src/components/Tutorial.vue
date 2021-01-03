@@ -260,7 +260,7 @@
     <!-- Settings -->
     <v-overlay :value="true" v-if="tutorialStep === 12">
       <p>
-        You can got to settings to:
+        You can go to settings to:
         <ul>
           <li>change the humming bomb frequency,</li>
           <li>mute sounds,</li>
