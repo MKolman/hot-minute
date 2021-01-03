@@ -26,8 +26,9 @@ const defaultValues = {
   ],
   tutorialStep: 0,
   activityHistory: [0, 0, 0, 0],
-  customWords: {} as {[key: string]: {key: string; name: string; items: string[]}},
+  customWords: {} as {[key: string]: { key: string; name: string; items: string[] } },
 };
+
 export default new Vuex.Store({
   state: {
     animationTimeS: defaultValues.animationTimeS,
@@ -85,6 +86,9 @@ export default new Vuex.Store({
     },
     insertCustomWordlist(state, wordlist) {
       state.customWords[wordlist.key] = wordlist;
+    },
+    removeCustomWordlist(state, key: string) {
+      delete state.customWords[key];
     },
   },
   actions: {

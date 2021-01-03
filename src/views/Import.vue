@@ -1,21 +1,8 @@
 <template>
   <div class="text-page import">
     <h1>
-      Import playlist
+      Custom playlists
     </h1>
-    <v-text-field
-      label="YouTube Playlist"
-      v-model="playlistLinkOrId"
-      placeholder="Paste here"
-      hint="Paste your YouTube or YouTube Music playlist link or id here."
-    ></v-text-field>
-    <v-btn
-      color="primary"
-      @click="loadPlaylist();"
-      :disabled="parsedPlaylistId === null"
-    >
-      Fetch YouTube Playlist
-    </v-btn>
 
     <v-alert
       class="notice"
@@ -32,7 +19,7 @@
       class="notice"
       color="accent"
       dark
-      v-if="`bomb/${playlistId}` in $store.state.customWords"
+      v-if="`bomb/${parsedPlaylistId}` in $store.state.customWords"
     >
       A playlist with this id was already imported.
       If you import it again it will overwrite old values.
@@ -41,8 +28,8 @@
     <v-alert
       class="notice"
       color="secondary"
+      v-if="fetchError"
       dark
-      v-if="showError"
     >
       An error occured while loading playlist. Make sure
       <ul>
@@ -50,129 +37,39 @@
         <li> This playlist exists. </li>
         <li> This playlist is not set to private. </li>
       </ul>
-      {{ showError }}
+      {{ fetchError }}
     </v-alert>
 
-    <v-card class="song-results" v-if="songs.length > 0 || inFlightRequest">
-      <v-card-title>
-        <v-edit-dialog>
-          {{ playlistName }}
-          <v-icon dense>mdi-pencil</v-icon>
-          <template v-slot:input>
-            <v-text-field
-              v-model="playlistName"
-              label="Edit"
-              single-line
-            ></v-text-field>
-          </template>
-        </v-edit-dialog>
-      </v-card-title>
+    <v-expansion-panels accordion v-model="openedPlaylist">
+      <v-expansion-panel class="">
+        <v-expansion-panel-header color="accent">
+        <span style="color: white"> Import new playlist </span>
+        </v-expansion-panel-header>
 
-      <v-card-subtitle>
-        Verify that all titles and authors are correct. You can fix any
-        posible mistakes made while fetching by editing the table below.
-      </v-card-subtitle>
-
-      <v-card-actions>
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Search"
-          single-line
-          hide-details
-        ></v-text-field>
-        <v-spacer></v-spacer>
-        <v-btn
-          color="primary"
-          @click="savePlaylist"> Import </v-btn>
-      </v-card-actions>
-
-      <v-data-table
-        :label="playlistName"
-        :headers="tableHeaders"
-        :items="songs"
-        :items-per-page="25"
-        :search="search"
-        :single-expand="true"
-        :disable-sort="true"
-        mobile-breakpoint="350"
-        :expanded.sync="expanded"
-        :loading="inFlightRequest"
-        item-key="index"
-        :footer-props="{'items-per-page-options': [10, 25, 50, 100, -1]}"
-        show-expand
-        dense
-        class="elevation-1"
-      >
-        <template v-slot:expanded-item="{ headers, item }">
-          <td :colspan="headers.length">
-            <v-radio-group v-model="songs[item.index]">
-              <v-radio
-                v-for="(alt, index) in songAlts[item.index]"
-                :key="index"
-                :value="alt"
-              >
-                <template v-slot:label>
-                  <span class="alt-song-label">{{alt.title}}</span>
-                  <span class="alt-song-label">{{alt.author}}</span>
-                </template>
-              </v-radio>
-            </v-radio-group>
-          </td>
-        </template>
-
-        <template v-slot:item.title="props">
-          <v-edit-dialog :return-value.sync="props.item.title">
-            {{ props.item.title }}
-            <v-icon
-              small
-              v-if="expanded.length > 0 && expanded[0].index === props.item.index"
-            >mdi-pencil</v-icon>
-            <template v-slot:input>
-              <v-text-field
-                v-model="props.item.title"
-                label="Edit"
-                single-line
-              ></v-text-field>
-            </template>
-          </v-edit-dialog>
-        </template>
-
-        <template v-slot:item.author="props">
-          <v-edit-dialog :return-value.sync="props.item.author">
-            {{ props.item.author }}
-            <v-icon
-              small
-              v-if="expanded.length > 0 && expanded[0].index === props.item.index"
-            >mdi-pencil</v-icon>
-            <template v-slot:input>
-              <v-text-field
-                v-model="props.item.author"
-                label="Edit"
-                single-line
-              ></v-text-field>
-            </template>
-          </v-edit-dialog>
-        </template>
-
-        <template v-slot:item.delete="props">
+        <v-expansion-panel-content>
+          <v-text-field
+            label="YouTube Playlist"
+            v-model="playlistLinkOrId"
+            placeholder="Paste here"
+            hint="Paste your YouTube or YouTube Music playlist link or id here."
+          ></v-text-field>
           <v-btn
-            icon
-            small
-            :color="toDelete === props.item.index ? 'secondary' : undefined"
-            @click="deleteSong(props.item.index);"
-            v-click-outside="{
-              handler: () => { toDelete = null; },
-              closeConditional: () => { return toDelete === props.item.index; },
-            }"
+            color="primary"
+            @click="savePlaylist();"
+            :disabled="parsedPlaylistId === null"
           >
-            <v-icon :small="toDelete !== props.item.index">
-              {{ toDelete === props.item.index ? 'mdi-alert' : 'mdi-delete' }}
-            </v-icon>
+            Import YouTube Playlist
           </v-btn>
-        </template>
-      </v-data-table>
-    </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+
+      <Playlist
+        v-for="(playlist, index) in playlists"
+        :key="playlist.id"
+        v-model="playlists[index]"
+        @delete="deletePlaylist(index)"
+      />
+    </v-expansion-panels>
     <HomeFab/>
   </div>
 </template>
@@ -205,206 +102,109 @@
 }
 </style>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import allWords from '@/lib/wordlists';
+import PlaylistClass from '@/lib/playlist';
 import HomeFab from '@/components/HomeFab.vue';
+import Playlist from '@/components/Playlist.vue';
 
-import axios from 'axios';
-
-// This is the key identifing Hot Minute to Google API.
-// It is meant for client side use and is OK to disclose
-// to users.
-const YT_API_KEY = process.env.VUE_APP_GOOGLE_API_KEY;
-
-export default {
+export default Vue.extend({
   name: 'Import',
   components: {
     HomeFab,
+    Playlist,
   },
   data() {
     return {
       playlistLinkOrId: '',
-      playlistId: '',
-      playlistName: '',
-      playlistDescription: '',
       search: '',
-      inFlightRequest: false,
-      showError: false,
-      songs: [],
-      songAlts: [],
-      expanded: [],
-      toDelete: null,
-      tableHeaders: [
-        { value: 'title', text: 'Title' },
-        { value: 'author', text: 'Author' },
-        { value: 'delete' },
-      ],
+      fetchError: '',
+      playlists: [] as PlaylistClass[],
+      playlistIdToIndex: {} as { [id: string]: number },
+      openedPlaylist: 0,
     };
   },
   computed: {
-    parsedPlaylistId() {
-      let playlistId = this.playlistLinkOrId;
-      if (playlistId.includes('youtube.')) {
-        try {
-          const ytURL = new URL(this.playlistLinkOrId);
-          playlistId = ytURL.searchParams.get('list') || this.playlistLinkOrId;
-        } catch {
-          return null;
-        }
-      }
-      const playlistRegex = /^[a-zA-Z0-9_-]{5,}$/;
-      if (playlistRegex.test(playlistId)) {
-        return playlistId;
-      }
-      return null;
+    parsedPlaylistId(): string | null {
+      return PlaylistClass.parseId(this.playlistLinkOrId);
+    },
+  },
+  created() {
+    this.playlists = Object.values(this.$store.state.customWords)
+      .filter((list: any) => list.key.startsWith('bomb/'))
+      .map(
+        (list, index) => {
+          const { key, name, items } = list as { key: string; name: string; items: string[] };
+          const newPlaylist = new PlaylistClass(key.slice(5));
+          newPlaylist.name = name;
+          newPlaylist.songs = items.map(
+            (s, id) => {
+              const [author, title] = s.split(';', 2);
+              return {
+                id,
+                author,
+                title,
+                alts: [
+                  { author, title, confidence: 100 },
+                  { author: title, title: author, confidence: 0 },
+                ],
+              };
+            },
+          );
+          this.playlistIdToIndex[newPlaylist.id] = index;
+          return newPlaylist;
+        },
+      );
+  },
+  watch: {
+    playlists: {
+      handler() {
+        this.playlists.forEach((playlist) => {
+          this.$store.commit('insertCustomWordlist', playlist.toJSON());
+        });
+      },
+      deep: true,
     },
   },
   methods: {
-    deleteSong(index) {
-      if (this.toDelete !== index) {
-        this.toDelete = index;
-        return;
-      }
-      this.toDelete = null;
-      this.songs.splice(index, 1);
-      this.songAlts.splice(index, 1);
-      this.songs.forEach((song, i) => Object.assign(song, { index: i }));
-      this.songAlts.forEach((songs, i) => songs.forEach(
-        (song) => Object.assign(song, { index: i }),
-      ));
+    deletePlaylist(index: number) {
+      const { key } = this.playlists[index].toJSON();
+      this.playlists.splice(index, 1);
+      this.playlistIdToIndex = {};
+      this.openedPlaylist = -1;
+      this.playlists.forEach(({ id }, idx) => {
+        this.playlistIdToIndex[id] = idx;
+      });
+      this.$store.commit('removeCustomWordlist', key);
     },
     savePlaylist() {
-      const result = {
-        key: `bomb/${this.playlistId}`,
-        name: this.playlistName,
-        items: [],
-      };
-      for (let i = 0; i < this.songs.length; i += 1) {
-        result.items.push(`${this.songs[i].author};${this.songs[i].title}`);
-      }
-      if (result.key in this.$store.state.customWords) {
-        const tree = allWords.findSubtree(result.key);
-        tree.numWords -= tree.wordList.length;
-        tree.wordList = [];
-      }
-      this.$store.commit('insertCustomWordlist', result);
-      allWords.insertNode(result.key, result.items).name = result.name;
-      this.$store.commit('insertSelectedWordlists', `/root/${result.key}`);
-      this.$router.push({ name: 'Settings' });
-    },
-    loadPlaylist() {
       if (this.parsedPlaylistId === null) {
         return;
       }
-      this.playlistId = this.parsedPlaylistId;
-      this.songs = [];
-      this.songAlts = [];
-      this.showError = false;
-      this.playlistName = '';
-      this.playlistDescription = '';
-      this.fetchYTPlaylistSongs(this.playlistId);
-      this.fetchYTPlaylistName(this.playlistId);
-    },
-
-    fetchYTPlaylistName(playlistId) {
-      const url = new URL('https://youtube.googleapis.com/youtube/v3/playlists');
-      const params = new URLSearchParams({
-        id: playlistId,
-        part: 'snippet,contentDetails',
-        fields: 'items/snippet(title,description)',
-        key: YT_API_KEY,
-      });
-      this.inFlightRequest = true;
-      url.search = params.toString();
-      axios.get(url.toString()).then((result) => {
-        this.inFlightRequest = false;
-        if (result.data.items.length < 1) {
-          this.showError = `No playlist with id ${playlistId}`;
+      this.fetchError = '';
+      const newPlaylist = new PlaylistClass(this.parsedPlaylistId);
+      newPlaylist.fetch().then((playlist) => {
+        this.playlistLinkOrId = '';
+        if (newPlaylist.id in this.playlistIdToIndex) {
+          const index = this.playlistIdToIndex[newPlaylist.id];
+          this.playlists[index] = newPlaylist;
+          this.openedPlaylist = index + 1;
         } else {
-          this.playlistName = result.data.items[0].snippet.title;
-          this.playlistDescription = result.data.items[0].snippet.description;
+          this.playlistIdToIndex[newPlaylist.id] = this.playlists.length;
+          this.playlists.push(newPlaylist);
+          this.openedPlaylist = this.playlists.length;
         }
-      }).catch((error) => {
-        this.showError = error;
-      });
-    },
-
-    fetchYTPlaylistSongs(playlistId, pageToken) {
-      const url = new URL('https://youtube.googleapis.com/youtube/v3/playlistItems');
-      const params = new URLSearchParams({
-        playlistId,
-        part: 'snippet,contentDetails',
-        fields: 'items/snippet(title,description,resourceId/videoId),pageInfo(totalResults),nextPageToken',
-        key: YT_API_KEY,
-        maxResults: 50,
-      });
-      if (pageToken) {
-        params.append('pageToken', pageToken);
-      }
-      url.search = params.toString();
-      axios.get(url.toString()).then(this.resolveYTSongs).catch((error) => {
-        this.showError = error;
-      });
-    },
-
-    resolveYTSongs(response) {
-      const songs = response.data.items;
-      for (let i = 0; i < songs.length; i += 1) {
-        const alts = this.getSongAlts(songs[i].snippet);
-        alts.sort((a, b) => b.confidence - a.confidence);
-        const index = this.songs.length;
-        this.songAlts.push([]);
-        for (let j = 0; j < alts.length && j < 5; j += 1) {
-          this.songAlts[index].push({ index, ...alts[j] });
+        const result = playlist.toJSON();
+        if (result.key in this.$store.state.customWords) {
+          const tree = allWords.findSubtree(result.key);
+          tree.numWords -= tree.wordList.length;
+          tree.wordList = [];
         }
-        this.songs.push({ index, ...alts[0] });
-      }
-      if (this.songs.length < 100 && response.data.nextPageToken) {
-        this.fetchYTPlaylistSongs(
-          this.playlistId,
-          response.data.nextPageToken,
-        );
-      }
-    },
-
-    getSongAlts(snippet) {
-      const isYTMusic = /^Provided to YouTube by /;
-      const result = [];
-      const origTitle = snippet.title.replace(/[([](official)? *(video|audio)[)\]]/i, '');
-      let title = origTitle;
-      let author = '';
-      result.push({ title: '', author: title, confidence: 0 });
-      result.push({ title, author, confidence: 1 });
-
-      const descBlocks = snippet.description.split('\n\n');
-      if (isYTMusic.test(descBlocks[0])) {
-        [title, ...author] = descBlocks[1].split(' · ');
-        author = author.join(' & ');
-        result.push({ title, author, confidence: 100 });
-        result.push({ title: author, author: title, confidence: 90 });
-      }
-      if (descBlocks[0].startsWith(title) && descBlocks[0].includes(' · ')) {
-        [title, ...author] = descBlocks[0].split(' · ');
-        author = author.join(' & ');
-        result.push({ title, author, confidence: 95 });
-        result.push({ title: author, author: title, confidence: 89 });
-      }
-      if (/ [–-] /.test(origTitle)) {
-        [author, title] = origTitle.includes(' – ') ? origTitle.split(' – ', 2) : origTitle.split(' - ', 2);
-        result.push({ title, author, confidence: 85 });
-        result.push({ author: title, title: author, confidence: 80 });
-      } else if (origTitle.includes('-')) {
-        [author, title] = origTitle.split('-', 2);
-        result.push({ title, author, confidence: 65 });
-        result.push({ author: title, title: author, confidence: 60 });
-      }
-      if (origTitle.includes('|')) {
-        [title, author] = origTitle.split('|', 2);
-        result.push({ title, author, confidence: 75 });
-        result.push({ author: title, title: author, confidence: 70 });
-      }
-      return result;
+        allWords.insertNode(result.key, result.items).name = result.name;
+        this.$store.commit('insertSelectedWordlists', `/root/${result.key}`);
+      }).catch((err) => { this.fetchError = err.toString(); });
     },
   },
-};
+});
 </script>
