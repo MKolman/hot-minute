@@ -7,8 +7,8 @@ Vue.use(Vuex);
 const defaultValues = {
   selectedWordlists2: [
     '/root/bomb/rock.txt',
-    '/root/bomb/2000s.txt',
-    '/root/bomb/2010s.txt',
+    '/root/bomb/decades/2000s.txt',
+    '/root/bomb/decades/2010s.txt',
     '/root/speak/hard.txt',
     '/root/speak/medium.txt',
     '/root/draw/hard.txt',
