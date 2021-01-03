@@ -17,9 +17,14 @@ jobs:
         uses: actions/cache@v2
         id: cache
         with:
-          path: |
-            node_modules
+          path: node_modules
           key: node_modules
+
+      - name: Install ⌛
+        run: npm install
+
+      - name: Test 📝
+        run: npm run test:e2e -- --headless
 
       - name: Share secret 🔐
         run: |
@@ -27,7 +32,6 @@ jobs:
 
       - name: Build 🔧
         run: |
-          npm install
           npm run build
           cp CNAME dist/
 
