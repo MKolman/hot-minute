@@ -85,25 +85,25 @@ module.exports = {
           urlPattern: /^https:\/\/fonts\.googleapis\.com/,
           handler: 'StaleWhileRevalidate',
           options: {
-            cacheName: 'google-fonts-webfonts'
-          }
+            cacheName: 'google-fonts-webfonts',
+          },
         },
         {
           urlPattern: /^https:\/\/fonts\.gstatic\.com/,
           handler: 'CacheFirst',
           options: {
-            cacheName: 'google-fonts-webfonts'
-          }
+            cacheName: 'google-fonts-webfonts',
+          },
         },
         {
           urlPattern: /^https:\/\/cdn\.jsdelivr\.net/,
           handler: 'CacheFirst',
           options: {
-            cacheName: 'material-icons'
-          }
-        }
-      ]
-    }
+            cacheName: 'material-icons',
+          },
+        },
+      ],
+    },
   },
   chainWebpack: (config) => {
     // config
@@ -125,6 +125,6 @@ module.exports = {
     sitemap: {
       baseURL: 'https://hotminute.kolman.si',
       routes,
-    }
-  }
+    },
+  },
 };
