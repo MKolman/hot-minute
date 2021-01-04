@@ -95,10 +95,10 @@ describe('Check tutorial', () => {
     cy.get('.top a[aria-label="Settings"][href="/settings"]').should('be.visible');
   });
   it('Finishes tutorial', () => {
-    cy.get('.tutorial-navigation > .skip-tutorial').should('not.be.visible');
     cy.get('.tutorial .v-overlay').should('be.visible');
-    cy.get('.tutorial-navigation > .primary').contains('Done').click();
-    cy.get('.tutorial .v-overlay').should('not.be.visible');
+    cy.get('.tutorial-navigation > .skip-tutorial').should('not.exist');
+    cy.get('.tutorial-navigation > .primary').contains('Done').should('be.visible').click();
+    cy.get('.tutorial .v-overlay').should('not.exist');
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/');
     });
@@ -118,7 +118,7 @@ describe('Check tutorial', () => {
   it('Skips tutorial', () => {
     cy.get('.tutorial .v-overlay').should('be.visible');
     cy.get('.tutorial-navigation > .skip-tutorial').should('be.visible').click();
-    cy.get('.tutorial .v-overlay').should('not.be.visible');
+    cy.get('.tutorial .v-overlay').should('not.exist');
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/');
     });

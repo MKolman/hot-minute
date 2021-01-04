@@ -17,7 +17,7 @@ describe('Test probablity', () => {
   it('Skips tutorial', () => {
     cy.visit('/');
     cy.get('.tutorial-navigation > .skip-tutorial').click();
-    cy.get('.tutorial > .v-overlay').should('not.be.visible');
+    cy.get('.tutorial > .v-overlay').should('not.exist');
   });
 
   it('Reduces animation length to 0', () => {
@@ -67,7 +67,7 @@ describe('Test animation length', () => {
   it('Skips tutorial', () => {
     cy.visit('/');
     cy.get('.tutorial-navigation > .skip-tutorial').click();
-    cy.get('.tutorial > .v-overlay').should('not.be.visible');
+    cy.get('.tutorial > .v-overlay').should('not.exist');
   });
 
   it('Reduces animation length to 0', () => {
