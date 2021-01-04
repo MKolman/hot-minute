@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/404.html"
   },
   {
-    "revision": "a80542e0c3806d6a160767f6a6fe8b17",
+    "revision": "6e2e770cba7704640b039d32464eaaa8",
     "url": "/about.html"
   },
   {
@@ -36,7 +36,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/css/chunk-5b8f0834.a42f750f.css"
   },
   {
-    "revision": "363d04b996e06c73965a",
+    "revision": "24b22150255ab29cfafb",
     "url": "/css/chunk-6a2f3984.9d7e1f73.css"
   },
   {
@@ -60,20 +60,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/bomb.53d23667.svg"
   },
   {
-    "revision": "9270a80c8ba737c659df8f5ad1bd504d",
+    "revision": "ef91ccdb7ec4cdb73ff43c2d5c1dcfaf",
     "url": "/import.html"
   },
   {
-    "revision": "2bd59d4653947e376f435e7f48c60ffa",
+    "revision": "c8def1a5febe0bc6055785babb8eead3",
     "url": "/index.html"
   },
   {
-    "revision": "4e44ecd732658c253878",
-    "url": "/js/about.3174d5d2.js"
+    "revision": "b49899ea1168186639da",
+    "url": "/js/about.f06b9802.js"
   },
   {
-    "revision": "71964db9d263f595df22",
-    "url": "/js/bomb.46359cf0.js"
+    "revision": "ce2a2b8dfb13cf465f53",
+    "url": "/js/bomb.0e640078.js"
   },
   {
     "revision": "c88665748e523d8f2489",
@@ -112,8 +112,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/js/chunk-6337fcfc.302956ab.js"
   },
   {
-    "revision": "363d04b996e06c73965a",
-    "url": "/js/chunk-6a2f3984.ea75baa6.js"
+    "revision": "24b22150255ab29cfafb",
+    "url": "/js/chunk-6a2f3984.2c04c932.js"
   },
   {
     "revision": "318a56feb9787f39eaec",
@@ -132,32 +132,32 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/js/chunk-vendors.15541ab6.js"
   },
   {
-    "revision": "e4550005f51a75b79e6c",
-    "url": "/js/draw.5a699148.js"
+    "revision": "c132c73ffd1d072ad2f9",
+    "url": "/js/draw.47a45f91.js"
   },
   {
-    "revision": "d3608f2dbc60dcdf2642",
-    "url": "/js/import.614f681f.js"
+    "revision": "ad2a9fab1c2dcbc43741",
+    "url": "/js/import.357dde5f.js"
   },
   {
-    "revision": "9fd596b4c448847c318e",
-    "url": "/js/index.07d72c72.js"
+    "revision": "a054c3f56016deb65b03",
+    "url": "/js/index.ef7ebe53.js"
   },
   {
-    "revision": "d64cf54c7294a2a7e075",
-    "url": "/js/rules.cdae4f79.js"
+    "revision": "8e8138a5c969eb659319",
+    "url": "/js/rules.1ea63d70.js"
   },
   {
-    "revision": "a426d521d90630757add",
-    "url": "/js/settings.4b769ed1.js"
+    "revision": "ca533f1a00680c3e8cf7",
+    "url": "/js/settings.1ac0392e.js"
   },
   {
-    "revision": "80f9d5b3a25aa30c4457",
-    "url": "/js/show.fd7a418f.js"
+    "revision": "0486ab70fc166daab37b",
+    "url": "/js/show.8ca24882.js"
   },
   {
-    "revision": "30ef1ae2ef6312774dd7",
-    "url": "/js/speak.f3e9dd1d.js"
+    "revision": "939a630a9d19ff336aa5",
+    "url": "/js/speak.3f225f1c.js"
   },
   {
     "revision": "7d0c48e17cf3ced4682ae6841c28557e",
@@ -212,19 +212,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/media/winner.acaa6ee8.mp3"
   },
   {
-    "revision": "046a5395e8547c3c7ddc5b057b953277",
+    "revision": "c9a7b6a64cff5be63cb1c15d8355d9fe",
     "url": "/play/bomb.html"
   },
   {
-    "revision": "c549d5062ca68c95e5ec238f158526fa",
+    "revision": "f5d9143b674d05b22874da3fd867d813",
     "url": "/play/draw.html"
   },
   {
-    "revision": "639769a87613bd4e118b4ba3a6e315f4",
+    "revision": "1e527d6d433aef639480ff7230c53315",
     "url": "/play/show.html"
   },
   {
-    "revision": "03397769ada716793eb6fb4b659e81cd",
+    "revision": "d51d1e0a497d5f35d47e55b9b60f2b24",
     "url": "/play/speak.html"
   },
   {
@@ -232,11 +232,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/robots.txt"
   },
   {
-    "revision": "0084cd378b3d10522b8d1a25ddd503e3",
+    "revision": "4efab68d31d1038eeb49e5cf4cea9096",
     "url": "/rules.html"
   },
   {
-    "revision": "e22bf1858d7070a82c795cf5ff239132",
+    "revision": "598f06556192ca432172a15d3cef3474",
     "url": "/settings.html"
   }
 ]);
