@@ -1,0 +1,17 @@
+{
+  "nextPageToken": "nextPageXYZ",
+  "items": [
+    {
+      "snippet": {
+        "title": "Music Author 1 - Song Title 1",
+        "description": ""
+      }
+    },
+    {
+      "snippet": {
+        "title": "Piece Title 2",
+        "description": "Provided to YouTube by Test Production\n\nPiece Title 2 · Classical Author 2\n\n"
+      }
+    }
+  ]
+}
