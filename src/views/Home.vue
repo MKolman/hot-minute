@@ -2,7 +2,7 @@
   <div class="home">
     <div class="top">
       Hot Minute
-      <v-btn text to="settings" aria-label="Settings">
+      <v-btn icon color="primary" to="settings" aria-label="Settings">
         <v-icon>mdi-cog</v-icon>
       </v-btn>
     </div>
