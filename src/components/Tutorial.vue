@@ -395,6 +395,11 @@ export default Vue.extend({
     },
   },
   mounted() {
+    // Skip tutorial for lighthouse audits
+    if (this.tutorialStep >= 0 && navigator.userAgent.indexOf('Chrome-Lighthouse') > -1) {
+      this.$store.commit('tutorialStop');
+      return;
+    }
     this.updateRoute();
     const newClass = this.getTutorialBodyClass(this.tutorialStep);
     if (newClass.length) document.body.classList.add(newClass);

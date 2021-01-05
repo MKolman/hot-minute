@@ -70,6 +70,18 @@ module.exports = {
           sizes: '512x512',
           type: 'image/png',
         },
+        {
+          src: 'img/icons/maskable-android-chrome-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable',
+        },
+        {
+          src: 'img/icons/maskable-android-chrome-152x152.png',
+          sizes: '152x152',
+          type: 'image/png',
+          purpose: 'maskable',
+        },
       ],
     },
     iconPaths: {

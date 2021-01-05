@@ -1,7 +1,35 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "./dist"
+      "staticDistDir": "./dist",
+      "isSinglePageApplication": true,
+      "settings": {
+        "skipAudits": ["redirects-http", "is-on-https"],
+        "chromeFlags": "--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/61.0.3116.0 Safari/537.36 Chrome-Lighthouse"
+      },
+      "url": [
+        "http://localhost/",
+        "http://localhost/settings",
+        "http://localhost/about",
+        "http://localhost/import",
+        "http://localhost/rules",
+        "http://localhost/play/draw",
+        "http://localhost/play/show",
+        "http://localhost/play/speak",
+        "http://localhost/play/bomb"
+      ]
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["error", {"minScore": 0.6}],
+        "categories:accessibility": ["error", {"minScore": 0.9}],
+        "categories:best-practices": ["error", {"minScore": 1}],
+        "categories:seo": ["error", {"minScore": 1}],
+        "categories:pwa": ["error", {"minScore": 1}]
+      }
     }
   }
 }

@@ -18,8 +18,13 @@
       selected-color="primary"
       @update:open="setTreeviewClickListeners"
     ></v-treeview>
-    <v-btn to="/import" color="primary" outlined block>
-      <!-- <v-icon color="secondary">mdi-plus</v-icon> -->
+    <v-btn
+      aria-label="Reset all settings"
+      to="/import"
+      color="primary"
+      outlined
+      block
+    >
       <v-icon>mdi-playlist-music</v-icon>
       <v-spacer></v-spacer>
       Add playlist
@@ -31,6 +36,7 @@
       Probability of humming bomb: {{ $store.state.bombProbability }}
     </v-subheader>
     <v-slider
+      aria-label="Set probability of humming bomb"
       v-model="$store.state.bombProbability"
       min="0"
       max="1"
@@ -62,6 +68,7 @@
       }}
     </v-subheader>
     <v-slider
+      aria-label="Set the time for each round"
       v-model="$store.state.timer"
       min="0"
       max="120"
@@ -83,6 +90,7 @@
       Activity selection animation length: {{ $store.state.animationTimeS }}s
     </v-subheader>
     <v-slider
+      aria-label="Set activity animation length"
       v-model="$store.state.animationTimeS"
       min="0"
       max="20"
@@ -100,6 +108,7 @@
       Restart the tutorial
       <v-spacer></v-spacer>
       <v-btn
+        aria-label="Restart tutorial"
         text
         style="text-decoration: none;"
         @click="$store.commit('tutorialStart');"
@@ -113,6 +122,7 @@
       Reset all settings
       <v-spacer></v-spacer>
       <v-btn
+        aria-label="Reset all settings"
         text
         style="text-decoration: none;"
         @click="$store.dispatch('setDefaultAll'); allWords.reload();"
@@ -130,6 +140,7 @@
 
       <template v-slot:action="{ attrs }">
         <v-btn
+          aria-label="Close snackbar"
           dark
           text
           v-bind="attrs"

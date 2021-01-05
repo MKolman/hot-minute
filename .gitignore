@@ -28,3 +28,6 @@ mock_images
 # Cypress test output
 tests/e2e/videos
 tests/e2e/screenshots
+
+# Lighthouse output
+.lighthouseci

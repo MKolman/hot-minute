@@ -1,5 +1,5 @@
 <template>
-    <v-btn id="home" fab large to="/">
+    <v-btn aria-label="Go home" id="home" fab large to="/">
       <v-icon>mdi-home</v-icon>
     </v-btn>
 </template>

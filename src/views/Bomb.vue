@@ -1,7 +1,13 @@
 <template>
   <div id="bomb" class="bomb">
     <h2 v-if="intro"> Hummmmming... </h2>
-    <img class="splash" :class="{big: !startAnimation}" v-if="intro" src="@/assets/bomb.svg">
+    <img
+      class="splash"
+      :class="{big: !startAnimation}"
+      v-if="intro"
+      src="@/assets/bomb.svg"
+      alt="Bomb"
+    >
     <div v-if="!intro" class="bomb-wrapper">
       <img src="@/assets/bomb.svg" alt="Bomb" />
       <div class="bomb-text">
@@ -22,7 +28,6 @@
 
 <style lang="scss" scoped>
 #bomb {
-  // overflow: hidden;
   max-height: 100vh;
 }
 .bomb {

@@ -48,7 +48,7 @@
 
     <p>
       In the making of this app the following resourcers have been utilized:
-      <ul>
+      <ul class="credit-links">
         <li><a href="https://github.com/dangelov/Pictionary-Card-Generator">
           Dangelov's pictionary clues
         </a></li>
@@ -70,6 +70,9 @@
 
 <style lang="scss">
 @import "@/styles/_settings.scss";
+.credit-links {
+  line-height: 32px;
+}
 </style>
 
 <script>
