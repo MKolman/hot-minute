@@ -41,10 +41,10 @@
           <v-btn @click="prependScore()" fab large class="elevation-4">+</v-btn>
         </div>
         <div
-          class="score-input elevation-4"
+          class="score-input"
           v-for="score in scores"
           :key="score.id"
-          :class="{big: score.id === activeScore.id}"
+          :class="{big: score.id === activeScore.id, ['elevation-4']: score.id === activeScore.id}"
         >
           <v-progress-circular
             class="score-progress"
@@ -158,9 +158,13 @@
     white-space: nowrap;
     width: 100%;
     font-size: 3rem;
+    scroll-snap-type: x mandatory;
 
     &.empty .empty-pad:last-child {
       display: none;
+    }
+    & > span > * {
+      scroll-snap-align: center;
     }
     .empty-pad {
       display: inline-block;
@@ -177,15 +181,34 @@
     display: inline-block;
     position: relative;
     background-color: var(--color-score-bg);
-    padding: 0rem;
+    padding: 0.5rem;
     margin: 1rem 0.25em;
     opacity: 0.5;
     transition-duration: 0.5s;
-    transition-property: opacity, padding, margin;
+    transition-property: opacity, padding, margin, box-shadow;
+
+    &:before, &:after {
+      position: absolute;
+      display: block;
+      left: 0;
+      width: 100%;
+      height: 1rem;
+      background-color: var(--color-app-bg);
+      content: "";
+      transition-duration: 0.2s;
+      transition-property: height;
+    }
+    &:before {
+      top: 0;
+    }
+    &:after {
+      bottom: 0;
+    }
     &.big {
       opacity: 1;
-      padding: 0.5rem;
-      margin: 0.5rem 0.25em;
+      &:before, &:after {
+        height: 0;
+      }
     }
     input {
       display: inline;
