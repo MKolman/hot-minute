@@ -9,7 +9,7 @@ describe('Test scores', () => {
     cy.contains('h1 span', 'Keep Score').should('be.visible');
     cy.get('.score-input').should('not.exist');
     cy.get('.toolbox').should('not.exist');
-    cy.get('.empty-pad button.v-btn--fab:visible').should('have.length', 1).contains('+')
+    cy.get('.empty-pad button.v-btn--fab:visible').should('have.length', 1).contains('+');
   });
 
   it('Adds a single team to the scoreboard', () => {
@@ -48,6 +48,6 @@ describe('Test scores', () => {
     cy.contains('h1 span', 'Keep Score').should('be.visible');
     cy.get('.score-input').should('not.exist');
     cy.get('.toolbox').should('not.exist');
-    cy.get('.empty-pad button.v-btn--fab:visible').should('have.length', 1).contains('+')
+    cy.get('.empty-pad button.v-btn--fab:visible').should('have.length', 1).contains('+');
   });
 });

@@ -1,17 +1,17 @@
-const slide = percentFromLeft => subject => {
-  const pixelsFromLeft = percentFromLeft * Cypress.config("viewportWidth");
+const slide = (percentFromLeft) => (subject) => {
+  const pixelsFromLeft = percentFromLeft * Cypress.config('viewportWidth');
   cy.wrap(subject).parent().find('div[role=slider]')
-      .trigger('mousedown', { which: 1, force: true })
-      .trigger('mousemove', { clientX: pixelsFromLeft, force: true })
-      .trigger('mouseup', {force: true});
-}
+    .trigger('mousedown', { which: 1, force: true })
+    .trigger('mousemove', { clientX: pixelsFromLeft, force: true })
+    .trigger('mouseup', { force: true });
+};
 
 const slider = (txt) => {
   const prob = cy.contains(txt);
   prob.scrollIntoView();
   prob.should('be.visible');
   return prob.next().find('input');
-}
+};
 
 describe('Test probablity', () => {
   it('Skips tutorial', () => {
@@ -35,7 +35,7 @@ describe('Test probablity', () => {
     slider(txt).should('have.value', '0');
   });
 
-  it('Starts games without bomb', () =>{
+  it('Starts games without bomb', () => {
     cy.get('#home').should('be.visible').click();
     for (let i = 0; i < 4; i++) {
       cy.get('.outer.play').should('be.visible').click();
@@ -52,7 +52,7 @@ describe('Test probablity', () => {
     slider(txt).should('have.value', '1');
   });
 
-  it('Starts only bomb games', () =>{
+  it('Starts only bomb games', () => {
     cy.get('#home').should('be.visible').click();
     for (let i = 0; i < 4; i++) {
       cy.get('.outer.play').should('be.visible').click();
@@ -63,7 +63,7 @@ describe('Test probablity', () => {
 });
 
 describe('Test animation length', () => {
-  let timer = 0;
+  const timer = 0;
   it('Skips tutorial', () => {
     cy.visit('/');
     cy.get('.tutorial-navigation > .skip-tutorial').click();
@@ -82,9 +82,9 @@ describe('Test animation length', () => {
     cy.get('#home').should('be.visible').click();
     const startTime = new Date();
     cy.get('.outer.play').should('be.visible').click().then(() => {
-      cy.url().should('match', /play\/(draw|show|speak|bomb)/).then(() =>{
+      cy.url().should('match', /play\/(draw|show|speak|bomb)/).then(() => {
         const endTime = new Date();
-        cy.wrap(endTime-startTime).should('be.lessThan', 5000);
+        cy.wrap(endTime - startTime).should('be.lessThan', 5000);
         cy.go('back');
       });
     });
@@ -98,13 +98,13 @@ describe('Test animation length', () => {
     slider(txt).should('have.value', '20');
   });
 
-  it('Starts games with long animation', () =>{
+  it('Starts games with long animation', () => {
     cy.get('#home').should('be.visible').click();
     const startTime = new Date();
     cy.get('.outer.play').should('be.visible').click().then(() => {
-      cy.url({ timeout: 20000 }).should('match', /play\/(draw|show|speak|bomb)/).then(() =>{
+      cy.url({ timeout: 20000 }).should('match', /play\/(draw|show|speak|bomb)/).then(() => {
         const endTime = new Date();
-        cy.wrap(endTime-startTime).should('be.greaterThan', 10000);
+        cy.wrap(endTime - startTime).should('be.greaterThan', 10000);
         cy.go('back');
       });
     });

@@ -85,7 +85,6 @@ describe('Check tutorial', () => {
     cy.get('.tutorial-navigation > .skip-tutorial').should('be.visible').contains('Skip tutorial');
     cy.get('.tutorial-navigation > .primary').contains('Next').click();
 
-
     cy.location('pathname').should('eq', '/');
     cy.contains('go to settings to');
     cy.get('.top a[aria-label="Settings"][href="/settings"]').should('be.visible');

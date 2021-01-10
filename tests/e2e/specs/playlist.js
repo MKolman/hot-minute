@@ -1,17 +1,17 @@
-const slide = percentFromLeft => subject => {
-  const pixelsFromLeft = percentFromLeft * Cypress.config("viewportWidth");
+const slide = (percentFromLeft) => (subject) => {
+  const pixelsFromLeft = percentFromLeft * Cypress.config('viewportWidth');
   cy.wrap(subject).parent().find('div[role=slider]')
-      .trigger('mousedown', { which: 1, force: true })
-      .trigger('mousemove', { clientX: pixelsFromLeft, force: true })
-      .trigger('mouseup', {force: true});
-}
+    .trigger('mousedown', { which: 1, force: true })
+    .trigger('mousemove', { clientX: pixelsFromLeft, force: true })
+    .trigger('mouseup', { force: true });
+};
 
 const slider = (txt) => {
   const prob = cy.contains(txt);
   prob.scrollIntoView();
   prob.should('be.visible');
   return prob.next().find('input');
-}
+};
 const IMPORTED_MUSIC = [['Song Title 1', 'Music Author 1'], ['Piece Title 2', 'Classical Author 2'], ['Rock Song 3', 'Rock Author 3.1 & Opera Singer 3.2'], ['Cover Title 4', 'Cover Author 4']];
 const KEY = 'TestApiKeyIsNotSecret';
 describe('Test playlist', () => {
@@ -50,9 +50,9 @@ describe('Test playlist', () => {
         part: 'snippet',
         fields: 'items/snippet/title',
       },
-      url: 'https://youtube.googleapis.com/youtube/v3/playlists'
+      url: 'https://youtube.googleapis.com/youtube/v3/playlists',
     }, {
-      fixture: 'playlists.json'
+      fixture: 'playlists.json',
     }).as('ytPLaylist');
 
     const itemQ = {
@@ -63,20 +63,21 @@ describe('Test playlist', () => {
       maxResults: '50',
     };
     cy.intercept({
-      query: {...itemQ, pageToken: 'nextPageXYZ'},
-      url: 'https://youtube.googleapis.com/youtube/v3/playlistItems'
+      query: { ...itemQ, pageToken: 'nextPageXYZ' },
+      url: 'https://youtube.googleapis.com/youtube/v3/playlistItems',
     }, { fixture: 'playlistItems2.json' }).as('page2');
     cy.intercept({
       query: itemQ,
-      url: 'https://youtube.googleapis.com/youtube/v3/playlistItems'
+      url: 'https://youtube.googleapis.com/youtube/v3/playlistItems',
     }, { fixture: 'playlistItems.json' }).as('page1');
 
     cy.get('input').type('https://youtube.com/?list=PL_as-fsdaf');
     cy.contains('button', 'Import YouTube Playlist').should('be.visible').should('not.be.disabled').click();
     cy.wait(['@ytPLaylist', '@page1', '@page2']);
     cy.contains('button', 'Test Playlist Title');
-    for (let [title, author] of IMPORTED_MUSIC) {
-      cy.contains(title).parentsUntil('tr').last().next().contains(author);
+    for (const [title, author] of IMPORTED_MUSIC) {
+      cy.contains(title).parentsUntil('tr').last().next()
+        .contains(author);
     }
   });
 
@@ -84,11 +85,10 @@ describe('Test playlist', () => {
     cy.go('back');
     cy.location('pathname').should('eq', '/settings');
 
-    const getNode = (txt) => {
-      return cy.contains('.v-treeview .v-treeview-node__content', txt);
-    }
+    const getNode = (txt) => cy.contains('.v-treeview .v-treeview-node__content', txt);
     getNode('Test Playlist Title').should('not.exist');
-    getNode('Songs').prev().should('have.class', 'v-treeview-node__checkbox').should('have.class', 'mdi-minus-box').should('be.visible');
+    getNode('Songs').prev().should('have.class', 'v-treeview-node__checkbox').should('have.class', 'mdi-minus-box')
+      .should('be.visible');
     getNode('Songs').click();
     getNode('Test Playlist Title').should('be.visible').prev().should('have.class', 'mdi-checkbox-marked');
     getNode('Songs').prev().click().should('have.class', 'mdi-checkbox-marked');
@@ -97,9 +97,12 @@ describe('Test playlist', () => {
     getNode('Test Playlist Title').prev().click().should('have.class', 'mdi-checkbox-marked');
     getNode('Songs').prev().click().should('have.class', 'mdi-minus-box');
     getNode('Test Playlist Title').prev().click().should('have.class', 'mdi-checkbox-marked');
-    getNode('Songs').parent().next().should('have.class', 'v-treeview-node__children').should('be.visible');
-    getNode('Songs').parent().next().find('.mdi-checkbox-marked').should('have.length', 1);
-    getNode('Songs').parent().next().find('.mdi-minus-box').should('have.length', 0);
+    getNode('Songs').parent().next().should('have.class', 'v-treeview-node__children')
+      .should('be.visible');
+    getNode('Songs').parent().next().find('.mdi-checkbox-marked')
+      .should('have.length', 1);
+    getNode('Songs').parent().next().find('.mdi-minus-box')
+      .should('have.length', 0);
   });
 
   it('Checks the selection is made from the imported playlist', () => {
