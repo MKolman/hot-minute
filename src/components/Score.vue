@@ -341,7 +341,9 @@ class Score {
     this.value = 0;
     this.history = [] as number[];
     this.id = Score.idCounter;
-    this.name = `${name} Team ${this.id + 1}`;
+    this.name = '';
+    if (name) this.name = `${name}`;
+    this.name += `Team ${this.id + 1}`;
     Score.idCounter += 1;
   }
 

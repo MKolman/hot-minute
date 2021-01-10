@@ -36,7 +36,7 @@ describe('Test playlist', () => {
 
   it('Goes to playlist import page', () => {
     cy.contains('.v-btn', 'Add playlist').should('be.visible').click();
-    cy.url().should('include', '/import');
+    cy.location('pathname').should('eq', '/import');
     cy.contains('h1', 'Custom playlists').should('be.visible');
     cy.contains('button', 'Import new playlist').should('be.visible');
     cy.contains('button', 'Import YouTube Playlist').should('be.visible').should('be.disabled');
