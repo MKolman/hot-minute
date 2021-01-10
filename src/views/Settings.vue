@@ -157,6 +157,20 @@
 
 <style lang="scss">
 @import "@/styles/_settings.scss";
+.text-page {
+  .v-treeview-node__root {
+    padding-left: 0;
+  }
+  .v-treeview-node__label {
+    white-space: unset;
+  }
+  .v-treeview-node__level:first-child {
+    width: 24px;
+  }
+  .v-treeview-node__toggle, .v-treeview-node__checkbox {
+    height: 48px;
+  }
+}
 </style>
 
 <script lang="ts">
