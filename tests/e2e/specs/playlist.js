@@ -12,10 +12,9 @@ const slider = (txt) => {
   prob.should('be.visible');
   return prob.next().find('input');
 }
-
+const IMPORTED_MUSIC = [['Song Title 1', 'Music Author 1'], ['Piece Title 2', 'Classical Author 2'], ['Rock Song 3', 'Rock Author 3.1 & Opera Singer 3.2'], ['Cover Title 4', 'Cover Author 4']];
 const KEY = 'TestApiKeyIsNotSecret';
 describe('Test playlist', () => {
-  const getStore = () => cy.window().its('app.$store');
   it('Skips tutorial', () => {
     cy.visit('/');
     cy.get('.tutorial-navigation > .skip-tutorial').click();
@@ -76,8 +75,52 @@ describe('Test playlist', () => {
     cy.contains('button', 'Import YouTube Playlist').should('be.visible').should('not.be.disabled').click();
     cy.wait(['@ytPLaylist', '@page1', '@page2']);
     cy.contains('button', 'Test Playlist Title');
-    for (let [title, author] of [['Song Title 1', 'Music Author 1'], ['Piece Title 2', 'Classical Author 2'], ['Rock Song 3', 'Rock Author 3.1 & Opera Singer 3.2'], ['Cover Title 4', 'Cover Author 4']]) {
+    for (let [title, author] of IMPORTED_MUSIC) {
       cy.contains(title).parentsUntil('tr').last().next().contains(author);
+    }
+  });
+
+  it('Sets the imported playlist as the only song', () => {
+    cy.go('back');
+    cy.location('pathname').should('eq', '/settings');
+
+    const getNode = (txt) => {
+      return cy.contains('.v-treeview .v-treeview-node__content', txt);
+    }
+    getNode('Test Playlist Title').should('not.exist');
+    getNode('Songs').prev().should('have.class', 'v-treeview-node__checkbox').should('have.class', 'mdi-minus-box').should('be.visible');
+    getNode('Songs').click();
+    getNode('Test Playlist Title').should('be.visible').prev().should('have.class', 'mdi-checkbox-marked');
+    getNode('Songs').prev().click().should('have.class', 'mdi-checkbox-marked');
+    getNode('Test Playlist Title').should('be.visible').prev().should('have.class', 'mdi-checkbox-marked');
+    getNode('Test Playlist Title').prev().click().should('have.class', 'mdi-checkbox-blank-outline');
+    getNode('Test Playlist Title').prev().click().should('have.class', 'mdi-checkbox-marked');
+    getNode('Songs').prev().click().should('have.class', 'mdi-minus-box');
+    getNode('Test Playlist Title').prev().click().should('have.class', 'mdi-checkbox-marked');
+    getNode('Songs').parent().next().should('have.class', 'v-treeview-node__children').should('be.visible');
+    getNode('Songs').parent().next().find('.mdi-checkbox-marked').should('have.length', 1);
+    getNode('Songs').parent().next().find('.mdi-minus-box').should('have.length', 0);
+  });
+
+  it('Checks the selection is made from the imported playlist', () => {
+    cy.get('#home').should('be.visible').click();
+    for (let i = 0; i < 3; i++) {
+      cy.location('pathname').should('eq', '/');
+      cy.get('.play.outer').should('be.visible').click();
+      cy.location('pathname').should('eq', '/selector');
+      cy.location('pathname').should('eq', '/play/bomb');
+      cy.get('.bomb-text', { timeout: 10000 }).then((el) => {
+        cy.log(el);
+        el = el[0];
+        cy.wrap(el.children[0]).should('have.class', 'song-author');
+        cy.wrap(el.children[1]).should('have.class', 'song-title');
+        const songs = Object.fromEntries(IMPORTED_MUSIC);
+        const author = el.children[0].textContent.trim();
+        const title = el.children[1].textContent.trim();
+        expect(songs).to.have.any.key(title);
+        expect(songs[title]).to.eq(author);
+      });
+      cy.go('back');
     }
   });
 });
