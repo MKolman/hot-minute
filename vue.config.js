@@ -1,50 +1,47 @@
 const routes = require('./src/router/routes');
 
+const page = {
+  entry: 'src/main.ts',
+  template: 'public/index.html',
+  title: 'Hot Minute',
+};
+
 module.exports = {
   pages: {
     index: {
-      entry: 'src/main.ts',
-      template: 'public/index.html',
+      ...page,
       filename: 'index.html',
     },
     bomb: {
-      entry: 'src/main.ts',
-      template: 'public/index.html',
+      ...page,
       filename: 'play/bomb.html',
     },
     draw: {
-      entry: 'src/main.ts',
-      template: 'public/index.html',
+      ...page,
       filename: 'play/draw.html',
     },
     show: {
-      entry: 'src/main.ts',
-      template: 'public/index.html',
+      ...page,
       filename: 'play/show.html',
     },
     speak: {
-      entry: 'src/main.ts',
-      template: 'public/index.html',
+      ...page,
       filename: 'play/speak.html',
     },
     rules: {
-      entry: 'src/main.ts',
-      template: 'public/index.html',
+      ...page,
       filename: 'rules.html',
     },
     settings: {
-      entry: 'src/main.ts',
-      template: 'public/index.html',
+      ...page,
       filename: 'settings.html',
     },
     import: {
-      entry: 'src/main.ts',
-      template: 'public/index.html',
+      ...page,
       filename: 'import.html',
     },
     about: {
-      entry: 'src/main.ts',
-      template: 'public/index.html',
+      ...page,
       filename: 'about.html',
     },
   },
