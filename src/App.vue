@@ -27,7 +27,7 @@
 </template>
 
 <style lang="scss">
-@import "./styles/_colors.scss";
+@import "./assets/css/_colors.scss";
 #updateSnack {
   font-family: 'Epilogue', sans-serif;
   .v-snack__content {
