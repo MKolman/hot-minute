@@ -13,4 +13,6 @@ export default new Vuetify({
       },
     },
   },
+  customVariables: ['@/assets/css/variables.scss'],
+  treeShake: true,
 });
