@@ -69,7 +69,7 @@
 </template>
 
 <style lang="scss">
-@import "@/styles/_settings.scss";
+@import "@/assets/css/_settings.scss";
 .credit-links {
   line-height: 32px;
 }

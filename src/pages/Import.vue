@@ -75,7 +75,7 @@
 </template>
 
 <style lang="scss">
-@import "@/styles/_settings.scss";
+@import "@/assets/css/_settings.scss";
 .v-list, input {
   font-family: 'Epilogue', sans-serif;
 }

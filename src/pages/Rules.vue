@@ -89,7 +89,7 @@
 </template>
 
 <style lang="scss">
-@import "@/styles/_settings.scss";
+@import "@/assets/css/_settings.scss";
 </style>
 
 <script>

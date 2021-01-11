@@ -156,7 +156,7 @@
 </template>
 
 <style lang="scss">
-@import "@/styles/_settings.scss";
+@import "@/assets/css/_settings.scss";
 .text-page {
   .v-treeview-node__root {
     padding-left: 0;
