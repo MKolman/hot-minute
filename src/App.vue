@@ -3,25 +3,7 @@
     <v-main>
       <router-view class="view" />
     </v-main>
-    <v-snackbar
-      id="updateSnack"
-      bottom
-      right
-      :value="updateExists"
-      :timeout="-1"
-    >
-      An update is available
-      <template v-slot:action="{ attrs }">
-      <v-btn
-        text
-        color="var(--color-speak-view-btn-bg)"
-        v-bind="attrs"
-        @click="refreshApp"
-      >
-        Update
-      </v-btn>
-      </template>
-    </v-snackbar>
+    <UpdateSnackbar />
     <Tutorial />
   </v-app>
 </template>
@@ -61,12 +43,11 @@
 </style>
 
 <script>
-import update from '@/mixins/update';
+import UpdateSnackbar from '@/components/UpdateSnackbar.vue';
 import Tutorial from '@/components/Tutorial.vue';
 
 export default {
   name: 'App',
-  components: { Tutorial },
-  mixins: [update],
+  components: { Tutorial, UpdateSnackbar },
 };
 </script>
