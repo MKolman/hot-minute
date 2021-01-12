@@ -1,5 +1,4 @@
 /* eslint-disable global-require */
-import store from '@/store';
 
 class Player {
   allSounds: HTMLAudioElement[];
@@ -17,8 +16,8 @@ class Player {
     }
   }
 
-  play(): HTMLAudioElement {
-    if (store.state.enabledSounds2.indexOf(this.name) === -1) {
+  play(enabled: string[]): HTMLAudioElement {
+    if (!enabled.includes(this.name)) {
       console.log(this.name, 'sound is disabled and was not played');
       return this.allSounds[0];
     }
