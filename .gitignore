@@ -31,3 +31,7 @@ tests/e2e/screenshots
 
 # Lighthouse output
 .lighthouseci
+
+# Nuxt tmp folders
+.nuxt
+nuxt
