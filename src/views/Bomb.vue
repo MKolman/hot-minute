@@ -142,7 +142,7 @@ export default {
         this.$store.commit('tutorialNext');
       }
     }, 4000);
-    allWords.loadSettings();
+    allWords.loadSettings(this.$store.state.selectedWordlists2);
     if (this.$store.state.tutorialStep < 0) {
       [this.artist, this.title] = allWords.getRandom('bomb').split(';');
     }

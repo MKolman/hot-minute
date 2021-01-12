@@ -40,6 +40,7 @@
 import UpdatePWA from '@/components/UpdatePWA.vue';
 import Tutorial from '@/components/Tutorial.vue';
 import Audio from '@/lib/audio';
+import allWords from '@/lib/wordlists';
 
 export default {
   name: 'App',
@@ -48,6 +49,7 @@ export default {
     this.$root.$on('play', (sound) => {
       Audio[sound].play(this.$store.state.enabledSounds2);
     });
+    allWords.reload(this.$store.state.customWords);
   },
 };
 </script>

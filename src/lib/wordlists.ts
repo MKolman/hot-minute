@@ -1,5 +1,3 @@
-import store from '../store';
-
 type TreeType = { name: string; id: string; children: TreeType[] };
 
 class WordTree {
@@ -94,11 +92,11 @@ class WordTree {
     }, 0);
   }
 
-  loadSettings() {
-    this.filter(store.state.selectedWordlists2, '');
+  loadSettings(selectedWordlists: string[]) {
+    this.filter(selectedWordlists, '');
   }
 
-  reload() {
+  reload(customWords: {[key: string]: { key: string; name: string; items: string[] } }) {
     this.subtrees = {};
     this.wordList = [];
     this.numWords = 0;
@@ -107,7 +105,7 @@ class WordTree {
       this.insertNode(key.slice(2), r(key).default.split('\n'));
     });
     // Include custom playlists that users imported
-    Object.values(store.state.customWords).forEach(
+    Object.values(customWords).forEach(
       (playlist: {key: string; name: string; items: string[]}) => {
         this.insertNode(playlist.key, playlist.items).name = playlist.name;
       },
@@ -116,6 +114,5 @@ class WordTree {
 }
 
 const wordTree = new WordTree('root', []);
-wordTree.reload();
 
 export default wordTree;
