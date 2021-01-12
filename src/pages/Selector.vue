@@ -31,7 +31,6 @@ export default {
       delay: this.$store.state.animationTimeS * 33,
       timeoutIds: [null],
       activities: ['speak', 'draw', 'show'],
-      activityPicker,
     };
   },
   computed: mapState(['tutorialStep']),
@@ -64,7 +63,7 @@ export default {
       this.timeoutIds[0] = setTimeout(this.roll, this.delay);
     },
     resolve() {
-      const selectedActivity = this.tutorialStep < 0 ? this.activityPicker() : 0;
+      const selectedActivity = this.tutorialStep < 0 ? activityPicker(this.$store) : 0;
       if (selectedActivity === 3) {
         this.timeoutIds.push(setTimeout(() => this.goPlay('bomb'), 2000));
       } else {
