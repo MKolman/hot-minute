@@ -1,7 +1,8 @@
-const routes = require('./src/router/routes');
+const path = require("path");
+const routes = require('./router/routes');
 
 const page = {
-  entry: 'src/main.ts',
+  entry: 'main.ts',
   template: 'public/index.html',
   title: 'Hot Minute',
 };
@@ -113,6 +114,16 @@ module.exports = {
         },
       ],
     },
+  },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, ".")
+      }
+    }
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "./public")
   },
   chainWebpack: (config) => {
     config
