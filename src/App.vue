@@ -42,12 +42,18 @@
 }
 </style>
 
-<script>
+<script lang="ts">
 import UpdateSnackbar from '@/components/UpdateSnackbar.vue';
 import Tutorial from '@/components/Tutorial.vue';
+import Audio from '@/lib/audio';
 
 export default {
   name: 'App',
   components: { Tutorial, UpdateSnackbar },
+  mounted() {
+    this.$root.$on('play', (sound) => {
+      Audio[sound].play(this.$store.state.enabledSounds2);
+    });
+  },
 };
 </script>

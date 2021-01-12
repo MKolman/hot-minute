@@ -72,7 +72,6 @@
 
 <script>
 import Vue from 'vue';
-import Sounds from '@/lib/audio';
 
 export default Vue.extend({
   name: 'Timer',
@@ -151,8 +150,8 @@ export default Vue.extend({
         if (this.$refs.timer) this.$refs.timer.$el.classList.remove('hidden');
         this.timer -= 1;
         if (this.$store.state.tutorialStep < 0) {
-          if (this.timer === 0) Sounds.timesup.play();
-          else if (this.timer <= 5) Sounds.countdown.play();
+          if (this.timer === 0) this.$root.$emit('play', 'timesup');
+          else if (this.timer <= 5) this.$root.$emit('play', 'countdown');
         }
         this.timeoutId = setTimeout(this.countdown, 1000);
       }

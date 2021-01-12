@@ -18,7 +18,6 @@
 // @ is an alias to /src
 import { mapState } from 'vuex';
 import Card from '@/components/Card.vue';
-import Sounds from '@/lib/audio';
 import activityPicker from '@/lib/activity_picker';
 
 export default {
@@ -50,7 +49,7 @@ export default {
       if (type === 'bomb') {
         this.$router.replace('/play/bomb');
       } else {
-        Sounds[type].play();
+        this.$root.$emit('play', type);
         this.$router.replace({ name: 'Play', params: { type } });
       }
     },
@@ -61,7 +60,7 @@ export default {
     roll() {
       this.highlight = (this.highlight + 1) % 3;
       this.delay = Math.max(this.delay * 0.92, 100);
-      Sounds.select.play();
+      this.$root.$emit('play', 'select');
       this.timeoutIds[0] = setTimeout(this.roll, this.delay);
     },
     resolve() {
@@ -74,7 +73,7 @@ export default {
         this.highlight = selectedActivity;
         for (let delay = 200; delay < 1300; delay += 200) {
           this.timeoutIds.push(setTimeout(() => {
-            if (this.highlight === -1) Sounds.selected.play();
+            if (this.highlight === -1) this.$root.$emit('play', 'selected');
             this.highlight = this.highlight === -1 ? selectedActivity : -1;
           }, delay));
         }

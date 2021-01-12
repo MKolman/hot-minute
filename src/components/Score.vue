@@ -318,7 +318,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Sounds from '@/lib/audio';
 
 class Score {
   static idCounter = 0;
@@ -352,7 +351,7 @@ class Score {
     if (this.history.length > 100) this.history.splice(0, 1);
     this.value = +this.value + diff;
     if (this.value >= 50 && this.value - diff < 50) {
-      Sounds.winner.play();
+      this.$root.$emit('play', 'winner');
     }
   }
 
