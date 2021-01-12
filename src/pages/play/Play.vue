@@ -54,7 +54,7 @@ export default {
     };
   },
   mounted() {
-    allWords.loadSettings();
+    allWords.loadSettings(this.$store.state.selectedWordlists2);
     this.txt = allWords.getRandom(this.$route.params.type);
   },
   computed: {

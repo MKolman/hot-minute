@@ -125,7 +125,7 @@
         aria-label="Reset all settings"
         text
         style="text-decoration: none;"
-        @click="$store.dispatch('setDefaultAll'); allWords.reload();"
+        @click="$store.dispatch('setDefaultAll'); allWords.reload($store.state.customWords);"
         color="primary"
       >
         Reset
