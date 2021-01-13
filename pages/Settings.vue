@@ -164,11 +164,22 @@
   .v-treeview-node__label {
     white-space: unset;
   }
+  .v-treeview-node__prepend {
+    min-width: 48px;
+  }
+  .v-treeview-node__append {
+    min-width: 48px;
+  }
+
+  .v-treeview-node__level{
+    width: 48px;
+  }
   .v-treeview-node__level:first-child {
     width: 24px;
   }
   .v-treeview-node__toggle, .v-treeview-node__checkbox {
     height: 48px;
+    width: 48px;
   }
 }
 </style>
