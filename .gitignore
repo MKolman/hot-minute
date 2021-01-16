@@ -31,3 +31,8 @@ tests/e2e/screenshots
 
 # Lighthouse output
 .lighthouseci
+
+# Nuxt
+nuxt
+.nuxt
+static/sw.js
