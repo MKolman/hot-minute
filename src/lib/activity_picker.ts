@@ -1,8 +1,6 @@
-import store from '@/store';
-
-function getProbabilities(): number[] {
-  const nonBomb = (1 - store.state.bombProbability) / 3;
-  return [nonBomb, nonBomb, nonBomb, store.state.bombProbability];
+function getProbabilities(bombProbability: number): number[] {
+  const nonBomb = (1 - bombProbability) / 3;
+  return [nonBomb, nonBomb, nonBomb, bombProbability];
 }
 function normalize(arr: number[]): number[] {
   const sum = arr.reduce((total: number, cur: number) => total + cur, 0);
@@ -19,9 +17,19 @@ function fixProbability(probability: number[], history: number[]): number[] {
   }
   return normalize(tmpProbability);
 }
+type Store = {
+  state: {
+    activityHistory: number[];
+    bombProbability: number;
+  };
+  commit: (a: string, b: number) => void;
+};
 
-function pick(): number {
-  const probability = fixProbability(getProbabilities(), store.state.activityHistory);
+function pick(store: Store): number {
+  const probability = fixProbability(
+    getProbabilities(store.state.bombProbability),
+    store.state.activityHistory,
+  );
   let choice = Math.random();
   for (let i = 0; i < probability.length; i += 1) {
     if (probability[i] >= choice) {
