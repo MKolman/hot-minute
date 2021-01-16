@@ -3,37 +3,13 @@
     <v-main>
       <router-view class="view" />
     </v-main>
-    <v-snackbar
-      id="updateSnack"
-      bottom
-      right
-      :value="updateExists"
-      :timeout="-1"
-    >
-      An update is available
-      <template v-slot:action="{ attrs }">
-      <v-btn
-        text
-        color="var(--color-speak-view-btn-bg)"
-        v-bind="attrs"
-        @click="refreshApp"
-      >
-        Update
-      </v-btn>
-      </template>
-    </v-snackbar>
+    <UpdatePWA />
     <Tutorial />
   </v-app>
 </template>
 
 <style lang="scss">
 @import "./styles/_colors.scss";
-#updateSnack {
-  font-family: 'Epilogue', sans-serif;
-  .v-snack__content {
-    color: var(--color-speak-view-bg)!important;
-  }
-}
 #app {
   font-family: 'Galada', cursive;
   -webkit-font-smoothing: antialiased;
@@ -61,12 +37,11 @@
 </style>
 
 <script>
-import update from '@/mixins/update';
+import UpdatePWA from '@/components/UpdatePWA.vue';
 import Tutorial from '@/components/Tutorial.vue';
 
 export default {
   name: 'App',
-  components: { Tutorial },
-  mixins: [update],
+  components: { Tutorial, UpdatePWA },
 };
 </script>
